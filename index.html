@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>چت‌نگار - پشتیبانی هوشمند برای وردپرس</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Calistoga&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              background: '#0F0E17',
+              surface: '#1A1932',
+              primary: {
+                DEFAULT: '#4F46E5', // Indigo 600
+                dark: '#4338CA',
+              },
+              secondary: {
+                DEFAULT: '#10B981', // Emerald 500
+              },
+              accent: {
+                DEFAULT: '#F59E0B', // Amber 500
+              },
+              text: {
+                light: '#E2E8F0',
+                muted: '#94A3B8',
+              }
+            },
+            fontFamily: {
+              sans: ['Vazirmatn', 'sans-serif'],
+              display: ['Vazirmatn', 'sans-serif'], // Using Vazirmatn for display too as it's cleaner for Farsi
+              mono: ['JetBrains Mono', 'monospace'],
+            },
+            backgroundImage: {
+              'primary-gradient': 'linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%)',
+              'glass': 'linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%)',
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      body {
+        background-color: #0F0E17;
+        color: #E2E8F0;
+        overflow-x: hidden;
+      }
+      .glass-panel {
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .text-gradient {
+        background: linear-gradient(to left, #818cf8, #c084fc, #34d399); /* Reversed for RTL feeling */
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #0F0E17;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #334155;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #475569;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "react": "https://esm.sh/react@^19.2.4",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "lucide-react": "https://esm.sh/lucide-react@^0.564.0",
+    "framer-motion": "https://esm.sh/framer-motion@^12.34.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
