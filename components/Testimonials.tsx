@@ -1,7 +1,6 @@
 import React from 'react';
 import { Section } from './ui/Section';
 import { Star, Quote } from 'lucide-react';
-import { motion } from 'framer-motion';
 
 const reviews = [
   {
@@ -34,11 +33,8 @@ export const Testimonials: React.FC = () => {
 
       <div className="grid md:grid-cols-3 gap-8">
         {reviews.map((review, idx) => (
-            <motion.div 
+            <div 
                 key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: idx * 0.2 }}
                 className="relative bg-surface p-8 rounded-3xl border border-white/5 hover:border-primary/30 transition-all duration-300 hover:-translate-y-2"
             >
                 <div className="absolute -top-4 -right-4 w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white">
@@ -64,7 +60,7 @@ export const Testimonials: React.FC = () => {
                         <span className="text-xs text-text-muted">{review.role}</span>
                     </div>
                 </div>
-            </motion.div>
+            </div>
         ))}
       </div>
     </Section>

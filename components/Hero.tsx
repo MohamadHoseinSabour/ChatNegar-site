@@ -174,10 +174,10 @@ export const Hero: React.FC = () => {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
-          className="text-3xl md:text-5xl lg:text-6xl font-bold font-display tracking-tight text-white mb-6 max-w-5xl leading-[2.1] md:leading-[1.9]"
+          className="text-3xl md:text-5xl lg:text-6xl font-bold font-display tracking-tight text-white mb-6 max-w-5xl leading-[1.45] md:leading-[1.9]"
         >
           <span className="block">پاسخ سریع، فروش بیشتر.</span>
-          <span className="block mt-7 md:mt-8">
+          <span className="block mt-3 md:mt-8">
             <span className="text-gradient">چت‌نگار</span> همیشه آنلاین است.
           </span>
         </motion.h1>
