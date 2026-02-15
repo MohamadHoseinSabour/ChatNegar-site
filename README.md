@@ -1,20 +1,124 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# چت‌نگار | ChatNegar Landing Page
 
-# Run and deploy your AI Studio app
+لندینگ‌پیج رسمی محصول **چت‌نگار** با تمرکز بر معرفی افزونه چت‌بات هوشمند برای وردپرس/ووکامرس.
 
-This contains everything you need to run your app locally.
+این پروژه یک فرانت‌اند React + Vite است (بدون بک‌اند داخلی) و برای نمایش قابلیت‌های محصول، دمو تعاملی ویجت و CTAهای فروش/نصب ساخته شده است.
 
-View your app in AI Studio: https://ai.studio/apps/drive/1pCiHTtCAqHj6I5gHEzeQzNITYEjPwMzX
+## ویژگی‌های اصلی
 
-## Run Locally
+- رابط کاملا RTL و فارسی
+- طراحی مدرن با Tailwind (از طریق CDN در `index.html`)
+- انیمیشن‌های UI با `framer-motion`
+- کامپوننت‌بندی واضح برای هر سکشن صفحه
+- دمو تعاملی ویجت چت با سناریوی پیام‌های خودکار
+- ناوبری اسکرول نرم با منوی موبایل
 
-**Prerequisites:**  Node.js
+## استک تکنولوژی
 
+- React 19
+- TypeScript
+- Vite 6
+- Framer Motion
+- Lucide React (آیکن‌ها)
+- TailwindCSS (CDN Config در `index.html`)
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## ساختار پروژه
+
+```text
+.
+├─ components/
+│  ├─ ui/
+│  │  ├─ Button.tsx
+│  │  └─ Section.tsx
+│  ├─ Navbar.tsx
+│  ├─ Hero.tsx
+│  ├─ ProblemSolution.tsx
+│  ├─ Comparison.tsx
+│  ├─ Features.tsx
+│  ├─ Integrations.tsx
+│  ├─ Timeline.tsx
+│  ├─ DemoWidget.tsx
+│  ├─ Testimonials.tsx
+│  ├─ DevSection.tsx
+│  ├─ Pricing.tsx
+│  └─ FAQ.tsx
+├─ App.tsx
+├─ index.tsx
+├─ index.html
+├─ vite.config.ts
+├─ tsconfig.json
+└─ metadata.json
+```
+
+## نحوه اجرا
+
+### پیش‌نیاز
+
+- Node.js (پیشنهادی: نسخه LTS جدید)
+
+### نصب و اجرا
+
+```bash
+npm install
+npm run dev
+```
+
+### بیلد تولید
+
+```bash
+npm run build
+npm run preview
+```
+
+## متغیرهای محیطی
+
+در فایل `.env.local`:
+
+```env
+GEMINI_API_KEY=your_api_key_here
+```
+
+این مقدار در `vite.config.ts` به `process.env.GEMINI_API_KEY` و `process.env.API_KEY` تزریق می‌شود.
+
+## تحلیل فنی پروژه
+
+### معماری و سازمان‌دهی
+
+- فایل `App.tsx` نقش Composition Root را دارد و تمام سکشن‌ها را به‌ترتیب صفحه لندینگ مونتاژ می‌کند.
+- هر بخش صفحه در یک کامپوننت مستقل پیاده‌سازی شده و مسئولیت‌ها قابل فهم و قابل توسعه هستند.
+- اجزای مشترک در `components/ui` قرار گرفته‌اند (`Button`, `Section`) که برای یکنواختی UI مناسب است.
+
+### نقاط قوت
+
+- ساختار کامپوننتی تمیز و خوانا
+- تجربه کاربری روان (motion + smooth scroll)
+- محتوای محصولی دقیق برای پرزنت مارکتینگ
+- سازگاری خوب با موبایل و دسکتاپ در اکثر سکشن‌ها
+
+### محدودیت‌ها و نکات قابل بهبود
+
+- در بیلد، هشدار `index.css doesn't exist at build time` دیده می‌شود چون در `index.html` لینک شده ولی فایل وجود ندارد.
+- در `index.html` از `importmap` استفاده شده، در حالی که پروژه با Vite باندل می‌شود؛ این بخش معمولا اضافی است.
+- تست خودکار (`unit/e2e`) و Lint Script در `package.json` تعریف نشده‌اند.
+- اغلب CTAها/لینک‌ها نمایشی هستند و به مسیر واقعی متصل نشده‌اند.
+- داده‌های متنی سکشن‌ها Hardcoded هستند؛ برای مقیاس‌پذیری بهتر می‌توان به فایل content/config منتقل کرد.
+
+## وضعیت بررسی این مخزن
+
+بررسی‌های اجرایی انجام‌شده:
+
+- `npm install` ✅
+- `npm run build` ✅ (با هشدار نبودن `index.css`)
+- `npx tsc --noEmit` ✅
+
+## پیشنهاد مسیر توسعه
+
+1. حذف یا ایجاد `index.css` برای رفع هشدار بیلد.
+2. حذف `importmap` از `index.html` در صورت عدم نیاز.
+3. افزودن اسکریپت‌های `lint` و `typecheck` و اجرای آن‌ها در CI.
+4. اتصال CTAها به لینک‌های واقعی (GitHub, Docs, Download).
+5. استخراج محتوا به یک لایه config/content برای نگهداری بهتر.
+
+## لایسنس
+
+در حال حاضر لایسنس مشخصی در مخزن تعریف نشده است. پیشنهاد می‌شود یک فایل `LICENSE` اضافه شود.
