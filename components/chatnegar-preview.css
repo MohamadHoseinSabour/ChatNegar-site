@@ -67,19 +67,14 @@
 }
 
 .chatnegar-agent-title {
-  font-size: 13px;
-  color: rgba(255, 255, 255, 0.95);
-  font-weight: 600;
-}
-
-.chatnegar-agent-status {
   display: inline-flex;
   align-items: center;
   justify-content: flex-start;
   direction: rtl;
   gap: 6px;
-  font-size: 12px;
-  color: rgba(255, 255, 255, 0.9);
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 600;
 }
 
 .chatnegar-status-dot {
@@ -158,16 +153,18 @@
 }
 
 .chatnegar-msg--assistant .chatnegar-msg-content {
-  margin-inline-end: auto;
+  margin-right: auto;
   border: 1px solid #d9dee8;
-  border-top-right-radius: 8px;
+  border-top-left-radius: 14px;
+  border-bottom-left-radius: 8px;
   background: #fdfdfe;
   color: #1f2937;
 }
 
 .chatnegar-msg--user .chatnegar-msg-content {
-  margin-inline-start: auto;
-  border-top-left-radius: 8px;
+  margin-left: auto;
+  border-top-right-radius: 14px;
+  border-bottom-right-radius: 8px;
   background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
   color: #ffffff;
   box-shadow: 0 10px 22px rgba(79, 70, 229, 0.3);
@@ -180,23 +177,26 @@
 }
 
 .chatnegar-msg--assistant .chatnegar-msg-meta {
-  margin-inline-end: auto;
-  padding-inline-start: 8px;
+  margin-right: auto;
+  padding-right: 8px;
+  text-align: left;
 }
 
 .chatnegar-msg--user .chatnegar-msg-meta {
-  margin-inline-start: auto;
-  padding-inline-end: 8px;
+  margin-left: auto;
+  padding-left: 8px;
+  text-align: right;
 }
 
 .chatnegar-typing {
   width: max-content;
-  margin-inline-end: auto;
-  margin-inline-start: 14px;
+  margin-right: auto;
+  margin-left: 14px;
   margin-bottom: 10px;
   padding: 10px 14px;
   border-radius: 16px;
-  border-top-right-radius: 8px;
+  border-top-left-radius: 14px;
+  border-bottom-left-radius: 8px;
   border: 1px solid #d9dee8;
   background: #fdfdfe;
   display: flex;
@@ -345,10 +345,6 @@
   font-size: 11px;
 }
 
-.chatnegar-window--mini .chatnegar-agent-status {
-  font-size: 10px;
-}
-
 .chatnegar-window--mini .chatnegar-status-dot {
   width: 7px;
   height: 7px;
@@ -371,11 +367,13 @@
 }
 
 .chatnegar-window--mini .chatnegar-msg--assistant .chatnegar-msg-content {
-  border-top-right-radius: 7px;
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 7px;
 }
 
 .chatnegar-window--mini .chatnegar-msg--user .chatnegar-msg-content {
-  border-top-left-radius: 7px;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 7px;
 }
 
 .chatnegar-window--mini .chatnegar-msg-meta {

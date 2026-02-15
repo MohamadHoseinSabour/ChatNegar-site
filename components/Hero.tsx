@@ -119,7 +119,6 @@ export const Hero: React.FC = () => {
               </div>
 
               {/* Chat Widget Mockup Layered */}
-              {/* Position: Relative flow on mobile, absolute pinned on desktop */}
               <div className="relative w-full md:absolute md:bottom-8 md:right-8 md:left-auto md:w-[336px] z-20">
                 <section className="chatnegar-window chatnegar-window--mini" role="dialog" aria-label="پنجره چت" aria-hidden="false">
                   <header className="chatnegar-header" style={{ color: 'rgb(255, 255, 255)' }}>
@@ -129,10 +128,9 @@ export const Hero: React.FC = () => {
                       </div>
                       <div className="chatnegar-agent-info">
                         <strong className="chatnegar-agent-name">تیم پشتیبانی</strong>
-                        <span className="chatnegar-agent-title">پشتیبانی آنلاین</span>
-                        <span className="chatnegar-agent-status">
+                        <span className="chatnegar-agent-title">
+                          پشتیبانی آنلاین
                           <i className="chatnegar-status-dot" aria-hidden="true" />
-                          آنلاین
                         </span>
                       </div>
                     </div>
@@ -150,15 +148,13 @@ export const Hero: React.FC = () => {
                           ></path>
                         </svg>
                       </button>
-                      <button type="button" className="chatnegar-close-window" aria-label="بستن">
-                        ×
-                      </button>
+                      <button type="button" className="chatnegar-close-window" aria-label="بستن">×</button>
                     </div>
                   </header>
 
                   <div className="chatnegar-messages" role="log" aria-live="polite">
                     <div className="chatnegar-msg chatnegar-msg--assistant">
-                      <div className="chatnegar-msg-content">سلام! چطور می‌توانم کمکتان کنم؟</div>
+                      <div className="chatnegar-msg-content">سلام! چطور میتوانم کمکتان کنم؟</div>
                       <div className="chatnegar-msg-meta">PM 02:48</div>
                     </div>
                     <div className="chatnegar-msg chatnegar-msg--user">
@@ -166,7 +162,7 @@ export const Hero: React.FC = () => {
                       <div className="chatnegar-msg-meta">PM 02:48</div>
                     </div>
                     <div className="chatnegar-msg chatnegar-msg--assistant">
-                      <div className="chatnegar-msg-content">در حال بررسی... سفارش #1234 **ارسال شده** است و تا ساعت ۵ امروز می‌رسد.</div>
+                      <div className="chatnegar-msg-content">در حال بررسی... سفارش #1234 ارسال شده است و تا ساعت ۵ امروز میرسد.</div>
                       <div className="chatnegar-msg-meta">PM 02:49</div>
                     </div>
                   </div>
@@ -210,7 +206,7 @@ export const Hero: React.FC = () => {
                         </svg>
                       </button>
 
-                      <textarea className="chatnegar-input" rows={1} readOnly placeholder="پیام خود را بنویسید..."></textarea>
+                      <textarea className="chatnegar-input" rows={1} readOnly placeholder="پیامی بنویسید..."></textarea>
 
                       <button type="button" className="chatnegar-send" aria-label="Send message" disabled>
                         <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">

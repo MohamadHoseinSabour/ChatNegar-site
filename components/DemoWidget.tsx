@@ -9,6 +9,22 @@ interface Message {
   timestamp: string;
 }
 
+const scenario: Array<{ type: Message['sender']; text: string; delay: number }> = [
+  { type: 'user', text: 'پیگیری سفارش', delay: 1200 },
+  { type: 'bot', text: 'حتما! لطفا شماره سفارش خود را وارد کنید.', delay: 1000 },
+  { type: 'user', text: '#1234', delay: 1500 },
+  { type: 'bot', text: 'در حال بررسی وضعیت سفارش #1234...', delay: 800 },
+  { type: 'bot', text: 'خبر خوب! سفارش شما در حال ارسال است و تا ساعت ۵ امروز میرسد.', delay: 1500 },
+  { type: 'user', text: 'اگر سایز مناسب نبود میتوانم مرجوع کنم؟', delay: 3000 },
+  {
+    type: 'bot',
+    text: 'بله، ما ضمانت بازگشت ۳۰ روزه داریم. میتوانید از طریق داشبورد حساب کاربری خود درخواست مرجوعی دهید.',
+    delay: 2000,
+  },
+];
+
+const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
 export const DemoWidget: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [isTyping, setIsTyping] = useState(false);
@@ -16,62 +32,77 @@ export const DemoWidget: React.FC = () => {
   const [inputText, setInputText] = useState('');
 
   const scrollRef = useRef<HTMLDivElement>(null);
-
-  const scenario = [
-    { type: 'bot', text: 'سلام! 👋 به فروشگاه ما خوش آمدید. چطور می‌توانم کمکتان کنم؟', delay: 500 },
-    { type: 'user', text: 'پیگیری سفارش', delay: 2000 },
-    { type: 'bot', text: 'حتما! لطفا شماره سفارش خود را وارد کنید.', delay: 1000 },
-    { type: 'user', text: '#1234', delay: 1500 },
-    { type: 'bot', text: 'در حال بررسی وضعیت سفارش #1234...', delay: 800 },
-    { type: 'bot', text: 'خبر خوب! سفارش شما **در حال ارسال** است و تا ساعت ۵ امروز می‌رسد.', delay: 1500 },
-    { type: 'user', text: 'اگر سایز مناسب نبود می‌توانم مرجوع کنم؟', delay: 3000 },
-    {
-      type: 'bot',
-      text: 'بله، ما ضمانت بازگشت ۳۰ روزه داریم. می‌توانید از طریق داشبورد حساب کاربری خود درخواست مرجوعی دهید.',
-      delay: 2000,
-    },
-  ];
+  const messageIdRef = useRef(1);
 
   useEffect(() => {
-    let timeout: ReturnType<typeof setTimeout>;
+    let timeout: ReturnType<typeof setTimeout> | undefined;
+    let cancelled = false;
+
+    if (step >= scenario.length) {
+      setIsTyping(false);
+      return () => {
+        cancelled = true;
+        if (timeout) {
+          clearTimeout(timeout);
+        }
+      };
+    }
 
     const runScenario = async () => {
-      if (step < scenario.length) {
-        const currentAction = scenario[step];
+      const currentAction = scenario[step];
 
-        if (currentAction.type === 'bot') {
-          setIsTyping(true);
-          await new Promise((resolve) => setTimeout(resolve, 1000));
-          setIsTyping(false);
-        } else {
-          const chars = currentAction.text.split('');
-          for (let i = 0; i < chars.length; i += 1) {
-            setInputText((prev) => prev + chars[i]);
-            await new Promise((resolve) => setTimeout(resolve, 50));
-          }
-          await new Promise((resolve) => setTimeout(resolve, 300));
-          setInputText('');
+      if (currentAction.type === 'bot') {
+        setIsTyping(true);
+        await wait(1000);
+        if (cancelled) {
+          return;
         }
-
-        setMessages((prev) => [
-          ...prev,
-          {
-            id: Date.now(),
-            text: currentAction.text,
-            sender: currentAction.type as 'user' | 'bot',
-            timestamp: new Date().toLocaleTimeString('fa-IR', { hour: '2-digit', minute: '2-digit' }),
-          },
-        ]);
-
-        timeout = setTimeout(() => {
-          setStep((prev) => prev + 1);
-        }, currentAction.delay);
+        setIsTyping(false);
+      } else {
+        const chars = currentAction.text.split('');
+        for (const char of chars) {
+          if (cancelled) {
+            return;
+          }
+          setInputText((prev) => prev + char);
+          await wait(50);
+        }
+        await wait(300);
+        if (cancelled) {
+          return;
+        }
+        setInputText('');
       }
+
+      if (cancelled) {
+        return;
+      }
+
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: messageIdRef.current++,
+          text: currentAction.text,
+          sender: currentAction.type,
+          timestamp: new Date().toLocaleTimeString('fa-IR', { hour: '2-digit', minute: '2-digit' }),
+        },
+      ]);
+
+      timeout = setTimeout(() => {
+        if (!cancelled) {
+          setStep((prev) => prev + 1);
+        }
+      }, currentAction.delay);
     };
 
     runScenario();
 
-    return () => clearTimeout(timeout);
+    return () => {
+      cancelled = true;
+      if (timeout) {
+        clearTimeout(timeout);
+      }
+    };
   }, [step]);
 
   useEffect(() => {
@@ -81,6 +112,7 @@ export const DemoWidget: React.FC = () => {
   }, [messages, isTyping]);
 
   const restartDemo = () => {
+    messageIdRef.current = 1;
     setMessages([]);
     setStep(0);
     setInputText('');
@@ -95,11 +127,10 @@ export const DemoWidget: React.FC = () => {
             <Headset />
           </div>
           <div className="chatnegar-agent-info">
-            <strong className="chatnegar-agent-name">تیم پشتیبانی</strong>
-            <span className="chatnegar-agent-title">پشتیبانی آنلاین</span>
-            <span className="chatnegar-agent-status">
+            <strong className="chatnegar-agent-name">دستیار پشتیبانی</strong>
+            <span className="chatnegar-agent-title">
+              پشتیبانی آنلاین
               <i className="chatnegar-status-dot" aria-hidden="true" />
-              آنلاین
             </span>
           </div>
         </div>
@@ -185,13 +216,7 @@ export const DemoWidget: React.FC = () => {
             </svg>
           </button>
 
-          <textarea
-            className="chatnegar-input"
-            rows={1}
-            readOnly
-            value={inputText}
-            placeholder="پیام خود را بنویسید..."
-          ></textarea>
+          <textarea className="chatnegar-input" rows={1} readOnly value={inputText} placeholder="پیامی بنویسید..."></textarea>
 
           <button type="button" className="chatnegar-send" aria-label="Send message" disabled={!inputText.trim()}>
             <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
@@ -205,7 +230,7 @@ export const DemoWidget: React.FC = () => {
         <div className="chatnegar-char-count" hidden>
           0/500
         </div>
-        <div className="chatnegar-powered-by">قدرت گرفته از چتنگار</div>
+        <div className="chatnegar-powered-by">قدرت گرفته از چت‌نگار</div>
       </footer>
     </section>
   );
