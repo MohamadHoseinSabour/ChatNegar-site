@@ -1,6 +1,6 @@
 import React from 'react';
 import { Section } from './ui/Section';
-import { Bot, FileText, BarChart3, Palette, Zap, Shield, Database, Smile } from 'lucide-react';
+import { Bot, FileText, BarChart3, Palette, Zap, Shield, Database, Smile, Languages, Puzzle, BellRing } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export const Features: React.FC = () => {
@@ -25,10 +25,16 @@ export const Features: React.FC = () => {
             <h3 className="text-2xl font-bold text-white mb-2">موتور هوش مصنوعی چندگانه</h3>
             <p className="text-text-muted leading-relaxed">اتصال به OpenAI، Google Gemini یا OpenRouter. دریافت مدل‌های موجود به صورت پویا، تنظیم دما (Temperature) و مدیریت پنجره متن با مکانیزم تلاش مجدد داخلی.</p>
           </div>
-          <div className="mt-8 flex gap-4 opacity-50 group-hover:opacity-100 transition-opacity">
+          <div className="mt-8 flex flex-wrap gap-3 opacity-50 group-hover:opacity-100 transition-opacity">
              <div className="h-12 w-24 bg-white/10 rounded-lg flex items-center justify-center text-xs font-mono">OpenAI</div>
              <div className="h-12 w-24 bg-white/10 rounded-lg flex items-center justify-center text-xs font-mono">Gemini</div>
-             <div className="h-12 w-24 bg-white/10 rounded-lg flex items-center justify-center text-xs font-mono">Llama</div>
+             <div className="h-12 w-24 bg-white/10 rounded-lg flex items-center justify-center text-xs font-mono">OpenRouter</div>
+             <div className="h-12 w-24 bg-white/10 rounded-lg border border-dashed border-white/15 flex items-center justify-center text-[11px] font-mono text-text-muted opacity-40">
+               Aval AI
+             </div>
+             <div className="h-12 w-24 bg-white/10 rounded-lg border border-dashed border-white/15 flex items-center justify-center text-[11px] font-mono text-text-muted opacity-40">
+               Claude
+             </div>
           </div>
         </motion.div>
 
@@ -79,19 +85,40 @@ export const Features: React.FC = () => {
         </motion.div>
 
         {/* Small Cards Row */}
-        <motion.div className="glass-panel rounded-3xl p-6 flex flex-col justify-center items-center text-center" whileHover={{ scale: 1.05 }}>
-            <Shield className="text-green-400 mb-2" />
-            <h4 className="font-bold text-white text-sm">امنیت سازمانی</h4>
+        <motion.div className="glass-panel rounded-3xl p-6 hover:border-green-500/50 transition-colors text-right" whileHover={{ y: -5 }}>
+            <Shield className="text-green-400 mb-3" />
+            <h4 className="font-bold text-white">امنیت سازمانی</h4>
+            <p className="text-xs text-text-muted mt-1">حفاظت از داده‌ها با استانداردهای امنیتی قابل اتکا.</p>
         </motion.div>
 
-        <motion.div className="glass-panel rounded-3xl p-6 flex flex-col justify-center items-center text-center" whileHover={{ scale: 1.05 }}>
-            <Database className="text-indigo-400 mb-2" />
-            <h4 className="font-bold text-white text-sm">همگام با ووکامرس</h4>
+        <motion.div className="glass-panel rounded-3xl p-6 hover:border-indigo-500/50 transition-colors text-right" whileHover={{ y: -5 }}>
+            <Database className="text-indigo-400 mb-3" />
+            <h4 className="font-bold text-white">همگام با ووکامرس</h4>
+            <p className="text-xs text-text-muted mt-1">دسترسی آنی به سفارش‌ها و داده‌های محصولات فروشگاه.</p>
         </motion.div>
 
-         <motion.div className="glass-panel rounded-3xl p-6 flex flex-col justify-center items-center text-center" whileHover={{ scale: 1.05 }}>
-            <Smile className="text-yellow-400 mb-2" />
-            <h4 className="font-bold text-white text-sm">رهگیری رضایت</h4>
+         <motion.div className="glass-panel rounded-3xl p-6 hover:border-yellow-500/50 transition-colors text-right" whileHover={{ y: -5 }}>
+            <Smile className="text-yellow-400 mb-3" />
+            <h4 className="font-bold text-white">رهگیری رضایت</h4>
+            <p className="text-xs text-text-muted mt-1">پایش کیفیت پاسخ‌ها بر اساس بازخورد کاربران واقعی.</p>
+        </motion.div>
+
+        <motion.div className="glass-panel rounded-3xl p-6 hover:border-cyan-500/50 transition-colors text-right" whileHover={{ y: -5 }}>
+            <Languages className="text-cyan-400 mb-3" />
+            <h4 className="font-bold text-white">پشتیبانی چندزبانه</h4>
+            <p className="text-xs text-text-muted mt-1">پاسخ‌گویی دقیق به کاربران فارسی و بین‌المللی.</p>
+        </motion.div>
+
+        <motion.div className="glass-panel rounded-3xl p-6 hover:border-orange-500/50 transition-colors text-right" whileHover={{ y: -5 }}>
+            <Puzzle className="text-orange-400 mb-3" />
+            <h4 className="font-bold text-white">ادغام‌پذیری بالا</h4>
+            <p className="text-xs text-text-muted mt-1">اتصال سریع به سرویس‌ها و ابزارهای موجود فروشگاه.</p>
+        </motion.div>
+
+        <motion.div className="glass-panel rounded-3xl p-6 hover:border-rose-500/50 transition-colors text-right" whileHover={{ y: -5 }}>
+            <BellRing className="text-rose-400 mb-3" />
+            <h4 className="font-bold text-white">اعلان‌های هوشمند</h4>
+            <p className="text-xs text-text-muted mt-1">اطلاع‌رسانی خودکار برای رویدادهای مهم مکالمه.</p>
         </motion.div>
 
       </div>
