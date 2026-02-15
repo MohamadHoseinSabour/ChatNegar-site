@@ -4,6 +4,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>چت‌نگار - پشتیبانی هوشمند برای وردپرس</title>
+    <script>
+      (function () {
+        var host = window.location.hostname.toLowerCase();
+        if (!host.endsWith('github.io')) return;
+
+        var pathParts = window.location.pathname.split('/').filter(Boolean);
+        if (pathParts.length !== 1) return;
+
+        var repo = pathParts[0];
+        var target = '/' + repo + '/docs/';
+        if (window.location.pathname !== target) {
+          window.location.replace(target + window.location.search + window.location.hash);
+        }
+      })();
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Calistoga&display=swap" rel="stylesheet">

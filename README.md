@@ -72,13 +72,14 @@ npm run preview
 
 ## متغیرهای محیطی
 
-در فایل `.env.local`:
+در این نسخه، کلید API سمت کلاینت نیاز نیست.
+در صورت نیاز می‌توانید فقط مسیر پایه build را با این متغیر تنظیم کنید:
 
 ```env
-GEMINI_API_KEY=your_api_key_here
+VITE_BASE_PATH=/custom-path/
 ```
 
-این مقدار در `vite.config.ts` به `process.env.GEMINI_API_KEY` و `process.env.API_KEY` تزریق می‌شود.
+اگر مقدار بالا تنظیم نشود، مسیر پایه در CI به‌صورت خودکار تعیین می‌شود.
 
 ## تحلیل فنی پروژه
 
@@ -125,26 +126,15 @@ GEMINI_API_KEY=your_api_key_here
 
 ## GitHub Pages Deployment
 
-This project is now configured for automatic deployment to GitHub Pages using GitHub Actions.
+This project is configured for repositories that already use:
+`Settings > Pages > Source: Deploy from a branch`.
 
 ### What was configured
 
-- `vite.config.ts` now sets `base` automatically in GitHub Actions based on repository name.
-- `.github/workflows/deploy-pages.yml` builds and deploys `dist/` on every push to `main`.
-- No client-side secret/env injection is required for this version.
-
-### One-time GitHub setup
-
-1. Open your repository settings on GitHub.
-2. Go to `Settings > Pages`.
-3. In `Build and deployment`, set `Source` to `GitHub Actions`.
-
-### Deployment flow
-
-- Push to `main`
-- GitHub Action `Deploy to GitHub Pages` runs
-- Site publishes to:
-  - `https://<your-username>.github.io/<repo-name>/`
+- On each push to `main`/`master`, workflow `build-docs-for-branch-pages.yml` runs.
+- The workflow builds the app with `VITE_BASE_PATH=/<repo>/docs/`.
+- Build output is committed automatically to `docs/`.
+- Root page redirects GitHub Pages traffic to `/<repo>/docs/`.
 
 ### Optional override
 
