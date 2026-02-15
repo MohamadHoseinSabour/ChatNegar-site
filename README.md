@@ -122,3 +122,34 @@ GEMINI_API_KEY=your_api_key_here
 ## لایسنس
 
 در حال حاضر لایسنس مشخصی در مخزن تعریف نشده است. پیشنهاد می‌شود یک فایل `LICENSE` اضافه شود.
+
+## GitHub Pages Deployment
+
+This project is now configured for automatic deployment to GitHub Pages using GitHub Actions.
+
+### What was configured
+
+- `vite.config.ts` now sets `base` automatically in GitHub Actions based on repository name.
+- `.github/workflows/deploy-pages.yml` builds and deploys `dist/` on every push to `main`.
+- No client-side secret/env injection is required for this version.
+
+### One-time GitHub setup
+
+1. Open your repository settings on GitHub.
+2. Go to `Settings > Pages`.
+3. In `Build and deployment`, set `Source` to `GitHub Actions`.
+
+### Deployment flow
+
+- Push to `main`
+- GitHub Action `Deploy to GitHub Pages` runs
+- Site publishes to:
+  - `https://<your-username>.github.io/<repo-name>/`
+
+### Optional override
+
+If you want a custom base path, set this environment variable during build:
+
+```bash
+VITE_BASE_PATH=/custom-path/
+```
