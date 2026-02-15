@@ -71,10 +71,38 @@
         border: 1px solid rgba(255, 255, 255, 0.08);
       }
       .text-gradient {
-        background: linear-gradient(to left, #818cf8, #c084fc, #34d399); /* Reversed for RTL feeling */
+        background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 55%, #4F46E5 100%);
+        background-size: 220% 220%;
+        background-position: 0% 50%;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
+        filter: drop-shadow(0 0 6px rgba(124, 58, 237, 0.22));
+        animation: chatnegar-gradient-flow 6s ease-in-out infinite, chatnegar-gradient-glow 3.2s ease-in-out infinite;
+      }
+      @keyframes chatnegar-gradient-flow {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+      @keyframes chatnegar-gradient-glow {
+        0%, 100% {
+          filter: drop-shadow(0 0 4px rgba(79, 70, 229, 0.18)) drop-shadow(0 0 10px rgba(124, 58, 237, 0.14));
+        }
+        50% {
+          filter: drop-shadow(0 0 8px rgba(79, 70, 229, 0.32)) drop-shadow(0 0 16px rgba(124, 58, 237, 0.26));
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .text-gradient {
+          animation: none;
+        }
       }
       /* Custom Scrollbar */
       ::-webkit-scrollbar {

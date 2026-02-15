@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion, useInView } from 'framer-motion';
 import { Headset } from 'lucide-react';
 
 interface Message {
@@ -24,6 +24,8 @@ const scenario: Array<{ type: Message['sender']; text: string; delay: number }> 
 ];
 
 const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+const PLAYBACK_RATE = 0.55;
+const fast = (ms: number, min = 0) => Math.max(min, Math.round(ms * PLAYBACK_RATE));
 
 export const DemoWidget: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -32,9 +34,15 @@ export const DemoWidget: React.FC = () => {
   const [inputText, setInputText] = useState('');
 
   const scrollRef = useRef<HTMLDivElement>(null);
+  const widgetRef = useRef<HTMLElement>(null);
   const messageIdRef = useRef(1);
+  const hasEnteredView = useInView(widgetRef, { once: true, amount: 0.4 });
 
   useEffect(() => {
+    if (!hasEnteredView) {
+      return;
+    }
+
     let timeout: ReturnType<typeof setTimeout> | undefined;
     let cancelled = false;
 
@@ -53,7 +61,7 @@ export const DemoWidget: React.FC = () => {
 
       if (currentAction.type === 'bot') {
         setIsTyping(true);
-        await wait(1000);
+        await wait(fast(1000, 250));
         if (cancelled) {
           return;
         }
@@ -65,9 +73,9 @@ export const DemoWidget: React.FC = () => {
             return;
           }
           setInputText((prev) => prev + char);
-          await wait(50);
+          await wait(fast(50, 18));
         }
-        await wait(300);
+        await wait(fast(300, 100));
         if (cancelled) {
           return;
         }
@@ -92,7 +100,7 @@ export const DemoWidget: React.FC = () => {
         if (!cancelled) {
           setStep((prev) => prev + 1);
         }
-      }, currentAction.delay);
+      }, fast(currentAction.delay, 220));
     };
 
     runScenario();
@@ -103,7 +111,7 @@ export const DemoWidget: React.FC = () => {
         clearTimeout(timeout);
       }
     };
-  }, [step]);
+  }, [step, hasEnteredView]);
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -120,7 +128,7 @@ export const DemoWidget: React.FC = () => {
   };
 
   return (
-    <section className="chatnegar-window chatnegar-window--full mx-auto" role="dialog" aria-label="پنجره چت" aria-hidden="false" dir="rtl">
+    <section ref={widgetRef} className="chatnegar-window chatnegar-window--full mx-auto" role="dialog" aria-label="پنجره چت" aria-hidden="false" dir="rtl">
       <header className="chatnegar-header" style={{ color: 'rgb(255, 255, 255)' }}>
         <div className="chatnegar-agent">
           <div className="chatnegar-agent-avatar" aria-hidden="true">

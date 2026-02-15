@@ -16,8 +16,6 @@ const integrations = [
 export const Integrations: React.FC = () => {
   return (
     <Section className="bg-[#0A0914] relative overflow-hidden">
-      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
-      
       <div className="grid md:grid-cols-2 gap-12 items-center">
         <div>
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">هماهنگ با ابزارهای محبوب شما</h2>

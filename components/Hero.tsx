@@ -1,9 +1,149 @@
 ﻿import React from 'react';
-import { motion } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
+import { AnimatePresence, motion, useInView } from 'framer-motion';
 import { ArrowLeft, CheckCircle2, Headset } from 'lucide-react';
 import { Button } from './ui/Button';
 
+interface HeroChatMessage {
+  id: number;
+  text: string;
+  sender: 'user' | 'bot';
+  timestamp: string;
+}
+
+const HERO_CHAT_SCENARIO: Array<{ type: HeroChatMessage['sender']; text: string; delay: number }> = [
+  { type: 'bot', text: 'سلام! چطور میتوانم کمکتان کنم؟', delay: 900 },
+  { type: 'user', text: 'سفارش شماره #1234 من کجاست؟', delay: 1200 },
+  { type: 'bot', text: 'در حال بررسی... سفارش #1234 ارسال شده است و تا ساعت ۵ امروز میرسد.', delay: 1300 },
+];
+
+const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+const HERO_CHAT_PLAYBACK_RATE = 0.55;
+const heroFast = (ms: number, min = 0) => Math.max(min, Math.round(ms * HERO_CHAT_PLAYBACK_RATE));
+const getHeroChatTimestamp = () => new Date().toLocaleTimeString('fa-IR', { hour: '2-digit', minute: '2-digit' });
+const createInitialMiniMessage = (): HeroChatMessage => ({
+  id: 1,
+  text: HERO_CHAT_SCENARIO[0].text,
+  sender: HERO_CHAT_SCENARIO[0].type,
+  timestamp: getHeroChatTimestamp(),
+});
+
 export const Hero: React.FC = () => {
+  const [miniMessages, setMiniMessages] = useState<HeroChatMessage[]>(() => [createInitialMiniMessage()]);
+  const [isMiniTyping, setIsMiniTyping] = useState(false);
+  const [miniInputText, setMiniInputText] = useState('');
+  const [miniStep, setMiniStep] = useState(1);
+  const [hasMiniScrollStarted, setHasMiniScrollStarted] = useState(false);
+
+  const miniWidgetRef = useRef<HTMLElement>(null);
+  const miniMessagesRef = useRef<HTMLDivElement>(null);
+  const miniMessageIdRef = useRef(2);
+  const miniIsInView = useInView(miniWidgetRef, { once: true, amount: 0.2 });
+
+  useEffect(() => {
+    if (window.scrollY > 0) {
+      setHasMiniScrollStarted(true);
+    }
+
+    const handleScroll = () => {
+      setHasMiniScrollStarted(true);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!miniIsInView || !hasMiniScrollStarted) {
+      return;
+    }
+
+    let timeout: ReturnType<typeof setTimeout> | undefined;
+    let cancelled = false;
+
+    if (miniStep >= HERO_CHAT_SCENARIO.length) {
+      setIsMiniTyping(false);
+      return () => {
+        cancelled = true;
+        if (timeout) {
+          clearTimeout(timeout);
+        }
+      };
+    }
+
+    const runMiniScenario = async () => {
+      const currentAction = HERO_CHAT_SCENARIO[miniStep];
+
+      if (currentAction.type === 'bot') {
+        setIsMiniTyping(true);
+        await wait(heroFast(850, 220));
+        if (cancelled) {
+          return;
+        }
+        setIsMiniTyping(false);
+      } else {
+        const chars = currentAction.text.split('');
+        for (const char of chars) {
+          if (cancelled) {
+            return;
+          }
+          setMiniInputText((prev) => prev + char);
+          await wait(heroFast(45, 16));
+        }
+        await wait(heroFast(250, 90));
+        if (cancelled) {
+          return;
+        }
+        setMiniInputText('');
+      }
+
+      if (cancelled) {
+        return;
+      }
+
+      setMiniMessages((prev) => [
+        ...prev,
+        {
+          id: miniMessageIdRef.current++,
+          text: currentAction.text,
+          sender: currentAction.type,
+          timestamp: getHeroChatTimestamp(),
+        },
+      ]);
+
+      timeout = setTimeout(() => {
+        if (!cancelled) {
+          setMiniStep((prev) => prev + 1);
+        }
+      }, heroFast(currentAction.delay, 220));
+    };
+
+    runMiniScenario();
+
+    return () => {
+      cancelled = true;
+      if (timeout) {
+        clearTimeout(timeout);
+      }
+    };
+  }, [miniStep, miniIsInView, hasMiniScrollStarted]);
+
+  useEffect(() => {
+    if (miniMessagesRef.current) {
+      miniMessagesRef.current.scrollTop = miniMessagesRef.current.scrollHeight;
+    }
+  }, [miniMessages, isMiniTyping]);
+
+  const restartMiniChat = () => {
+    miniMessageIdRef.current = 2;
+    setMiniMessages([createInitialMiniMessage()]);
+    setMiniStep(1);
+    setMiniInputText('');
+    setIsMiniTyping(false);
+  };
+
   return (
     <section className="relative min-h-screen flex items-center pt-24 pb-12 overflow-hidden">
       {/* Background Effects */}
@@ -117,7 +257,7 @@ export const Hero: React.FC = () => {
 
               {/* Chat Widget Mockup Layered */}
               <div className="relative w-full md:absolute md:bottom-8 md:right-8 md:left-auto md:w-[336px] z-20">
-                <section className="chatnegar-window chatnegar-window--mini" role="dialog" aria-label="پنجره چت" aria-hidden="false">
+                <section ref={miniWidgetRef} className="chatnegar-window chatnegar-window--mini" role="dialog" aria-label="پنجره چت" aria-hidden="false">
                   <header className="chatnegar-header" style={{ color: 'rgb(255, 255, 255)' }}>
                     <div className="chatnegar-agent">
                       <div className="chatnegar-agent-avatar" aria-hidden="true">
@@ -145,26 +285,27 @@ export const Hero: React.FC = () => {
                           ></path>
                         </svg>
                       </button>
-                      <button type="button" className="chatnegar-close-window" aria-label="بستن">×</button>
+                      <button type="button" className="chatnegar-close-window" aria-label="بستن" title="شروع مجدد" onClick={restartMiniChat}>×</button>
                     </div>
                   </header>
 
-                  <div className="chatnegar-messages" role="log" aria-live="polite">
-                    <div className="chatnegar-msg chatnegar-msg--assistant">
-                      <div className="chatnegar-msg-content">سلام! چطور میتوانم کمکتان کنم؟</div>
-                      <div className="chatnegar-msg-meta">PM 02:48</div>
-                    </div>
-                    <div className="chatnegar-msg chatnegar-msg--user">
-                      <div className="chatnegar-msg-content">سفارش شماره #1234 من کجاست؟</div>
-                      <div className="chatnegar-msg-meta">PM 02:48</div>
-                    </div>
-                    <div className="chatnegar-msg chatnegar-msg--assistant">
-                      <div className="chatnegar-msg-content">در حال بررسی... سفارش #1234 ارسال شده است و تا ساعت ۵ امروز میرسد.</div>
-                      <div className="chatnegar-msg-meta">PM 02:49</div>
-                    </div>
+                  <div ref={miniMessagesRef} className="chatnegar-messages" role="log" aria-live="polite">
+                    <AnimatePresence>
+                      {miniMessages.map((message) => (
+                        <motion.div
+                          key={message.id}
+                          initial={{ opacity: 0, y: 8, scale: 0.98 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          className={`chatnegar-msg ${message.sender === 'user' ? 'chatnegar-msg--user' : 'chatnegar-msg--assistant'}`}
+                        >
+                          <div className="chatnegar-msg-content">{message.text}</div>
+                          <div className="chatnegar-msg-meta">{message.timestamp}</div>
+                        </motion.div>
+                      ))}
+                    </AnimatePresence>
                   </div>
 
-                  <div className="chatnegar-typing" hidden>
+                  <div className="chatnegar-typing" hidden={!isMiniTyping} aria-hidden={!isMiniTyping}>
                     <span></span>
                     <span></span>
                     <span></span>
@@ -203,9 +344,9 @@ export const Hero: React.FC = () => {
                         </svg>
                       </button>
 
-                      <textarea className="chatnegar-input" rows={1} readOnly placeholder="پیامی بنویسید..."></textarea>
+                      <textarea className="chatnegar-input" rows={1} readOnly value={miniInputText} placeholder="پیامی بنویسید..."></textarea>
 
-                      <button type="button" className="chatnegar-send" aria-label="Send message" disabled>
+                      <button type="button" className="chatnegar-send" aria-label="Send message" disabled={!miniInputText.trim()}>
                         <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                           <path d="M4 12h14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
                           <path d="M12 5l7 7-7 7" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>

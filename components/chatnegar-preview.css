@@ -18,6 +18,7 @@
 
 .chatnegar-window--mini {
   width: 100%;
+  position: relative;
 }
 
 .chatnegar-header {
@@ -351,9 +352,19 @@
 }
 
 .chatnegar-window--mini .chatnegar-messages {
+  height: 220px;
+  min-height: 220px;
   max-height: 220px;
   overflow: hidden;
   padding: 10px 10px 8px;
+}
+
+.chatnegar-window--mini .chatnegar-typing {
+  position: absolute;
+  left: 10px;
+  bottom: 56px;
+  margin: 0;
+  z-index: 2;
 }
 
 .chatnegar-window--mini .chatnegar-msg {
