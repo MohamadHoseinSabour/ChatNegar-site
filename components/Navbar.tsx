@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
 import { MessageSquare, Menu, X, ArrowLeft } from 'lucide-react';
 import { Button } from './ui/Button';
@@ -77,8 +77,8 @@ export const Navbar: React.FC = () => {
         <svg className="absolute inset-0 w-full h-full pointer-events-none rounded-2xl overflow-visible z-0">
           <defs>
             <linearGradient id="progress-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#7C3AED" /> {/* Purple */}
-              <stop offset="100%" stopColor="#EC4899" /> {/* Pink */}
+              <stop offset="0%" stopColor="#4F46E5" /> {/* Matches bg-primary-gradient start */}
+              <stop offset="100%" stopColor="#7C3AED" /> {/* Matches bg-primary-gradient end */}
             </linearGradient>
           </defs>
           <motion.rect
@@ -93,7 +93,7 @@ export const Navbar: React.FC = () => {
             strokeWidth="3"
             strokeLinecap="round"
             style={{ pathLength }}
-            className="drop-shadow-[0_0_10px_rgba(236,72,153,0.5)]" 
+            className="drop-shadow-[0_0_10px_rgba(79,70,229,0.45)]" 
           />
         </svg>
 
@@ -124,7 +124,7 @@ export const Navbar: React.FC = () => {
           {/* CTA Buttons */}
           <div className="hidden md:flex items-center gap-4 shrink-0">
             <Button variant="primary" size="sm" icon={<ArrowLeft size={16} />}>
-              شروع کنید
+              اطلاعات بیشتر
             </Button>
           </div>
 
@@ -158,8 +158,8 @@ export const Navbar: React.FC = () => {
                   </a>
                 ))}
                 <div className="h-px bg-white/10 my-2 shrink-0" />
-                <Button variant="primary" className="w-full justify-center shrink-0">
-                  شروع کنید
+                <Button variant="primary" className="w-full justify-center shrink-0" icon={<ArrowLeft size={16} />}>
+                  اطلاعات بیشتر
                 </Button>
               </div>
             </motion.div>

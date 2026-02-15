@@ -1,7 +1,7 @@
-import React from 'react';
+﻿import React from 'react';
 import { Section } from './ui/Section';
 import { Button } from './ui/Button';
-import { Check } from 'lucide-react';
+import { ArrowLeft, Check } from 'lucide-react';
 
 export const Pricing: React.FC = () => {
   return (
@@ -39,8 +39,8 @@ export const Pricing: React.FC = () => {
                 ))}
             </ul>
 
-            <Button variant="primary" size="lg" className="w-full">
-                دانلود همین حالا
+            <Button variant="primary" size="lg" className="w-full" icon={<ArrowLeft size={16} />}>
+                اطلاعات بیشتر
             </Button>
             
             <p className="mt-6 text-xs text-text-muted leading-relaxed">

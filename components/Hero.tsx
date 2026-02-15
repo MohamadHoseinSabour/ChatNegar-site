@@ -1,6 +1,6 @@
-import React from 'react';
+﻿import React from 'react';
 import { motion } from 'framer-motion';
-import { CheckCircle2, Headset, Play } from 'lucide-react';
+import { ArrowLeft, CheckCircle2, Headset } from 'lucide-react';
 import { Button } from './ui/Button';
 
 export const Hero: React.FC = () => {
@@ -60,11 +60,8 @@ export const Hero: React.FC = () => {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="flex flex-col sm:flex-row items-center gap-4 mb-12"
         >
-          <Button variant="primary" size="lg">
-            نصب رایگان افزونه
-          </Button>
-          <Button variant="secondary" size="lg" icon={<Play size={16} fill="currentColor" />}>
-            مشاهده دمو
+          <Button variant="primary" size="lg" icon={<ArrowLeft size={16} />}>
+            اطلاعات بیشتر
           </Button>
         </motion.div>
 

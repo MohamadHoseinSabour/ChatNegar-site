@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+﻿import React, { useEffect, useState } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { Features } from './components/Features';
@@ -12,7 +12,7 @@ import { Comparison } from './components/Comparison'; // Imported
 import { Integrations } from './components/Integrations'; // Imported
 import { Testimonials } from './components/Testimonials'; // Imported
 import { Button } from './components/ui/Button';
-import { Github, Twitter, Heart } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 import { Section } from './components/ui/Section';
 
 const App: React.FC = () => {
@@ -119,55 +119,15 @@ const App: React.FC = () => {
                  <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">آماده تحول در پشتیبانی خود هستید؟</h2>
                  <p className="text-xl text-text-muted mb-10 max-w-2xl mx-auto">به صدها سایت وردپرسی بپیوندید که از پشتیبانی هوش مصنوعی استفاده می‌کنند. کاملاً رایگان.</p>
                  <div className="flex flex-col sm:flex-row justify-center gap-4">
-                     <Button size="lg" variant="primary">دانلود رایگان چت‌نگار</Button>
-                     <Button size="lg" variant="outline">مشاهده در گیتهاب</Button>
+                     <Button size="lg" variant="primary" icon={<ArrowLeft size={16} />}>اطلاعات بیشتر</Button>
                  </div>
-                 <p className="mt-8 text-sm text-text-muted">بدون نیاز به کارت اعتباری • نصب در ۲ دقیقه</p>
-            </div>
+             </div>
         </Section>
       </main>
 
-      <footer className="bg-[#050508] border-t border-white/10 py-12">
-          <div className="container mx-auto px-6 max-w-7xl grid md:grid-cols-4 gap-8">
-              <div className="col-span-1 md:col-span-2">
-                  <div className="flex items-center gap-2 mb-4">
-                    <div className="w-8 h-8 rounded-lg bg-primary-gradient flex items-center justify-center text-white">
-                        <Heart size={16} fill="currentColor" />
-                    </div>
-                    <span className="text-xl font-bold text-white">چت‌نگار</span>
-                  </div>
-                  <p className="text-text-muted text-sm max-w-xs mb-6">
-                      پشتیبانی هوشمند هوش مصنوعی برای وردپرس و ووکامرس. متن‌باز و ساخته شده با استانداردهای مدرن.
-                  </p>
-                  <div className="flex gap-4 text-text-muted">
-                      <Github size={20} className="hover:text-white cursor-pointer" />
-                      <Twitter size={20} className="hover:text-white cursor-pointer" />
-                  </div>
-              </div>
-              
-              <div>
-                  <h4 className="font-bold text-white mb-4">محصول</h4>
-                  <ul className="space-y-2 text-sm text-text-muted">
-                      <li><a href="#features" className="hover:text-primary">امکانات</a></li>
-                      <li><a href="#pricing" className="hover:text-primary">قیمت‌ها</a></li>
-                      <li><a href="#" className="hover:text-primary">تغییرات</a></li>
-                      <li><a href="#" className="hover:text-primary">مستندات</a></li>
-                  </ul>
-              </div>
-
-               <div>
-                  <h4 className="font-bold text-white mb-4">قانونی</h4>
-                  <ul className="space-y-2 text-sm text-text-muted">
-                      <li><a href="#" className="hover:text-primary">حریم خصوصی</a></li>
-                      <li><a href="#" className="hover:text-primary">قوانین سرویس</a></li>
-                      <li><a href="#" className="hover:text-primary">مجوز GPLv2</a></li>
-                  </ul>
-              </div>
-          </div>
-          <div className="container mx-auto px-6 mt-12 pt-8 border-t border-white/5 text-center text-xs text-text-muted">
-              © ۲۰۲۴ چت‌نگار. ساخته شده با ❤️ برای وردپرس.
-          </div>
-      </footer>
+      <div className="py-6 text-center text-xs text-text-muted">
+        © 2026 چت‌نگار. ساخته شده با ❤️ برای وردپرس.
+      </div>
     </div>
   );
 };
