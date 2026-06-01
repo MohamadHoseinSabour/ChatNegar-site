@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
 import { MessageSquare, Menu, X, ArrowLeft } from 'lucide-react';
 import { Button } from './ui/Button';
@@ -123,7 +123,7 @@ export const Navbar: React.FC = () => {
 
           {/* CTA Buttons */}
           <div className="hidden md:flex items-center gap-4 shrink-0">
-            <Button variant="primary" size="sm" icon={<ArrowLeft size={16} />}>
+            <Button variant="primary" size="sm" icon={<ArrowLeft size={16} />} href="https://www.rtl-theme.com/chatnegar-wordpress-plugin/" target="_blank" rel="noopener noreferrer">
               اطلاعات بیشتر
             </Button>
           </div>
@@ -158,7 +158,7 @@ export const Navbar: React.FC = () => {
                   </a>
                 ))}
                 <div className="h-px bg-white/10 my-2 shrink-0" />
-                <Button variant="primary" className="w-full justify-center shrink-0" icon={<ArrowLeft size={16} />}>
+                <Button variant="primary" className="w-full justify-center shrink-0" icon={<ArrowLeft size={16} />} href="https://www.rtl-theme.com/chatnegar-wordpress-plugin/" target="_blank" rel="noopener noreferrer">
                   اطلاعات بیشتر
                 </Button>
               </div>

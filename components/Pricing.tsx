@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Section } from './ui/Section';
 import { Button } from './ui/Button';
 import { ArrowLeft, Check } from 'lucide-react';
@@ -16,10 +16,10 @@ export const Pricing: React.FC = () => {
         
         <div className="relative glass-panel rounded-3xl p-8 md:p-12 text-center border-t border-white/20">
             <div className="inline-block px-4 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-sm font-bold mb-6 border border-emerald-500/20">
-                افزونه ۱۰۰٪ رایگان
+                پرداخت به اندازه مصرف
             </div>
             
-            <div className="text-6xl font-bold text-white mb-2" dir="ltr">۰ تومان</div>
+            <div className="text-6xl font-bold text-white mb-2" dir="ltr">۶۲۵,۰۰۰ تومان</div>
             <div className="text-text-muted mb-8">برای همیشه</div>
 
             <ul className="space-y-4 mb-10 text-right">
@@ -39,7 +39,7 @@ export const Pricing: React.FC = () => {
                 ))}
             </ul>
 
-            <Button variant="primary" size="lg" className="w-full" icon={<ArrowLeft size={16} />}>
+            <Button variant="primary" size="lg" className="w-full" icon={<ArrowLeft size={16} />} href="https://www.rtl-theme.com/chatnegar-wordpress-plugin/" target="_blank" rel="noopener noreferrer">
                 اطلاعات بیشتر
             </Button>
             

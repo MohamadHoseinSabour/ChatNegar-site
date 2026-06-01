@@ -200,7 +200,7 @@ export const Hero: React.FC = () => {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="flex flex-col sm:flex-row items-center gap-4 mb-12"
         >
-          <Button variant="primary" size="lg" icon={<ArrowLeft size={16} />}>
+          <Button variant="primary" size="lg" icon={<ArrowLeft size={16} />} href="https://www.rtl-theme.com/chatnegar-wordpress-plugin/" target="_blank" rel="noopener noreferrer">
             اطلاعات بیشتر
           </Button>
         </motion.div>

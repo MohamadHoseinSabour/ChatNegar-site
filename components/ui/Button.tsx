@@ -6,6 +6,9 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   size?: 'sm' | 'md' | 'lg';
   icon?: React.ReactNode;
   children: React.ReactNode;
+  href?: string;
+  target?: string;
+  rel?: string;
 }
 
 export const Button: React.FC<ButtonProps> = ({ 
@@ -14,6 +17,9 @@ export const Button: React.FC<ButtonProps> = ({
   icon, 
   children, 
   className = '',
+  href,
+  target,
+  rel,
   ...props 
 }) => {
   const baseStyles = "inline-flex items-center justify-center rounded-xl font-medium transition-all duration-300 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed";
@@ -31,10 +37,28 @@ export const Button: React.FC<ButtonProps> = ({
     lg: "text-lg px-8 py-4 gap-3",
   };
 
+  const combinedClassName = `${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`;
+
+  if (href) {
+    return (
+      <motion.a
+        href={href}
+        target={target}
+        rel={rel}
+        whileTap={{ scale: 0.98 }}
+        className={combinedClassName}
+        {...(props as any)}
+      >
+        {children}
+        {icon && <span className="flex-shrink-0">{icon}</span>}
+      </motion.a>
+    );
+  }
+
   return (
     <motion.button
       whileTap={{ scale: 0.98 }}
-      className={`${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`}
+      className={combinedClassName}
       {...props}
     >
       {children}

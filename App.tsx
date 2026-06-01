@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { Features } from './components/Features';
@@ -117,9 +117,9 @@ const App: React.FC = () => {
             <div className="absolute inset-4 md:inset-8 rounded-[2.5rem] bg-primary-gradient opacity-20 z-0"></div>
             <div className="relative z-10 text-center py-16 px-6">
                  <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">آماده تحول در پشتیبانی خود هستید؟</h2>
-                 <p className="text-xl text-text-muted mb-10 max-w-2xl mx-auto">به صدها سایت وردپرسی بپیوندید که از پشتیبانی هوش مصنوعی استفاده می‌کنند. کاملاً رایگان.</p>
+                 <p className="text-xl text-text-muted mb-10 max-w-2xl mx-auto">به صدها سایت وردپرسی بپیوندید که از پشتیبانی هوش مصنوعی استفاده می‌کنند.</p>
                  <div className="flex flex-col sm:flex-row justify-center gap-4">
-                     <Button size="lg" variant="primary" icon={<ArrowLeft size={16} />}>اطلاعات بیشتر</Button>
+                     <Button size="lg" variant="primary" icon={<ArrowLeft size={16} />} href="https://www.rtl-theme.com/chatnegar-wordpress-plugin/" target="_blank" rel="noopener noreferrer">اطلاعات بیشتر</Button>
                  </div>
              </div>
         </Section>
