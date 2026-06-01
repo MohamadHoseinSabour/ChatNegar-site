@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion, useInView } from 'framer-motion';
 import { ArrowLeft, CheckCircle2, Headset } from 'lucide-react';
@@ -166,7 +166,7 @@ export const Hero: React.FC = () => {
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
           </span>
-          نسخه 1.1.1 - اکنون با پشتیبانی از چندین هوش مصنوعی
+          نسخه 1.0.0 - اکنون با پشتیبانی از چندین هوش مصنوعی
         </motion.div>
 
         {/* Heading */}
