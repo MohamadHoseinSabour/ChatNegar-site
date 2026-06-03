@@ -8,6 +8,7 @@ const integrations = [
   { name: "Elementor", color: "#92003B" },
   { name: "OpenAI", color: "#10A37F" },
   { name: "Google Gemini", color: "#4285F4" },
+  { name: "Gap GPT", color: "#4F46E5" },
   { name: "Yoast SEO", color: "#a4286a" },
   { name: "Digits", color: "#F76B1C" },
   { name: "Advanced Custom Fields", color: "#222222" },

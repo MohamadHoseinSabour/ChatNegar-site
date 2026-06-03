@@ -44,7 +44,7 @@ export const Pricing: React.FC = () => {
             </Button>
             
             <p className="mt-6 text-xs text-text-muted leading-relaxed">
-                💡 شما نیاز به یک کلید API از OpenAI، Gemini یا OpenRouter دارید. <br/>
+                💡 شما نیاز به یک کلید API از OpenAI، Gemini، OpenRouter یا Gap GPT دارید. <br/>
                 هزینه میانگین: ~۵ دلار/ماه برای ۵۰۰ مکالمه.
             </p>
         </div>

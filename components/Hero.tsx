@@ -166,7 +166,7 @@ export const Hero: React.FC = () => {
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
           </span>
-          نسخه 1.0.0 - اکنون با پشتیبانی از چندین هوش مصنوعی
+          نسخه 1.1.2 - اکنون با پشتیبانی از چندین هوش مصنوعی
         </motion.div>
 
         {/* Heading */}

@@ -23,12 +23,13 @@ export const Features: React.FC = () => {
                 <Bot size={28} />
             </div>
             <h3 className="text-2xl font-bold text-white mb-2">موتور هوش مصنوعی چندگانه</h3>
-            <p className="text-text-muted leading-relaxed">اتصال به OpenAI، Google Gemini یا OpenRouter. دریافت مدل‌های موجود به صورت پویا، تنظیم دما (Temperature) و مدیریت پنجره متن با مکانیزم تلاش مجدد داخلی.</p>
+            <p className="text-text-muted leading-relaxed">اتصال به OpenAI، Google Gemini، OpenRouter یا Gap GPT. دریافت مدل‌های موجود به صورت پویا، تنظیم دما (Temperature) و مدیریت پنجره متن با مکانیزم تلاش مجدد داخلی.</p>
           </div>
           <div className="mt-8 flex flex-wrap gap-3 opacity-50 group-hover:opacity-100 transition-opacity">
              <div className="h-12 w-24 bg-white/10 rounded-lg flex items-center justify-center text-xs font-mono">OpenAI</div>
              <div className="h-12 w-24 bg-white/10 rounded-lg flex items-center justify-center text-xs font-mono">Gemini</div>
              <div className="h-12 w-24 bg-white/10 rounded-lg flex items-center justify-center text-xs font-mono">OpenRouter</div>
+             <div className="h-12 w-24 bg-white/10 rounded-lg flex items-center justify-center text-xs font-mono">Gap GPT</div>
              <div className="h-12 w-24 bg-white/10 rounded-lg border border-dashed border-white/15 flex items-center justify-center text-[11px] font-mono text-text-muted opacity-40">
                Aval AI
              </div>
