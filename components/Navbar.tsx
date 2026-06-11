@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
-import { MessageSquare, Menu, X, ArrowLeft } from 'lucide-react';
+import { MessageSquare, Menu, X, ArrowLeft, ArrowRight } from 'lucide-react';
 import { Button } from './ui/Button';
+import { useLanguage } from './LanguageContext';
 
 export const Navbar: React.FC = () => {
+  const { isEn, t, toggleLanguage } = useLanguage();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -18,16 +20,16 @@ export const Navbar: React.FC = () => {
   }, []);
 
   const navLinks = [
-    { name: 'چرا چت‌نگار', href: '#problem-solution' },
-    { name: 'مقایسه', href: '#comparison' },
-    { name: 'امکانات', href: '#features' },
-    { name: 'ادغام‌ها', href: '#integrations' },
-    { name: 'راهنما', href: '#how-it-works' },
-    { name: 'دمو', href: '#demo' },
-    { name: 'نظرات', href: '#testimonials' },
-    { name: 'توسعه', href: '#developers' },
-    { name: 'قیمت‌ها', href: '#pricing' },
-    { name: 'سوالات', href: '#faq' },
+    { name: t('nav_why'), href: '#problem-solution' },
+    { name: t('nav_comparison'), href: '#comparison' },
+    { name: t('nav_features'), href: '#features' },
+    { name: t('nav_integrations'), href: '#integrations' },
+    { name: t('nav_timeline'), href: '#how-it-works' },
+    { name: t('nav_demo'), href: '#demo' },
+    { name: t('nav_testimonials'), href: '#testimonials' },
+    { name: t('nav_developers'), href: '#developers' },
+    { name: t('nav_pricing'), href: '#pricing' },
+    { name: t('nav_faq'), href: '#faq' },
   ];
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -39,7 +41,6 @@ export const Navbar: React.FC = () => {
       setMobileMenuOpen(false);
       
       // Delay scrolling slightly to ensure menu closes cleanly before scroll starts
-      // This fixes issues on mobile where immediate scroll might be interrupted
       setTimeout(() => {
         const headerOffset = 100;
         const elementPosition = element.getBoundingClientRect().top;
@@ -77,8 +78,8 @@ export const Navbar: React.FC = () => {
         <svg className="absolute inset-0 w-full h-full pointer-events-none rounded-2xl overflow-visible z-0">
           <defs>
             <linearGradient id="progress-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#4F46E5" /> {/* Matches bg-primary-gradient start */}
-              <stop offset="100%" stopColor="#7C3AED" /> {/* Matches bg-primary-gradient end */}
+              <stop offset="0%" stopColor="#4F46E5" />
+              <stop offset="100%" stopColor="#7C3AED" />
             </linearGradient>
           </defs>
           <motion.rect
@@ -103,7 +104,7 @@ export const Navbar: React.FC = () => {
             <div className="w-10 h-10 rounded-xl bg-primary-gradient flex items-center justify-center text-white shadow-lg group-hover:scale-105 transition-transform">
               <MessageSquare size={20} fill="currentColor" />
             </div>
-            <span className="text-xl font-bold font-display tracking-tight text-white">چت‌نگار</span>
+            <span className="text-xl font-bold font-display tracking-tight text-white">{t('logo')}</span>
           </a>
 
           {/* Desktop Nav */}
@@ -123,14 +124,20 @@ export const Navbar: React.FC = () => {
 
           {/* CTA Buttons */}
           <div className="hidden md:flex items-center gap-4 shrink-0">
-            <Button variant="primary" size="sm" icon={<ArrowLeft size={16} />} href="https://www.rtl-theme.com/chatnegar-wordpress-plugin/" target="_blank" rel="noopener noreferrer">
-              اطلاعات بیشتر
+            <button
+              onClick={toggleLanguage}
+              className="text-xs font-semibold px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all text-white font-mono cursor-pointer"
+            >
+              {isEn ? 'FA' : 'EN'}
+            </button>
+            <Button variant="primary" size="sm" icon={isEn ? <ArrowRight size={16} /> : <ArrowLeft size={16} />} href="https://www.rtl-theme.com/chatnegar-wordpress-plugin/" target="_blank" rel="noopener noreferrer">
+              {t('learn_more')}
             </Button>
           </div>
 
           {/* Mobile Toggle */}
           <button 
-            className="md:hidden text-white p-2 hover:bg-white/10 rounded-lg transition-colors z-20"
+            className="md:hidden text-white p-2 hover:bg-white/10 rounded-lg transition-colors z-20 cursor-pointer"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -158,8 +165,18 @@ export const Navbar: React.FC = () => {
                   </a>
                 ))}
                 <div className="h-px bg-white/10 my-2 shrink-0" />
-                <Button variant="primary" className="w-full justify-center shrink-0" icon={<ArrowLeft size={16} />} href="https://www.rtl-theme.com/chatnegar-wordpress-plugin/" target="_blank" rel="noopener noreferrer">
-                  اطلاعات بیشتر
+                <button
+                  onClick={() => {
+                    toggleLanguage();
+                    setMobileMenuOpen(false);
+                  }}
+                  className="text-sm font-semibold py-3 px-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors text-white font-mono text-center cursor-pointer shrink-0"
+                >
+                  {isEn ? 'فارسی (FA)' : 'English (EN)'}
+                </button>
+                <div className="h-px bg-white/10 my-1 shrink-0" />
+                <Button variant="primary" className="w-full justify-center shrink-0" icon={isEn ? <ArrowRight size={16} /> : <ArrowLeft size={16} />} href="https://www.rtl-theme.com/chatnegar-wordpress-plugin/" target="_blank" rel="noopener noreferrer">
+                  {t('learn_more')}
                 </Button>
               </div>
             </motion.div>

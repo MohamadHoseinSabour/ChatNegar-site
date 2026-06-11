@@ -1,6 +1,7 @@
 import React from 'react';
 import { Section } from './ui/Section';
 import { motion } from 'framer-motion';
+import { useLanguage } from './LanguageContext';
 
 const integrations = [
   { name: "WooCommerce", color: "#96588a" },
@@ -15,26 +16,28 @@ const integrations = [
 ];
 
 export const Integrations: React.FC = () => {
+  const { t, isEn } = useLanguage();
+
   return (
     <Section className="bg-[#0A0914] relative overflow-hidden">
       <div className="grid md:grid-cols-2 gap-12 items-center">
-        <div>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">هماهنگ با ابزارهای محبوب شما</h2>
+        <div className={isEn ? "text-left" : "text-right"}>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">{t('int_title')}</h2>
           <p className="text-text-muted text-lg mb-8 leading-relaxed">
-            چت‌نگار یک جزیره جدا افتاده نیست. این افزونه به طور خودکار با ووکامرس، فرم‌سازها و سایر افزونه‌های حیاتی وردپرس شما صحبت می‌کند تا تجربه‌ای یکپارچه بسازد.
+            {t('int_desc')}
           </p>
           <ul className="space-y-4">
              <li className="flex items-center gap-3 text-text-light">
-                <span className="w-2 h-2 bg-primary rounded-full"></span>
-                شناسایی وضعیت سفارشات ووکامرس
+                <span className="w-2 h-2 bg-primary rounded-full shrink-0"></span>
+                {t('int_bullet_1')}
              </li>
              <li className="flex items-center gap-3 text-text-light">
-                <span className="w-2 h-2 bg-primary rounded-full"></span>
-                خواندن فیلدهای سفارشی ACF برای محصولات
+                <span className="w-2 h-2 bg-primary rounded-full shrink-0"></span>
+                {t('int_bullet_2')}
              </li>
              <li className="flex items-center gap-3 text-text-light">
-                <span className="w-2 h-2 bg-primary rounded-full"></span>
-                سازگاری کامل با صفحه ساز المنتور
+                <span className="w-2 h-2 bg-primary rounded-full shrink-0"></span>
+                {t('int_bullet_3')}
              </li>
           </ul>
         </div>

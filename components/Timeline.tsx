@@ -1,13 +1,7 @@
 import React from 'react';
 import { Section } from './ui/Section';
 import { motion } from 'framer-motion';
-
-const steps = [
-  { id: 1, title: "نصب و فعال‌سازی", desc: "افزونه را در وردپرس آپلود کنید. جداول و تنظیمات به صورت خودکار ایجاد می‌شوند." },
-  { id: 2, title: "اتصال هوش مصنوعی", desc: "انتخاب OpenAI، Gemini، OpenRouter یا Gap GPT. کلید API را وارد کنید." },
-  { id: 3, title: "ساخت دانش", desc: "همگام‌سازی نوشته‌ها، محصولات و سفارشات. چت‌نگار به صورت خودکار کانتکست را می‌سازد." },
-  { id: 4, title: "شروع به کار", desc: "ویجت بلافاصله ظاهر می‌شود. ارائه پشتیبانی ۲۴/۷ را شروع کنید." }
-];
+import { useLanguage } from './LanguageContext';
 
 const stepGridVariants = {
   hidden: {},
@@ -48,17 +42,26 @@ const stepCircleVariants = {
 };
 
 export const Timeline: React.FC = () => {
+  const { t, isEn } = useLanguage();
+
+  const steps = [
+    { id: 1, title: t("time_step_1_title"), desc: t("time_step_1_desc") },
+    { id: 2, title: t("time_step_2_title"), desc: t("time_step_2_desc") },
+    { id: 3, title: t("time_step_3_title"), desc: t("time_step_3_desc") },
+    { id: 4, title: t("time_step_4_title"), desc: t("time_step_4_desc") }
+  ];
+
   return (
     <Section id="how-it-works" className="bg-[#0F0E17]">
       <div className="text-center mb-16">
-        <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">راه‌اندازی در ۳ دقیقه</h2>
-        <p className="text-text-muted">بدون کدنویسی. بدون تنظیمات پیچیده.</p>
+        <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">{t('time_title')}</h2>
+        <p className="text-text-muted">{t('time_subtitle')}</p>
       </div>
       
       <div className="relative">
         {/* Connecting Line (Desktop) */}
         <motion.div
-          className="hidden md:block absolute top-8 left-0 w-full h-0.5 bg-gradient-to-l from-transparent via-primary to-transparent opacity-30 dashed-line"
+          className={`hidden md:block absolute top-8 left-0 w-full h-0.5 opacity-30 dashed-line bg-gradient-to-r from-transparent via-primary to-transparent`}
           initial={{ scaleX: 0.3, opacity: 0 }}
           whileInView={{ scaleX: 1, opacity: 0.35 }}
           viewport={{ once: true, amount: 0.6 }}
@@ -72,7 +75,7 @@ export const Timeline: React.FC = () => {
           whileInView="visible"
           viewport={{ once: true, amount: 0.35 }}
         >
-          {steps.map((step, index) => (
+          {steps.map((step) => (
             <motion.div key={step.id} className="relative flex flex-col items-center text-center group" variants={stepCardVariants}>
               {/* Step Circle */}
               <motion.div

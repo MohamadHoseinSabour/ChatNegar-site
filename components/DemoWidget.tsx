@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion, useInView } from 'framer-motion';
 import { Headset } from 'lucide-react';
+import { useLanguage } from './LanguageContext';
 
 interface Message {
   id: number;
@@ -9,25 +10,27 @@ interface Message {
   timestamp: string;
 }
 
-const scenario: Array<{ type: Message['sender']; text: string; delay: number }> = [
-  { type: 'user', text: 'پیگیری سفارش', delay: 1200 },
-  { type: 'bot', text: 'حتما! لطفا شماره سفارش خود را وارد کنید.', delay: 1000 },
-  { type: 'user', text: '#1234', delay: 1500 },
-  { type: 'bot', text: 'در حال بررسی وضعیت سفارش #1234...', delay: 800 },
-  { type: 'bot', text: 'خبر خوب! سفارش شما در حال ارسال است و تا ساعت ۵ امروز میرسد.', delay: 1500 },
-  { type: 'user', text: 'اگر سایز مناسب نبود میتوانم مرجوع کنم؟', delay: 3000 },
-  {
-    type: 'bot',
-    text: 'بله، ما ضمانت بازگشت ۳۰ روزه داریم. میتوانید از طریق داشبورد حساب کاربری خود درخواست مرجوعی دهید.',
-    delay: 2000,
-  },
-];
-
 const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 const PLAYBACK_RATE = 0.55;
 const fast = (ms: number, min = 0) => Math.max(min, Math.round(ms * PLAYBACK_RATE));
 
 export const DemoWidget: React.FC = () => {
+  const { isEn, t } = useLanguage();
+
+  const scenario = [
+    { type: 'user' as const, text: t('demo_msg_1'), delay: 1200 },
+    { type: 'bot' as const, text: t('demo_msg_2'), delay: 1000 },
+    { type: 'user' as const, text: t('demo_msg_3'), delay: 1500 },
+    { type: 'bot' as const, text: t('demo_msg_4'), delay: 800 },
+    { type: 'bot' as const, text: t('demo_msg_5'), delay: 1500 },
+    { type: 'user' as const, text: t('demo_msg_6'), delay: 3000 },
+    {
+      type: 'bot' as const,
+      text: t('demo_msg_7'),
+      delay: 2000,
+    },
+  ];
+
   const [messages, setMessages] = useState<Message[]>([]);
   const [isTyping, setIsTyping] = useState(false);
   const [step, setStep] = useState(0);
@@ -37,6 +40,15 @@ export const DemoWidget: React.FC = () => {
   const widgetRef = useRef<HTMLElement>(null);
   const messageIdRef = useRef(1);
   const hasEnteredView = useInView(widgetRef, { once: true, amount: 0.4 });
+
+  // Reset widget scenario when language changes
+  useEffect(() => {
+    setMessages([]);
+    setStep(0);
+    setInputText('');
+    setIsTyping(false);
+    messageIdRef.current = 1;
+  }, [isEn]);
 
   useEffect(() => {
     if (!hasEnteredView) {
@@ -92,7 +104,7 @@ export const DemoWidget: React.FC = () => {
           id: messageIdRef.current++,
           text: currentAction.text,
           sender: currentAction.type,
-          timestamp: new Date().toLocaleTimeString('fa-IR', { hour: '2-digit', minute: '2-digit' }),
+          timestamp: new Date().toLocaleTimeString(isEn ? 'en-US' : 'fa-IR', { hour: '2-digit', minute: '2-digit' }),
         },
       ]);
 
@@ -111,7 +123,7 @@ export const DemoWidget: React.FC = () => {
         clearTimeout(timeout);
       }
     };
-  }, [step, hasEnteredView]);
+  }, [step, hasEnteredView, isEn, messages.length]);
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -128,35 +140,35 @@ export const DemoWidget: React.FC = () => {
   };
 
   return (
-    <section ref={widgetRef} className="chatnegar-window chatnegar-window--full mx-auto" role="dialog" aria-label="پنجره چت" aria-hidden="false" dir="rtl">
+    <section ref={widgetRef} className="chatnegar-window chatnegar-window--full mx-auto" role="dialog" aria-label="Chat Window" aria-hidden="false" dir={isEn ? 'ltr' : 'rtl'}>
       <header className="chatnegar-header" style={{ color: 'rgb(255, 255, 255)' }}>
         <div className="chatnegar-agent">
           <div className="chatnegar-agent-avatar" aria-hidden="true">
             <Headset />
           </div>
           <div className="chatnegar-agent-info">
-            <strong className="chatnegar-agent-name">دستیار پشتیبانی</strong>
+            <strong className="chatnegar-agent-name">{t('demo_assistant')}</strong>
             <span className="chatnegar-agent-title">
-              پشتیبانی آنلاین
+              {t('mockup_online')}
               <i className="chatnegar-status-dot" aria-hidden="true" />
             </span>
           </div>
         </div>
 
         <div className="chatnegar-header-actions">
-          <button type="button" className="chatnegar-menu-toggle" aria-label="منو" hidden>
+          <button type="button" className="chatnegar-menu-toggle" aria-label="Menu" hidden>
             <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
               <path d="M5 7h14M5 12h14M5 17h10" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </button>
-          <button type="button" className="chatnegar-close-window" aria-label="بستن" title="شروع مجدد" onClick={restartDemo}>
+          <button type="button" className="chatnegar-close-window" aria-label="Close" title={isEn ? "Restart" : "شروع مجدد"} onClick={restartDemo}>
             ×
           </button>
         </div>
 
         <div className="chatnegar-menu" hidden>
-          <button type="button" className="chatnegar-clear-chat">پاک کردن گفتگو</button>
-          <button type="button" className="chatnegar-end-chat">پایان گفتگو</button>
+          <button type="button" className="chatnegar-clear-chat">{isEn ? 'Clear Chat' : 'پاک کردن گفتگو'}</button>
+          <button type="button" className="chatnegar-end-chat">{isEn ? 'End Chat' : 'پایان گفتگو'}</button>
         </div>
       </header>
 
@@ -186,8 +198,8 @@ export const DemoWidget: React.FC = () => {
 
       <div className="chatnegar-end-popup" hidden>
         <div className="chatnegar-end-popup-backdrop"></div>
-        <div className="chatnegar-end-popup-dialog" role="dialog" aria-label="پایان گفتگو">
-          <button type="button" className="chatnegar-end-popup-close" aria-label="بستن">
+        <div className="chatnegar-end-popup-dialog" role="dialog" aria-label="End Conversation">
+          <button type="button" className="chatnegar-end-popup-close" aria-label="Close">
             ×
           </button>
         </div>
@@ -224,7 +236,7 @@ export const DemoWidget: React.FC = () => {
             </svg>
           </button>
 
-          <textarea className="chatnegar-input" rows={1} readOnly value={inputText} placeholder="پیامی بنویسید..."></textarea>
+          <textarea className="chatnegar-input" rows={1} readOnly value={inputText} placeholder={t('mockup_placeholder')}></textarea>
 
           <button type="button" className="chatnegar-send" aria-label="Send message" disabled={!inputText.trim()}>
             <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
@@ -238,7 +250,7 @@ export const DemoWidget: React.FC = () => {
         <div className="chatnegar-char-count" hidden>
           0/500
         </div>
-        <div className="chatnegar-powered-by">قدرت گرفته از چت‌نگار</div>
+        <div className="chatnegar-powered-by">{t('mockup_powered_by')}</div>
       </footer>
     </section>
   );

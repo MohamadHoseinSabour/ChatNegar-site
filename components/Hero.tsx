@@ -1,8 +1,9 @@
 import React from 'react';
 import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion, useInView } from 'framer-motion';
-import { ArrowLeft, CheckCircle2, Headset } from 'lucide-react';
+import { ArrowLeft, ArrowRight, CheckCircle2, Headset } from 'lucide-react';
 import { Button } from './ui/Button';
+import { useLanguage } from './LanguageContext';
 
 interface HeroChatMessage {
   id: number;
@@ -11,25 +12,28 @@ interface HeroChatMessage {
   timestamp: string;
 }
 
-const HERO_CHAT_SCENARIO: Array<{ type: HeroChatMessage['sender']; text: string; delay: number }> = [
-  { type: 'bot', text: 'سلام! چطور میتوانم کمکتان کنم؟', delay: 900 },
-  { type: 'user', text: 'سفارش شماره #1234 من کجاست؟', delay: 1200 },
-  { type: 'bot', text: 'در حال بررسی... سفارش #1234 ارسال شده است و تا ساعت ۵ امروز میرسد.', delay: 1300 },
-];
-
 const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 const HERO_CHAT_PLAYBACK_RATE = 0.55;
 const heroFast = (ms: number, min = 0) => Math.max(min, Math.round(ms * HERO_CHAT_PLAYBACK_RATE));
-const getHeroChatTimestamp = () => new Date().toLocaleTimeString('fa-IR', { hour: '2-digit', minute: '2-digit' });
-const createInitialMiniMessage = (): HeroChatMessage => ({
-  id: 1,
-  text: HERO_CHAT_SCENARIO[0].text,
-  sender: HERO_CHAT_SCENARIO[0].type,
-  timestamp: getHeroChatTimestamp(),
-});
+const getHeroChatTimestamp = (isEn: boolean) => new Date().toLocaleTimeString(isEn ? 'en-US' : 'fa-IR', { hour: '2-digit', minute: '2-digit' });
 
 export const Hero: React.FC = () => {
-  const [miniMessages, setMiniMessages] = useState<HeroChatMessage[]>(() => [createInitialMiniMessage()]);
+  const { isEn, t } = useLanguage();
+
+  const HERO_CHAT_SCENARIO = [
+    { type: 'bot' as const, text: t('mockup_msg_1'), delay: 900 },
+    { type: 'user' as const, text: t('mockup_msg_2'), delay: 1200 },
+    { type: 'bot' as const, text: t('mockup_msg_3'), delay: 1300 },
+  ];
+
+  const createInitialMiniMessage = (): HeroChatMessage => ({
+    id: 1,
+    text: HERO_CHAT_SCENARIO[0].text,
+    sender: HERO_CHAT_SCENARIO[0].type,
+    timestamp: getHeroChatTimestamp(isEn),
+  });
+
+  const [miniMessages, setMiniMessages] = useState<HeroChatMessage[]>([]);
   const [isMiniTyping, setIsMiniTyping] = useState(false);
   const [miniInputText, setMiniInputText] = useState('');
   const [miniStep, setMiniStep] = useState(1);
@@ -39,6 +43,15 @@ export const Hero: React.FC = () => {
   const miniMessagesRef = useRef<HTMLDivElement>(null);
   const miniMessageIdRef = useRef(2);
   const miniIsInView = useInView(miniWidgetRef, { once: true, amount: 0.2 });
+
+  // Reset or initialize messages when language changes
+  useEffect(() => {
+    setMiniMessages([createInitialMiniMessage()]);
+    setMiniStep(1);
+    setMiniInputText('');
+    setIsMiniTyping(false);
+    miniMessageIdRef.current = 2;
+  }, [isEn]);
 
   useEffect(() => {
     if (window.scrollY > 0) {
@@ -56,7 +69,7 @@ export const Hero: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    if (!miniIsInView || !hasMiniScrollStarted) {
+    if (!miniIsInView || !hasMiniScrollStarted || miniMessages.length === 0) {
       return;
     }
 
@@ -109,7 +122,7 @@ export const Hero: React.FC = () => {
           id: miniMessageIdRef.current++,
           text: currentAction.text,
           sender: currentAction.type,
-          timestamp: getHeroChatTimestamp(),
+          timestamp: getHeroChatTimestamp(isEn),
         },
       ]);
 
@@ -128,7 +141,7 @@ export const Hero: React.FC = () => {
         clearTimeout(timeout);
       }
     };
-  }, [miniStep, miniIsInView, hasMiniScrollStarted]);
+  }, [miniStep, miniIsInView, hasMiniScrollStarted, miniMessages.length, isEn]);
 
   useEffect(() => {
     if (miniMessagesRef.current) {
@@ -166,7 +179,7 @@ export const Hero: React.FC = () => {
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
           </span>
-          نسخه 1.1.2 - اکنون با پشتیبانی از چندین هوش مصنوعی
+          {t('hero_badge')}
         </motion.div>
 
         {/* Heading */}
@@ -176,9 +189,9 @@ export const Hero: React.FC = () => {
           transition={{ duration: 0.5 }}
           className="text-3xl md:text-5xl lg:text-6xl font-bold font-display tracking-tight text-white mb-6 max-w-5xl leading-[1.45] md:leading-[1.9]"
         >
-          <span className="block">پاسخ سریع، فروش بیشتر.</span>
+          <span className="block">{t('hero_title_1')}</span>
           <span className="block mt-3 md:mt-8">
-            <span className="text-gradient">چت‌نگار</span> همیشه آنلاین است.
+            <span className="text-gradient">{t('hero_title_2')}</span>{t('hero_title_3')}
           </span>
         </motion.h1>
 
@@ -189,8 +202,7 @@ export const Hero: React.FC = () => {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="text-lg md:text-xl text-text-muted max-w-2xl mb-10 leading-relaxed"
         >
-          چت‌نگار یک ربات چت هوشمند است که از محتوای سایت، محصولات و سفارشات شما یاد می‌گیرد تا پشتیبانی فوری و دقیق
-          ارائه دهد. بدون نیاز به کدنویسی.
+          {t('hero_subtitle')}
         </motion.p>
 
         {/* CTAs */}
@@ -200,8 +212,8 @@ export const Hero: React.FC = () => {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="flex flex-col sm:flex-row items-center gap-4 mb-12"
         >
-          <Button variant="primary" size="lg" icon={<ArrowLeft size={16} />} href="https://www.rtl-theme.com/chatnegar-wordpress-plugin/" target="_blank" rel="noopener noreferrer">
-            اطلاعات بیشتر
+          <Button variant="primary" size="lg" icon={isEn ? <ArrowRight size={16} /> : <ArrowLeft size={16} />} href="https://www.rtl-theme.com/chatnegar-wordpress-plugin/" target="_blank" rel="noopener noreferrer">
+            {t('learn_more')}
           </Button>
         </motion.div>
 
@@ -212,7 +224,7 @@ export const Hero: React.FC = () => {
           transition={{ delay: 0.5 }}
           className="flex flex-wrap justify-center gap-6 text-sm text-text-muted"
         >
-          {['سازگار با وردپرس 5.8+', 'آماده برای ووکامرس', 'سازگار با قوانین GDPR'].map((item, i) => (
+          {[t('hero_check_1'), t('hero_check_2'), t('hero_check_3')].map((item, i) => (
             <div key={i} className="flex items-center gap-2">
               <CheckCircle2 size={16} className="text-secondary" />
               {item}
@@ -231,7 +243,7 @@ export const Hero: React.FC = () => {
           <div className="absolute inset-0 bg-primary/20 blur-3xl -z-10 rounded-full transform scale-75"></div>
 
           {/* Browser Container: Auto height on mobile, 16:9 on desktop */}
-          <div className="relative rounded-2xl border border-white/10 bg-[#1A1932]/90 backdrop-blur-xl shadow-2xl overflow-hidden md:aspect-[16/9] group text-right" dir="rtl">
+          <div className={`relative rounded-2xl border border-white/10 bg-[#1A1932]/90 backdrop-blur-xl shadow-2xl overflow-hidden md:aspect-[16/9] group ${isEn ? 'text-left' : 'text-right'}`} dir={isEn ? 'ltr' : 'rtl'}>
             {/* Fake Browser UI */}
             <div className="h-10 bg-white/5 border-b border-white/10 flex items-center px-4 gap-2" dir="ltr">
               <div className="flex gap-1.5">
@@ -256,24 +268,24 @@ export const Hero: React.FC = () => {
               </div>
 
               {/* Chat Widget Mockup Layered */}
-              <div className="relative w-full md:absolute md:bottom-8 md:right-8 md:left-auto md:w-[336px] z-20">
-                <section ref={miniWidgetRef} className="chatnegar-window chatnegar-window--mini" role="dialog" aria-label="پنجره چت" aria-hidden="false">
+              <div className={`relative w-full md:absolute md:bottom-8 md:w-[336px] z-20 ${isEn ? 'md:left-8 md:right-auto' : 'md:right-8 md:left-auto'}`}>
+                <section ref={miniWidgetRef} className="chatnegar-window chatnegar-window--mini" role="dialog" aria-label="Chat Window" aria-hidden="false" dir={isEn ? 'ltr' : 'rtl'}>
                   <header className="chatnegar-header" style={{ color: 'rgb(255, 255, 255)' }}>
                     <div className="chatnegar-agent">
                       <div className="chatnegar-agent-avatar" aria-hidden="true">
                         <Headset />
                       </div>
                       <div className="chatnegar-agent-info">
-                        <strong className="chatnegar-agent-name">تیم پشتیبانی</strong>
+                        <strong className="chatnegar-agent-name">{t('mockup_title')}</strong>
                         <span className="chatnegar-agent-title">
-                          پشتیبانی آنلاین
+                          {t('mockup_online')}
                           <i className="chatnegar-status-dot" aria-hidden="true" />
                         </span>
                       </div>
                     </div>
 
                     <div className="chatnegar-header-actions">
-                      <button type="button" className="chatnegar-menu-toggle" aria-label="منو" hidden>
+                      <button type="button" className="chatnegar-menu-toggle" aria-label="Menu" hidden>
                         <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                           <path
                             d="M5 7h14M5 12h14M5 17h10"
@@ -285,7 +297,7 @@ export const Hero: React.FC = () => {
                           ></path>
                         </svg>
                       </button>
-                      <button type="button" className="chatnegar-close-window" aria-label="بستن" title="شروع مجدد" onClick={restartMiniChat}>×</button>
+                      <button type="button" className="chatnegar-close-window" aria-label="Close" title="Restart" onClick={restartMiniChat}>×</button>
                     </div>
                   </header>
 
@@ -344,7 +356,7 @@ export const Hero: React.FC = () => {
                         </svg>
                       </button>
 
-                      <textarea className="chatnegar-input" rows={1} readOnly value={miniInputText} placeholder="پیامی بنویسید..."></textarea>
+                      <textarea className="chatnegar-input" rows={1} readOnly value={miniInputText} placeholder={t('mockup_placeholder')}></textarea>
 
                       <button type="button" className="chatnegar-send" aria-label="Send message" disabled={!miniInputText.trim()}>
                         <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
@@ -357,7 +369,7 @@ export const Hero: React.FC = () => {
                     <div className="chatnegar-char-count" hidden>
                       0/500
                     </div>
-                    <div className="chatnegar-powered-by">قدرت گرفته از چتنگار</div>
+                    <div className="chatnegar-powered-by">{t('mockup_powered_by')}</div>
                   </footer>
                 </section>
               </div>

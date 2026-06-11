@@ -1,6 +1,7 @@
 import React from 'react';
 import { Section } from './ui/Section';
 import { Terminal } from 'lucide-react';
+import { useLanguage } from './LanguageContext';
 
 const codeSnippet = `// Customize the system prompt dynamically
 add_filter('chatnegar/system_prompt', function($prompt, $session) {
@@ -16,17 +17,19 @@ add_action('chatnegar/response_received', function($res, $id) {
 }, 10, 2);`;
 
 export const DevSection: React.FC = () => {
+  const { t, isEn } = useLanguage();
+
   return (
     <Section id="developers" className="bg-[#0A0914]">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
-        <div className="order-2 md:order-1">
+        <div className="order-2 md:order-1 text-start">
            <div className="flex items-center gap-3 mb-6 text-accent">
                <Terminal size={24} />
-               <span className="font-mono font-bold">دوست‌دار توسعه‌دهنده</span>
+               <span className="font-mono font-bold">{t('dev_badge')}</span>
            </div>
-           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">ساخته شده برای توسعه‌دهندگانی که کنترل کامل می‌خواهند</h2>
+           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">{t('dev_title')}</h2>
            <p className="text-text-muted mb-8 text-lg">
-             هوک‌ها و فیلترهای گسترده به شما امکان می‌دهند چت‌نگار را عمیقاً با جریان‌های کاری اختصاصی خود ادغام کنید.
+             {t('dev_desc')}
            </p>
            
            <div className="flex flex-wrap gap-2">
@@ -35,7 +38,7 @@ export const DevSection: React.FC = () => {
                     {hook}
                 </span>
              ))}
-             <span className="px-3 py-1 text-xs font-mono text-text-muted">+ ۱۲ مورد دیگر</span>
+             <span className="px-3 py-1 text-xs font-mono text-text-muted">{t('dev_more')}</span>
            </div>
         </div>
 
