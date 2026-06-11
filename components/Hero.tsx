@@ -20,11 +20,11 @@ const getHeroChatTimestamp = (isEn: boolean) => new Date().toLocaleTimeString(is
 export const Hero: React.FC = () => {
   const { isEn, t } = useLanguage();
 
-  const HERO_CHAT_SCENARIO = [
+  const HERO_CHAT_SCENARIO = React.useMemo(() => [
     { type: 'bot' as const, text: t('mockup_msg_1'), delay: 900 },
     { type: 'user' as const, text: t('mockup_msg_2'), delay: 1200 },
     { type: 'bot' as const, text: t('mockup_msg_3'), delay: 1300 },
-  ];
+  ], [t]);
 
   const createInitialMiniMessage = (): HeroChatMessage => ({
     id: 1,
@@ -87,6 +87,10 @@ export const Hero: React.FC = () => {
     }
 
     const runMiniScenario = async () => {
+      if (miniStep !== miniMessages.length) {
+        return;
+      }
+
       const currentAction = HERO_CHAT_SCENARIO[miniStep];
 
       if (currentAction.type === 'bot') {
@@ -141,7 +145,7 @@ export const Hero: React.FC = () => {
         clearTimeout(timeout);
       }
     };
-  }, [miniStep, miniIsInView, hasMiniScrollStarted, miniMessages.length, isEn]);
+  }, [miniStep, miniIsInView, hasMiniScrollStarted, HERO_CHAT_SCENARIO, isEn]);
 
   useEffect(() => {
     if (miniMessagesRef.current) {

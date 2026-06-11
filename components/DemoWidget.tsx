@@ -17,7 +17,7 @@ const fast = (ms: number, min = 0) => Math.max(min, Math.round(ms * PLAYBACK_RAT
 export const DemoWidget: React.FC = () => {
   const { isEn, t } = useLanguage();
 
-  const scenario = [
+  const scenario = React.useMemo(() => [
     { type: 'user' as const, text: t('demo_msg_1'), delay: 1200 },
     { type: 'bot' as const, text: t('demo_msg_2'), delay: 1000 },
     { type: 'user' as const, text: t('demo_msg_3'), delay: 1500 },
@@ -29,7 +29,7 @@ export const DemoWidget: React.FC = () => {
       text: t('demo_msg_7'),
       delay: 2000,
     },
-  ];
+  ], [t]);
 
   const [messages, setMessages] = useState<Message[]>([]);
   const [isTyping, setIsTyping] = useState(false);
@@ -69,6 +69,10 @@ export const DemoWidget: React.FC = () => {
     }
 
     const runScenario = async () => {
+      if (step !== messages.length) {
+        return;
+      }
+
       const currentAction = scenario[step];
 
       if (currentAction.type === 'bot') {
@@ -123,7 +127,7 @@ export const DemoWidget: React.FC = () => {
         clearTimeout(timeout);
       }
     };
-  }, [step, hasEnteredView, isEn, messages.length]);
+  }, [step, hasEnteredView, scenario, isEn]);
 
   useEffect(() => {
     if (scrollRef.current) {
