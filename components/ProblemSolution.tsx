@@ -18,20 +18,20 @@ export const ProblemSolution: React.FC = () => {
             <div className="w-12 h-12 rounded-full bg-red-500/20 flex items-center justify-center text-red-500">
                 <X size={24} />
             </div>
-            <h3 className="text-2xl font-bold text-white leading-[1.5]">{t('prob_title')}</h3>
+            <h3 className="text-2xl font-bold text-white leading-[2.0]">{t('prob_title')}</h3>
           </div>
           <ul className="space-y-6">
              <li className="flex items-start gap-4 opacity-80">
                 <span className="mt-2.5 w-2 h-2 rounded-full bg-red-500 shrink-0"></span>
-                <p className="text-text-light leading-[1.8]">{t('prob_desc_1')}</p>
+                <p className="text-text-light leading-[2.0]">{t('prob_desc_1')}</p>
              </li>
              <li className="flex items-start gap-4 opacity-80">
                 <span className="mt-2.5 w-2 h-2 rounded-full bg-red-500 shrink-0"></span>
-                <p className="text-text-light leading-[1.8]">{t('prob_desc_2')}</p>
+                <p className="text-text-light leading-[2.0]">{t('prob_desc_2')}</p>
              </li>
              <li className="flex items-start gap-4 opacity-80">
                 <span className="mt-2.5 w-2 h-2 rounded-full bg-red-500 shrink-0"></span>
-                <p className="text-text-light leading-[1.8]">{t('prob_desc_3')}</p>
+                <p className="text-text-light leading-[2.0]">{t('prob_desc_3')}</p>
              </li>
           </ul>
         </div>
@@ -43,7 +43,7 @@ export const ProblemSolution: React.FC = () => {
             <div className="w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400">
                 <Check size={24} />
             </div>
-            <h3 className="text-2xl font-bold text-white leading-[1.5]">{t('sol_title')}</h3>
+            <h3 className="text-2xl font-bold text-white leading-[2.0]">{t('sol_title')}</h3>
           </div>
            <ul className="space-y-6">
              <motion.li 
@@ -53,7 +53,7 @@ export const ProblemSolution: React.FC = () => {
                 className="flex items-start gap-4"
              >
                 <div className="p-1 bg-purple-500/20 rounded-full text-purple-400 mt-1"><Check size={14} /></div>
-                <p className="text-lg font-medium text-white leading-[1.8]">{t('sol_desc_1')}</p>
+                <p className="text-lg font-medium text-white leading-[2.0]">{t('sol_desc_1')}</p>
              </motion.li>
              <motion.li 
                 initial={{ opacity: 0, x: -20 }}
@@ -62,7 +62,7 @@ export const ProblemSolution: React.FC = () => {
                 className="flex items-start gap-4"
              >
                 <div className="p-1 bg-purple-500/20 rounded-full text-purple-400 mt-1"><Check size={14} /></div>
-                <p className="text-lg font-medium text-white leading-[1.8]">{t('sol_desc_2')}</p>
+                <p className="text-lg font-medium text-white leading-[2.0]">{t('sol_desc_2')}</p>
              </motion.li>
              <motion.li 
                 initial={{ opacity: 0, x: -20 }}
@@ -71,7 +71,7 @@ export const ProblemSolution: React.FC = () => {
                 className="flex items-start gap-4"
              >
                 <div className="p-1 bg-purple-500/20 rounded-full text-purple-400 mt-1"><Check size={14} /></div>
-                <p className="text-lg font-medium text-white leading-[1.8]">{t('sol_desc_3')}</p>
+                <p className="text-lg font-medium text-white leading-[2.0]">{t('sol_desc_3')}</p>
              </motion.li>
           </ul>
         </div>

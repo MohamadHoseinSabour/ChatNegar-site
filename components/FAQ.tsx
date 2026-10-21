@@ -18,13 +18,13 @@ export const FAQ: React.FC = () => {
 
   return (
     <Section id="faq" className="bg-[#0F0E17]">
-      <h2 className="text-3xl md:text-4xl font-bold text-white mb-12 text-center">{t('faq_title')}</h2>
+      <h2 className="text-3xl md:text-4xl font-bold text-white mb-12 text-center leading-[1.8]">{t('faq_title')}</h2>
       <div className="max-w-3xl mx-auto space-y-4">
         {faqs.map((faq, idx) => (
           <div key={idx} className="bg-surface border border-white/5 rounded-xl overflow-hidden">
             <button 
               onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
-              className="w-full flex items-center justify-between p-6 text-start hover:bg-white/5 transition-colors cursor-pointer"
+              className="w-full flex items-center justify-between p-6 text-start hover:bg-white/5 transition-colors cursor-pointer leading-[1.8]"
             >
               <span className="font-medium text-white">{faq.q}</span>
               <ChevronDown className={`transform transition-transform shrink-0 ${openIndex === idx ? 'rotate-180' : ''}`} size={20} />
@@ -36,7 +36,7 @@ export const FAQ: React.FC = () => {
                   animate={{ height: 'auto', opacity: 1 }}
                   exit={{ height: 0, opacity: 0 }}
                 >
-                  <div className="px-6 pb-6 text-text-muted leading-relaxed border-t border-white/5 pt-4 text-start">
+                  <div className="px-6 pb-6 text-text-muted leading-[2.0] border-t border-white/5 pt-4 text-start">
                     {faq.a}
                   </div>
                 </motion.div>

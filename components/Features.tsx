@@ -22,10 +22,10 @@ export const Features: React.FC = () => {
           <Sparkles size={14} />
           <span>نسخه ۲.۰.۰ با معماری جدید</span>
         </div>
-        <h2 className="text-3xl md:text-5xl font-bold font-display text-white mb-5 leading-[1.4] md:leading-[1.5]">
+        <h2 className="text-3xl md:text-5xl font-bold font-display text-white mb-6 leading-[1.8] md:leading-[1.9]">
           {t('feat_title')}
         </h2>
-        <p className="text-text-muted text-base md:text-lg leading-[1.8]">
+        <p className="text-text-muted text-base md:text-lg leading-[2.0]">
           {t('feat_subtitle')}
         </p>
       </div>
@@ -50,10 +50,10 @@ export const Features: React.FC = () => {
               </span>
             </div>
 
-            <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-purple-300 transition-colors leading-[1.5]">
+            <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-purple-300 transition-colors leading-[1.8]">
               {t('feat_card_woo_title')}
             </h3>
-            <p className="text-text-muted text-sm md:text-base leading-[1.8] mb-6">
+            <p className="text-text-muted text-sm md:text-base leading-[2.0] mb-6">
               {t('feat_card_woo_desc')}
             </p>
           </div>
@@ -98,10 +98,10 @@ export const Features: React.FC = () => {
               </span>
             </div>
 
-            <h3 className="text-xl font-bold text-white mb-3 group-hover:text-amber-300 transition-colors leading-[1.5]">
+            <h3 className="text-xl font-bold text-white mb-3 group-hover:text-amber-300 transition-colors leading-[1.8]">
               {t('feat_card_live_operator_title')}
             </h3>
-            <p className="text-text-muted text-sm leading-[1.8] mb-4">
+            <p className="text-text-muted text-sm leading-[2.0] mb-4">
               {t('feat_card_live_operator_desc')}
             </p>
           </div>
@@ -129,10 +129,10 @@ export const Features: React.FC = () => {
               </span>
             </div>
 
-            <h3 className="text-xl font-bold text-white mb-3 group-hover:text-indigo-300 transition-colors leading-[1.5]">
+            <h3 className="text-xl font-bold text-white mb-3 group-hover:text-indigo-300 transition-colors leading-[1.8]">
               {t('feat_card_lead_gen_title')}
             </h3>
-            <p className="text-text-muted text-sm leading-[1.8] mb-4">
+            <p className="text-text-muted text-sm leading-[2.0] mb-4">
               {t('feat_card_lead_gen_desc')}
             </p>
           </div>
@@ -160,10 +160,10 @@ export const Features: React.FC = () => {
               </span>
             </div>
 
-            <h3 className="text-xl font-bold text-white mb-3 group-hover:text-cyan-300 transition-colors leading-[1.5]">
+            <h3 className="text-xl font-bold text-white mb-3 group-hover:text-cyan-300 transition-colors leading-[1.8]">
               {t('feat_card_classification_title')}
             </h3>
-            <p className="text-text-muted text-sm leading-[1.8] mb-4">
+            <p className="text-text-muted text-sm leading-[2.0] mb-4">
               {t('feat_card_classification_desc')}
             </p>
           </div>
@@ -191,10 +191,10 @@ export const Features: React.FC = () => {
               </span>
             </div>
 
-            <h3 className="text-xl font-bold text-white mb-3 group-hover:text-purple-300 transition-colors leading-[1.5]">
+            <h3 className="text-xl font-bold text-white mb-3 group-hover:text-purple-300 transition-colors leading-[1.8]">
               {t('feat_card_hormozi_title')}
             </h3>
-            <p className="text-text-muted text-sm leading-[1.8] mb-4">
+            <p className="text-text-muted text-sm leading-[2.0] mb-4">
               {t('feat_card_hormozi_desc')}
             </p>
           </div>
@@ -222,7 +222,7 @@ export const Features: React.FC = () => {
               </span>
             </div>
 
-            <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-accent transition-colors leading-[1.5]">
+            <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-accent transition-colors leading-[1.8]">
               {t('feat_card_speed_title')}
             </h3>
             <p className="text-text-muted text-sm md:text-base leading-[1.8]">

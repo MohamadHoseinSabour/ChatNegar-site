@@ -22,8 +22,8 @@ export const Integrations: React.FC = () => {
     <Section className="bg-[#0A0914] relative overflow-hidden">
       <div className="grid md:grid-cols-2 gap-12 items-center">
         <div className={isEn ? "text-left" : "text-right"}>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">{t('int_title')}</h2>
-          <p className="text-text-muted text-lg mb-8 leading-relaxed">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 leading-[1.8]">{t('int_title')}</h2>
+          <p className="text-text-muted text-lg mb-8 leading-[2.0]">
             {t('int_desc')}
           </p>
           <ul className="space-y-4">

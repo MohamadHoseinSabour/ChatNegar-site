@@ -191,12 +191,10 @@ export const Hero: React.FC = () => {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
-          className="text-3xl md:text-5xl lg:text-6xl font-bold font-display tracking-tight text-white mb-6 max-w-5xl leading-[1.6] md:leading-[1.85]"
+          className="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-black font-display tracking-tight text-white mb-6 max-w-5xl leading-[1.8] sm:leading-[1.9] text-center"
         >
-          <span className="block">{t('hero_title_1')}</span>
-          <span className="block mt-3 md:mt-8">
-            <span className="text-gradient">{t('hero_title_2')}</span>{t('hero_title_3')}
-          </span>
+          <span className="text-gradient">{t('hero_title_single_brand')}</span>{' '}
+          <span>{t('hero_title_single_rest')}</span>
         </motion.h1>
 
         {/* Subtitle */}
@@ -204,7 +202,7 @@ export const Hero: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-lg md:text-xl text-text-muted max-w-2xl mb-10 leading-[1.9]"
+          className="text-base sm:text-lg md:text-xl text-text-muted max-w-3xl mb-10 leading-[2.0]"
         >
           {t('hero_subtitle')}
         </motion.p>

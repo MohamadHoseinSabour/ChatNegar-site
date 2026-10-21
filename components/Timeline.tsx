@@ -54,8 +54,8 @@ export const Timeline: React.FC = () => {
   return (
     <Section id="how-it-works" className="bg-[#0F0E17]">
       <div className="text-center mb-16">
-        <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">{t('time_title')}</h2>
-        <p className="text-text-muted">{t('time_subtitle')}</p>
+        <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 leading-[1.8]">{t('time_title')}</h2>
+        <p className="text-text-muted leading-[2.0]">{t('time_subtitle')}</p>
       </div>
       
       <div className="relative">

@@ -52,10 +52,10 @@ export const Comparison: React.FC = () => {
           <Sparkles size={14} />
           <span>مقایسه شفاف و بدون سانسور</span>
         </div>
-        <h2 className="text-3xl md:text-5xl font-bold font-display text-white mb-5 leading-[1.4] md:leading-[1.5]">
+        <h2 className="text-3xl md:text-5xl font-bold font-display text-white mb-6 leading-[1.8] md:leading-[1.9]">
           {t('comp_title')}
         </h2>
-        <p className="text-text-muted text-base md:text-lg leading-[1.8]">
+        <p className="text-text-muted text-base md:text-lg leading-[2.0]">
           {t('comp_subtitle')}
         </p>
       </div>
@@ -90,7 +90,7 @@ export const Comparison: React.FC = () => {
               }`}
             >
               {/* Feature Title */}
-              <div className="col-span-4 flex items-center gap-3 text-white font-bold text-xs md:text-sm text-start leading-[1.6]">
+              <div className="col-span-4 flex items-center gap-3 text-white font-bold text-xs md:text-sm text-start leading-[1.8]">
                 <div className="p-2 rounded-xl bg-white/5 text-primary hidden sm:flex shrink-0 border border-white/10">
                   <item.icon size={18} />
                 </div>
@@ -102,7 +102,7 @@ export const Comparison: React.FC = () => {
                 <div className="w-6 h-6 rounded-full bg-gradient-to-tr from-purple-600 to-indigo-600 text-white flex items-center justify-center shrink-0 shadow-sm">
                   <Check size={14} strokeWidth={3} />
                 </div>
-                <span className="text-white text-xs md:text-sm font-bold leading-[1.6]">
+                <span className="text-white text-xs md:text-sm font-bold leading-[1.8]">
                   {item.chatnegar}
                 </span>
               </div>
@@ -112,7 +112,7 @@ export const Comparison: React.FC = () => {
                 <div className="w-6 h-6 rounded-full bg-red-500/20 text-red-400 flex items-center justify-center shrink-0">
                   <X size={14} strokeWidth={3} />
                 </div>
-                <span className="text-slate-400 text-xs md:text-sm leading-[1.6]">
+                <span className="text-slate-400 text-xs md:text-sm leading-[1.8]">
                   {item.others}
                 </span>
               </div>

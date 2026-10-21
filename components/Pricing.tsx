@@ -45,10 +45,10 @@ export const Pricing: React.FC = () => {
           <Gift size={14} />
           <span>{t('price_badge')}</span>
         </div>
-        <h2 className="text-3xl md:text-5xl font-bold font-display text-white mb-5 leading-[1.4] md:leading-[1.5]">
+        <h2 className="text-3xl md:text-5xl font-bold font-display text-white mb-6 leading-[1.8] md:leading-[1.9]">
           {t('price_title')}
         </h2>
-        <p className="text-text-muted text-base md:text-lg leading-[1.8]">
+        <p className="text-text-muted text-base md:text-lg leading-[2.0]">
           {t('price_subtitle')}
         </p>
       </div>
@@ -64,7 +64,7 @@ export const Pricing: React.FC = () => {
               <span className="text-xs uppercase tracking-wider text-purple-300 font-extrabold block mb-1">
                 {isEn ? 'Alex Hormozi Grand Slam Offer' : 'پیشنهاد ارزش‌آفرین هرموزی (ارزش واقعی: ۲.۵ میلیون)'}
               </span>
-              <h3 className="text-2xl font-bold text-white leading-normal">
+              <h3 className="text-2xl font-bold text-white leading-[1.8]">
                 {isEn ? 'ChatNegar 2.0 Lifetime Pass' : 'پکیج کامل چت‌نگار ۲.۰ مادام‌العمر'}
               </h3>
             </div>
@@ -98,7 +98,7 @@ export const Pricing: React.FC = () => {
                   <Check size={14} strokeWidth={3} />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <div className="text-xs md:text-sm font-bold text-white leading-[1.6]">
+                  <div className="text-xs md:text-sm font-bold text-white leading-[1.9]">
                     {item.title}
                   </div>
                   <span className="text-[10px] text-purple-300 font-medium block mt-0.5">
@@ -134,7 +134,7 @@ export const Pricing: React.FC = () => {
           </div>
 
           {/* Transparency Note */}
-          <p className="mt-8 text-xs text-text-muted leading-[1.8] text-center p-3 rounded-xl bg-white/5 border border-white/5">
+          <p className="mt-8 text-xs text-text-muted leading-[2.0] text-center p-4 rounded-xl bg-white/5 border border-white/5">
             {t('price_note')}
           </p>
         </div>

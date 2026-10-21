@@ -18,6 +18,8 @@
 
     // Hero
     hero_badge: "نسخه ۲.۰.۰ منتشر شد 🔥 دستیار هوشمند فروش و چت زنده ووکامرس",
+    hero_title_single_brand: "چت‌نگار ۲.۰؛",
+    hero_title_single_rest: "پاسخگویی آنی، هدایت به سبد خرید",
     hero_title_1: "پاسخگویی آنی، هدایت به سبد خرید",
     hero_title_2: "چت‌نگار ۲.۰؛",
     hero_title_3: " دستیار فروش و پشتیبانی ۲۴ ساعته شما",
@@ -255,6 +257,8 @@
 
     // Hero
     hero_badge: "Version 2.0.0 Released 🔥 WooCommerce Smart Sales Assistant & Live Chat",
+    hero_title_single_brand: "ChatNegar 2.0;",
+    hero_title_single_rest: "Instant Answers, Direct to Cart",
     hero_title_1: "Instant Answers, Direct to Cart.",
     hero_title_2: "ChatNegar 2.0;",
     hero_title_3: " Your 24/7 Sales & Support Assistant",
