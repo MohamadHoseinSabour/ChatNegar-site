@@ -1,128 +1,254 @@
 import React from 'react';
 import { Section } from './ui/Section';
-import { Bot, FileText, BarChart3, Palette, Zap, Shield, Database, Smile, Languages, Puzzle, BellRing } from 'lucide-react';
+import { 
+  ShoppingCart, 
+  Headset, 
+  PhoneCall, 
+  Layers, 
+  Sparkles, 
+  Zap, 
+  ShieldCheck, 
+  Database, 
+  CheckCircle2, 
+  Cpu, 
+  Lock, 
+  ArrowUpRight 
+} from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useLanguage } from './LanguageContext';
 
 export const Features: React.FC = () => {
-  const { t } = useLanguage();
+  const { t, isEn } = useLanguage();
 
   return (
     <Section id="features" className="bg-[#0F0E17]">
-      <div className="text-center mb-16">
-        <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">{t('feat_title')}</h2>
-        <p className="text-text-muted text-lg">{t('feat_subtitle')}</p>
+      <div className="text-center mb-16 max-w-3xl mx-auto">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-xs font-bold text-accent mb-4">
+          <Sparkles size={14} />
+          <span>نسخه ۲.۰.۰ با معماری جدید</span>
+        </div>
+        <h2 className="text-3xl md:text-5xl font-bold font-display text-white mb-4 leading-tight">
+          {t('feat_title')}
+        </h2>
+        <p className="text-text-muted text-base md:text-lg leading-relaxed">
+          {t('feat_subtitle')}
+        </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-[minmax(180px,auto)]">
+      {/* 6 Pillars Bento Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-start" dir={isEn ? 'ltr' : 'rtl'}>
         
-        {/* Large Card */}
+        {/* Pillar 1: WooCommerce Interactive Cards (Highlight Card) */}
         <motion.div 
-          className="md:col-span-2 md:row-span-2 glass-panel rounded-3xl p-8 flex flex-col justify-between hover:border-primary/50 transition-colors group text-start"
-          whileHover={{ y: -5 }}
+          className="lg:col-span-2 glass-panel rounded-3xl p-8 flex flex-col justify-between hover:border-emerald-500/50 transition-all group relative overflow-hidden"
+          whileHover={{ y: -4 }}
         >
+          <div className="absolute top-0 end-0 w-80 h-80 bg-emerald-500/10 blur-[90px] rounded-full pointer-events-none -z-10" />
+
           <div>
-            <div className="w-12 h-12 rounded-xl bg-blue-500/20 flex items-center justify-center text-blue-400 mb-6">
-                <Bot size={28} />
+            <div className="flex items-center justify-between mb-6">
+              <div className="w-14 h-14 rounded-2xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shadow-inner">
+                <ShoppingCart size={28} />
+              </div>
+              <span className="text-xs font-bold px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 font-mono">
+                Pillar #1 • ووکامرس زنده
+              </span>
             </div>
-            <h3 className="text-2xl font-bold text-white mb-2">{t('feat_card_ai_title')}</h3>
-            <p className="text-text-muted leading-relaxed">{t('feat_card_ai_desc')}</p>
+
+            <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-emerald-300 transition-colors">
+              {t('feat_card_woo_title')}
+            </h3>
+            <p className="text-text-muted text-sm md:text-base leading-relaxed mb-6">
+              {t('feat_card_woo_desc')}
+            </p>
           </div>
-          <div className="mt-8 flex flex-wrap gap-3 opacity-50 group-hover:opacity-100 transition-opacity">
-             <div className="h-12 w-24 bg-white/10 rounded-lg flex items-center justify-center text-xs font-mono">OpenAI</div>
-             <div className="h-12 w-24 bg-white/10 rounded-lg flex items-center justify-center text-xs font-mono">Gemini</div>
-             <div className="h-12 w-24 bg-white/10 rounded-lg flex items-center justify-center text-xs font-mono">OpenRouter</div>
-             <div className="h-12 w-24 bg-white/10 rounded-lg flex items-center justify-center text-xs font-mono">Gap GPT</div>
-             <div className="h-12 w-24 bg-white/10 rounded-lg border border-dashed border-white/15 flex items-center justify-center text-[11px] font-mono text-text-muted opacity-40">
-               Aval AI
-             </div>
-             <div className="h-12 w-24 bg-white/10 rounded-lg border border-dashed border-white/15 flex items-center justify-center text-[11px] font-mono text-text-muted opacity-40">
-               Claude
-             </div>
+
+          {/* Interactive Visual Mockup inside Card */}
+          <div className="p-4 rounded-2xl bg-white/5 border border-white/10 flex flex-col sm:flex-row items-center gap-4">
+            <img 
+              src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=240&auto=format&fit=crop&q=80" 
+              alt="Nike Shoe" 
+              className="w-16 h-16 rounded-xl object-cover shrink-0 border border-white/10 shadow"
+            />
+            <div className="flex-1 text-start">
+              <div className="flex items-center gap-2 mb-1">
+                <span className="text-xs font-bold text-white">کفش رانینگ نایک فلاینیت اصل</span>
+                <span className="text-[10px] bg-red-500/20 text-red-400 px-2 py-0.5 rounded-full font-bold">۲۰٪ تخفیف</span>
+              </div>
+              <div className="text-xs text-emerald-400 font-bold">
+                ۱,۸۵۰,۰۰۰ تومان <span className="line-through text-slate-500 text-[10px] font-normal">۲,۳۰۰,۰۰۰</span>
+              </div>
+            </div>
+            <div className="px-3.5 py-2 rounded-xl bg-emerald-500 text-white text-xs font-bold shrink-0 flex items-center gap-1.5 shadow-md shadow-emerald-500/20">
+              <CheckCircle2 size={14} />
+              <span>افزودن مستقیم به سبد خرید</span>
+            </div>
           </div>
         </motion.div>
 
-        {/* Medium Card - KB */}
+        {/* Pillar 2: Live Human Operator with AI Silence */}
         <motion.div 
-          className="md:col-span-1 md:row-span-2 glass-panel rounded-3xl p-6 flex flex-col hover:border-emerald-500/50 transition-colors text-start"
-          whileHover={{ y: -5 }}
+          className="glass-panel rounded-3xl p-8 flex flex-col justify-between hover:border-amber-500/50 transition-all group relative overflow-hidden"
+          whileHover={{ y: -4 }}
         >
-          <div className="w-10 h-10 rounded-lg bg-emerald-500/20 flex items-center justify-center text-emerald-400 mb-4">
-              <FileText size={20} />
+          <div className="absolute top-0 end-0 w-60 h-60 bg-amber-500/10 blur-[70px] rounded-full pointer-events-none -z-10" />
+
+          <div>
+            <div className="flex items-center justify-between mb-6">
+              <div className="w-14 h-14 rounded-2xl bg-amber-500/20 border border-amber-500/30 flex items-center justify-center text-amber-400 shadow-inner">
+                <Headset size={28} />
+              </div>
+              <span className="text-xs font-bold px-3 py-1 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-300 font-mono">
+                Pillar #2 • تلفیق هوشمند
+              </span>
+            </div>
+
+            <h3 className="text-xl font-bold text-white mb-3 group-hover:text-amber-300 transition-colors">
+              {t('feat_card_live_operator_title')}
+            </h3>
+            <p className="text-text-muted text-sm leading-relaxed mb-4">
+              {t('feat_card_live_operator_desc')}
+            </p>
           </div>
-          <h3 className="text-xl font-bold text-white mb-2">{t('feat_card_kb_title')}</h3>
-          <p className="text-text-muted text-sm flex-grow">{t('feat_card_kb_desc')}</p>
-          <div className="mt-4 h-24 bg-surface rounded-xl border border-white/5 relative overflow-hidden p-2">
-            <div className="absolute top-2 right-2 left-2 h-2 bg-emerald-500/20 rounded-full animate-pulse"></div>
-            <div className="absolute top-6 right-2 left-8 h-2 bg-white/10 rounded-full"></div>
-            <div className="absolute top-10 right-2 left-4 h-2 bg-white/10 rounded-full"></div>
+
+          <div className="p-3 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-300 text-xs flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse shrink-0" />
+            <span>به محض ورود اپراتور، AI بلافاصله ساکت می‌شود.</span>
           </div>
         </motion.div>
 
-        {/* Small Cards */}
-        <motion.div className="md:col-span-1 glass-panel rounded-3xl p-6 hover:border-amber-500/50 transition-colors text-start" whileHover={{ y: -5 }}>
-           <Palette className="text-amber-400 mb-3" />
-           <h4 className="font-bold text-white">{t('feat_card_custom_title')}</h4>
-           <p className="text-xs text-text-muted mt-1">{t('feat_card_custom_desc')}</p>
+        {/* Pillar 3: Pre-chat Intake & Iranian Lead Generation */}
+        <motion.div 
+          className="glass-panel rounded-3xl p-8 flex flex-col justify-between hover:border-indigo-500/50 transition-all group relative overflow-hidden"
+          whileHover={{ y: -4 }}
+        >
+          <div className="absolute top-0 end-0 w-60 h-60 bg-indigo-500/10 blur-[70px] rounded-full pointer-events-none -z-10" />
+
+          <div>
+            <div className="flex items-center justify-between mb-6">
+              <div className="w-14 h-14 rounded-2xl bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center text-indigo-400 shadow-inner">
+                <PhoneCall size={28} />
+              </div>
+              <span className="text-xs font-bold px-3 py-1 rounded-full bg-indigo-500/15 border border-indigo-500/30 text-indigo-300 font-mono">
+                Pillar #3 • لیدجنریشن
+              </span>
+            </div>
+
+            <h3 className="text-xl font-bold text-white mb-3 group-hover:text-indigo-300 transition-colors">
+              {t('feat_card_lead_gen_title')}
+            </h3>
+            <p className="text-text-muted text-sm leading-relaxed mb-4">
+              {t('feat_card_lead_gen_desc')}
+            </p>
+          </div>
+
+          <div className="p-3 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-between text-xs font-mono text-slate-300">
+            <span>الگوی شماره ایرانی: 09xxxxxxxxx</span>
+            <span className="text-emerald-400 font-bold">100% Valid</span>
+          </div>
         </motion.div>
 
-         <motion.div className="md:col-span-1 glass-panel rounded-3xl p-6 hover:border-purple-500/50 transition-colors text-start" whileHover={{ y: -5 }}>
-           <Zap className="text-purple-400 mb-3" />
-           <h4 className="font-bold text-white">{t('feat_card_quick_title')}</h4>
-           <p className="text-xs text-text-muted mt-1">{t('feat_card_quick_desc')}</p>
+        {/* Pillar 4: 2-Layer Smart Intent Classification */}
+        <motion.div 
+          className="glass-panel rounded-3xl p-8 flex flex-col justify-between hover:border-cyan-500/50 transition-all group relative overflow-hidden"
+          whileHover={{ y: -4 }}
+        >
+          <div className="absolute top-0 end-0 w-60 h-60 bg-cyan-500/10 blur-[70px] rounded-full pointer-events-none -z-10" />
+
+          <div>
+            <div className="flex items-center justify-between mb-6">
+              <div className="w-14 h-14 rounded-2xl bg-cyan-500/20 border border-cyan-500/30 flex items-center justify-center text-cyan-400 shadow-inner">
+                <Layers size={28} />
+              </div>
+              <span className="text-xs font-bold px-3 py-1 rounded-full bg-cyan-500/15 border border-cyan-500/30 text-cyan-300 font-mono">
+                Pillar #4 • صفر مصرف توکن
+              </span>
+            </div>
+
+            <h3 className="text-xl font-bold text-white mb-3 group-hover:text-cyan-300 transition-colors">
+              {t('feat_card_classification_title')}
+            </h3>
+            <p className="text-text-muted text-sm leading-relaxed mb-4">
+              {t('feat_card_classification_desc')}
+            </p>
+          </div>
+
+          <div className="flex flex-wrap gap-1.5 text-[11px] font-mono">
+            <span className="px-2 py-1 rounded-lg bg-cyan-500/15 text-cyan-300">لایه ۱: بدون توکن</span>
+            <span className="px-2 py-1 rounded-lg bg-white/10 text-slate-300">لایه ۲: برچسب هوشمند</span>
+          </div>
         </motion.div>
 
-        {/* Wide Card - Analytics */}
-        <motion.div className="md:col-span-2 glass-panel rounded-3xl p-6 flex items-center gap-6 hover:border-pink-500/50 transition-colors text-start" whileHover={{ y: -5 }}>
-             <div className="flex-1">
-                <div className="w-10 h-10 rounded-lg bg-pink-500/20 flex items-center justify-center text-pink-400 mb-4">
-                    <BarChart3 size={20} />
-                </div>
-                <h3 className="text-xl font-bold text-white">{t('feat_card_analytics_title')}</h3>
-                <p className="text-text-muted text-sm mt-2">{t('feat_card_analytics_desc')}</p>
-             </div>
-             <div className="w-32 h-24 flex items-end justify-between gap-1 px-2 pb-2 border-b border-r border-white/10 shrink-0" dir="ltr">
-                {[40, 70, 45, 90, 60].map((h, i) => (
-                    <div key={i} style={{ height: `${h}%` }} className="w-4 bg-pink-500/50 rounded-t-sm"></div>
-                ))}
-             </div>
+        {/* Pillar 5: Hormozi Sales Psychology & 8-Layer Prompt */}
+        <motion.div 
+          className="glass-panel rounded-3xl p-8 flex flex-col justify-between hover:border-purple-500/50 transition-all group relative overflow-hidden"
+          whileHover={{ y: -4 }}
+        >
+          <div className="absolute top-0 end-0 w-60 h-60 bg-purple-500/10 blur-[70px] rounded-full pointer-events-none -z-10" />
+
+          <div>
+            <div className="flex items-center justify-between mb-6">
+              <div className="w-14 h-14 rounded-2xl bg-purple-500/20 border border-purple-500/30 flex items-center justify-center text-purple-400 shadow-inner">
+                <Sparkles size={28} />
+              </div>
+              <span className="text-xs font-bold px-3 py-1 rounded-full bg-purple-500/15 border border-purple-500/30 text-purple-300 font-mono">
+                Pillar #5 • پرامپت ۸ لایه
+              </span>
+            </div>
+
+            <h3 className="text-xl font-bold text-white mb-3 group-hover:text-purple-300 transition-colors">
+              {t('feat_card_hormozi_title')}
+            </h3>
+            <p className="text-text-muted text-sm leading-relaxed mb-4">
+              {t('feat_card_hormozi_desc')}
+            </p>
+          </div>
+
+          <div className="p-2.5 rounded-xl bg-purple-500/15 text-purple-300 text-xs flex items-center gap-2">
+            <CheckCircle2 size={13} className="shrink-0" />
+            <span>پاسخ اختصاصی به اعتراض قیمت و رفع تردید خریدار</span>
+          </div>
         </motion.div>
 
-        {/* Small Cards Row */}
-        <motion.div className="glass-panel rounded-3xl p-6 hover:border-green-500/50 transition-colors text-start" whileHover={{ y: -5 }}>
-             <Shield className="text-green-400 mb-3" />
-             <h4 className="font-bold text-white">{t('feat_card_security_title')}</h4>
-             <p className="text-xs text-text-muted mt-1">{t('feat_card_security_desc')}</p>
-        </motion.div>
+        {/* Pillar 6: Super-Sonic Speed & 100% Lightweight (395KB) */}
+        <motion.div 
+          className="lg:col-span-3 glass-panel rounded-3xl p-8 flex flex-col md:flex-row items-center justify-between gap-6 hover:border-secondary/50 transition-all group relative overflow-hidden"
+          whileHover={{ y: -4 }}
+        >
+          <div className="absolute top-0 start-0 w-80 h-80 bg-secondary/10 blur-[100px] rounded-full pointer-events-none -z-10" />
 
-        <motion.div className="glass-panel rounded-3xl p-6 hover:border-indigo-500/50 transition-colors text-start" whileHover={{ y: -5 }}>
-             <Database className="text-indigo-400 mb-3" />
-             <h4 className="font-bold text-white">{t('feat_card_woo_title')}</h4>
-             <p className="text-xs text-text-muted mt-1">{t('feat_card_woo_desc')}</p>
-        </motion.div>
+          <div className="flex-1">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-12 h-12 rounded-2xl bg-secondary/20 border border-secondary/30 flex items-center justify-center text-accent shadow-inner">
+                <Zap size={24} />
+              </div>
+              <span className="text-xs font-bold px-3 py-1 rounded-full bg-secondary/15 border border-secondary/30 text-accent font-mono">
+                Pillar #6 • سبک‌ترین افزونه هوش مصنوعی
+              </span>
+            </div>
 
-         <motion.div className="glass-panel rounded-3xl p-6 hover:border-yellow-500/50 transition-colors text-start" whileHover={{ y: -5 }}>
-             <Smile className="text-yellow-400 mb-3" />
-             <h4 className="font-bold text-white">{t('feat_card_satisfaction_title')}</h4>
-             <p className="text-xs text-text-muted mt-1">{t('feat_card_satisfaction_desc')}</p>
-        </motion.div>
+            <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-accent transition-colors">
+              {t('feat_card_speed_title')}
+            </h3>
+            <p className="text-text-muted text-sm md:text-base leading-relaxed">
+              {t('feat_card_speed_desc')}
+            </p>
+          </div>
 
-        <motion.div className="glass-panel rounded-3xl p-6 hover:border-cyan-500/50 transition-colors text-start" whileHover={{ y: -5 }}>
-             <Languages className="text-cyan-400 mb-3" />
-             <h4 className="font-bold text-white">{t('feat_card_lang_title')}</h4>
-             <p className="text-xs text-text-muted mt-1">{t('feat_card_lang_desc')}</p>
-        </motion.div>
-
-        <motion.div className="glass-panel rounded-3xl p-6 hover:border-orange-500/50 transition-colors text-start" whileHover={{ y: -5 }}>
-             <Puzzle className="text-orange-400 mb-3" />
-             <h4 className="font-bold text-white">{t('feat_card_integration_title')}</h4>
-             <p className="text-xs text-text-muted mt-1">{t('feat_card_integration_desc')}</p>
-        </motion.div>
-
-        <motion.div className="glass-panel rounded-3xl p-6 hover:border-rose-500/50 transition-colors text-start" whileHover={{ y: -5 }}>
-             <BellRing className="text-rose-400 mb-3" />
-             <h4 className="font-bold text-white">{t('feat_card_notifications_title')}</h4>
-             <p className="text-xs text-text-muted mt-1">{t('feat_card_notifications_desc')}</p>
+          <div className="flex flex-wrap items-center gap-4 shrink-0">
+            <div className="text-center p-3.5 rounded-2xl bg-white/5 border border-white/10 min-w-[120px]">
+              <div className="text-2xl font-extrabold text-accent font-mono">۳۹۵ KB</div>
+              <div className="text-[11px] text-slate-400 mt-0.5">حجم کل افزونه</div>
+            </div>
+            <div className="text-center p-3.5 rounded-2xl bg-white/5 border border-white/10 min-w-[120px]">
+              <div className="text-2xl font-extrabold text-emerald-400 font-mono">&lt; ۰.۵s</div>
+              <div className="text-[11px] text-slate-400 mt-0.5">زمان بارگذاری</div>
+            </div>
+            <div className="text-center p-3.5 rounded-2xl bg-white/5 border border-white/10 min-w-[120px]">
+              <div className="text-2xl font-extrabold text-primary font-mono">PHP 8.2</div>
+              <div className="text-[11px] text-slate-400 mt-0.5">سازگاری کامل</div>
+            </div>
+          </div>
         </motion.div>
 
       </div>

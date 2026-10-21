@@ -13,6 +13,7 @@ export const FAQ: React.FC = () => {
     { q: t("faq_2_q"), a: t("faq_2_a") },
     { q: t("faq_3_q"), a: t("faq_3_a") },
     { q: t("faq_4_q"), a: t("faq_4_a") },
+    { q: t("faq_5_q"), a: t("faq_5_a") },
   ];
 
   return (

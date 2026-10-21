@@ -217,7 +217,18 @@ export const Hero: React.FC = () => {
           className="flex flex-col sm:flex-row items-center gap-4 mb-12"
         >
           <Button variant="primary" size="lg" icon={isEn ? <ArrowRight size={16} /> : <ArrowLeft size={16} />} href="https://www.rtl-theme.com/chatnegar-wordpress-plugin/" target="_blank" rel="noopener noreferrer">
-            {t('learn_more')}
+            {t('hero_cta_primary')}
+          </Button>
+          <Button 
+            variant="secondary" 
+            size="lg" 
+            href="#demo"
+            onClick={(e) => {
+              e.preventDefault();
+              document.getElementById('demo')?.scrollIntoView({ behavior: 'smooth' });
+            }}
+          >
+            {t('hero_cta_secondary')}
           </Button>
         </motion.div>
 
@@ -314,7 +325,29 @@ export const Hero: React.FC = () => {
                           animate={{ opacity: 1, y: 0, scale: 1 }}
                           className={`chatnegar-msg ${message.sender === 'user' ? 'chatnegar-msg--user' : 'chatnegar-msg--assistant'}`}
                         >
-                          <div className="chatnegar-msg-content">{message.text}</div>
+                          <div className="chatnegar-msg-content">
+                            {message.text}
+                            {message.text === t('mockup_msg_3') && (
+                              <div className="mt-2 p-2 bg-slate-50 dark:bg-slate-800/90 rounded-xl border border-indigo-100 dark:border-indigo-900/40 flex items-center gap-2.5 shadow-sm text-start" dir={isEn ? 'ltr' : 'rtl'}>
+                                <img 
+                                  src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=160&auto=format&fit=crop&q=80" 
+                                  alt="Nike Flyknit" 
+                                  className="w-11 h-11 rounded-lg object-cover bg-white shrink-0 border border-slate-200"
+                                />
+                                <div className="flex-1 min-w-0">
+                                  <div className="text-[11px] font-bold text-slate-800 dark:text-white truncate">{isEn ? 'Nike Flyknit Running Shoe' : 'کفش نایک فلاینیت اصل'}</div>
+                                  <div className="text-[10px] text-emerald-600 font-bold">
+                                    {isEn ? '1,850,000 T' : '۱,۸۵۰,۰۰۰ تومان'}{' '}
+                                    <span className="line-through text-slate-400 font-normal">{isEn ? '2.3M' : '۲,۳۰۰,۰۰۰'}</span>
+                                  </div>
+                                  <div className="mt-1 inline-flex items-center gap-1 text-[9px] bg-emerald-500 hover:bg-emerald-600 text-white px-2 py-0.5 rounded-md font-bold">
+                                    <span>{isEn ? 'Add to Cart' : 'افزودن به سبد'}</span>
+                                    <span>+</span>
+                                  </div>
+                                </div>
+                              </div>
+                            )}
+                          </div>
                           <div className="chatnegar-msg-meta">{message.timestamp}</div>
                         </motion.div>
                       ))}

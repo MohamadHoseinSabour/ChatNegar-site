@@ -26,6 +26,7 @@ export const Navbar: React.FC = () => {
     { name: t('nav_integrations'), href: '#integrations' },
     { name: t('nav_timeline'), href: '#how-it-works' },
     { name: t('nav_demo'), href: '#demo' },
+    { name: t('nav_admin'), href: '#admin-console' },
     { name: t('nav_testimonials'), href: '#testimonials' },
     { name: t('nav_developers'), href: '#developers' },
     { name: t('nav_pricing'), href: '#pricing' },
