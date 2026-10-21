@@ -1,4 +1,4 @@
-export const translations = {
+﻿export const translations = {
   fa: {
     // Navbar
     logo: "چت‌نگار",
@@ -13,6 +13,7 @@ export const translations = {
     nav_developers: "توسعه‌دهندگان",
     nav_pricing: "قیمت و خرید",
     nav_faq: "سوالات متداول",
+    nav_buy: "خرید چت‌نگار",
     learn_more: "خرید و دریافت آنی چت‌نگار ۲.۰",
 
     // Hero
@@ -249,6 +250,7 @@ export const translations = {
     nav_developers: "Developers",
     nav_pricing: "Pricing & Offer",
     nav_faq: "FAQ",
+    nav_buy: "Buy Now",
     learn_more: "Get ChatNegar 2.0 Now",
 
     // Hero

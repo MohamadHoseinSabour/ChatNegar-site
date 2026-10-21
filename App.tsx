@@ -12,8 +12,7 @@ import { Pricing } from './components/Pricing';
 import { Comparison } from './components/Comparison';
 import { Integrations } from './components/Integrations';
 import { Testimonials } from './components/Testimonials';
-import { Button } from './components/ui/Button';
-import { ArrowLeft, ArrowRight, Sparkles, CheckCircle2 } from 'lucide-react';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { Section } from './components/ui/Section';
 import { useLanguage } from './components/LanguageContext';
 
@@ -52,7 +51,7 @@ const App: React.FC = () => {
         {/* Social Proof Bar */}
         <div className="border-y border-white/5 bg-[#0A0914] py-8">
             <div className="container mx-auto px-4 text-center">
-                <p className="text-xs md:text-sm font-medium text-text-muted mb-5">{t('social_trusted')}</p>
+                <p className="text-xs md:text-sm font-medium text-text-muted mb-5 leading-[1.8]">{t('social_trusted')}</p>
                 
                 {/* Theme Compatibility Badges */}
                 <div className="flex flex-wrap justify-center items-center gap-2.5 md:gap-4 mb-6">
@@ -70,25 +69,25 @@ const App: React.FC = () => {
                     ))}
                 </div>
 
-                {/* Core Value Badges */}
+                {/* Core Value Badges - Purple Theme */}
                 <div className="flex flex-wrap justify-center gap-3 mb-6 text-xs">
-                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-300">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-500/15 border border-purple-500/30 text-purple-300">
+                        <span className="w-1.5 h-1.5 rounded-full bg-purple-400"></span>
                         {t('social_badge_2')}
                     </div>
-                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-300">
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-500/15 border border-indigo-500/30 text-indigo-300">
                         <span className="w-1.5 h-1.5 rounded-full bg-indigo-400"></span>
                         {t('social_badge_3')}
                     </div>
                 </div>
 
-                {/* Tangible Metrics */}
+                {/* Tangible Metrics - Purple/Violet */}
                 <div className="flex flex-wrap justify-center gap-6 md:gap-14 pt-5 border-t border-white/5 text-sm md:text-base font-medium">
-                    <div className="text-emerald-400 font-bold">
+                    <div className="text-purple-300 font-bold">
                       {t('social_stat_1_val')}{' '}
                       <span className="text-text-muted font-normal text-xs md:text-sm">{t('social_stat_1_lbl')}</span>
                     </div>
-                    <div className="text-emerald-400 font-bold">
+                    <div className="text-violet-400 font-bold">
                       {t('social_stat_2_val')}{' '}
                       <span className="text-text-muted font-normal text-xs md:text-sm">{t('social_stat_2_lbl')}</span>
                     </div>
@@ -108,72 +107,42 @@ const App: React.FC = () => {
         
         <Features />
         
+        {/* Interactive WooCommerce Sales Demo */}
+        <DemoWidget />
+
+        {/* Live Human Operator & Admin Inbox Showcase */}
+        <div id="admin-console">
+          <AdminShowcase />
+        </div>
+
         {/* Add ID for scrolling */}
         <div id="integrations">
             <Integrations />
         </div>
 
-        <Timeline />
-        
-        {/* Demo Section Wrapper */}
-        <Section id="demo" className="bg-[#0A0914] py-20">
-             <div className="grid lg:grid-cols-2 gap-12 items-center">
-                 <div className={isEn ? "text-left" : "text-right"}>
-                     <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-primary/10 border border-primary/20 text-xs font-bold text-accent mb-4">
-                         <Sparkles size={14} />
-                         <span>{isEn ? 'Realistic E-commerce Scenario' : 'سناریوی واقعی فروشگاهی'}</span>
-                     </div>
-                     <h2 className="text-3xl md:text-5xl font-bold font-display text-white mb-6 leading-tight">
-                         {t('demo_title')}
-                     </h2>
-                     <p className="text-base md:text-lg text-text-muted mb-8 leading-relaxed">
-                         {t('demo_desc')}
-                     </p>
-                     
-                     <div className="space-y-4">
-                         {[
-                             t('demo_feat_1'), 
-                             t('demo_feat_2'),
-                             t('demo_feat_3'),
-                             t('demo_feat_4')
-                         ].map((feat, i) => (
-                             <div key={i} className="flex items-center gap-3">
-                                 <div className="w-6 h-6 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
-                                     <CheckCircle2 size={15} />
-                                 </div>
-                                 <span className="text-text-light font-medium text-sm md:text-base">{feat}</span>
-                             </div>
-                         ))}
-                     </div>
-                 </div>
-                 <div className="flex justify-center">
-                    <DemoWidget />
-                 </div>
-             </div>
-        </Section>
-
-        {/* Dedicated Admin Console Showcase Section */}
-        <AdminShowcase />
+        <div id="how-it-works">
+          <Timeline />
+        </div>
 
         <div id="testimonials">
-            <Testimonials />
+          <Testimonials />
         </div>
         
         <DevSection />
         <Pricing />
         <FAQ />
 
-        {/* Final CTA */}
+        {/* Final CTA - Purple Theme */}
         <Section className="relative overflow-hidden py-24">
-            <div className="absolute inset-4 md:inset-8 rounded-[2.5rem] bg-gradient-to-r from-emerald-500/20 via-primary/20 to-secondary/20 opacity-30 z-0"></div>
+            <div className="absolute inset-4 md:inset-8 rounded-[2.5rem] bg-gradient-to-r from-purple-600/30 via-indigo-600/25 to-violet-500/25 opacity-40 z-0"></div>
             <div className="relative z-10 text-center py-12 px-6 max-w-4xl mx-auto">
                  <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/15 text-xs font-bold text-white mb-6 backdrop-blur-md">
                      <span>🔥 نسخه ۲.۰.۰ چت‌نگار هم‌اکنون در دسترس است</span>
                  </div>
-                 <h2 className="text-3xl md:text-5xl font-bold font-display text-white mb-6 leading-tight">
+                 <h2 className="text-3xl md:text-5xl font-bold font-display text-white mb-6 leading-[1.4] md:leading-[1.5]">
                      {t('cta_title')}
                  </h2>
-                 <p className="text-lg md:text-xl text-text-muted mb-10 max-w-2xl mx-auto leading-relaxed">
+                 <p className="text-lg md:text-xl text-text-muted mb-10 max-w-2xl mx-auto leading-[1.8]">
                      {t('cta_subtitle')}
                  </p>
                  <div className="flex flex-col sm:flex-row justify-center gap-4">
@@ -181,7 +150,7 @@ const App: React.FC = () => {
                        href="https://www.rtl-theme.com/chatnegar-wordpress-plugin/"
                        target="_blank"
                        rel="noopener noreferrer"
-                       className="py-4 px-8 rounded-2xl bg-gradient-to-r from-emerald-500 via-teal-500 to-indigo-600 hover:from-emerald-400 hover:to-indigo-500 text-white font-extrabold text-base md:text-lg shadow-xl shadow-emerald-500/25 flex items-center justify-center gap-2 transition-all transform hover:-translate-y-0.5"
+                       className="py-4 px-8 rounded-2xl bg-gradient-to-r from-purple-600 via-violet-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-extrabold text-base md:text-lg shadow-xl shadow-purple-500/30 hover:shadow-purple-500/50 flex items-center justify-center gap-2 transition-all transform hover:-translate-y-0.5"
                      >
                        <span>{t('hero_cta_primary')}</span>
                        {isEn ? <ArrowRight size={18} /> : <ArrowLeft size={18} />}

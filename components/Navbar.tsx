@@ -19,16 +19,26 @@ export const Navbar: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = [
-    { name: t('nav_why'), href: '#problem-solution' },
-    { name: t('nav_comparison'), href: '#comparison' },
+  // Focused 5-6 core links for desktop to ensure the buy button NEVER overflows
+  const desktopLinks = [
     { name: t('nav_features'), href: '#features' },
-    { name: t('nav_integrations'), href: '#integrations' },
-    { name: t('nav_timeline'), href: '#how-it-works' },
     { name: t('nav_demo'), href: '#demo' },
     { name: t('nav_admin'), href: '#admin-console' },
+    { name: t('nav_comparison'), href: '#comparison' },
+    { name: t('nav_pricing'), href: '#pricing' },
+    { name: t('nav_faq'), href: '#faq' },
+  ];
+
+  // Full list of links for mobile drawer
+  const mobileNavLinks = [
+    { name: t('nav_why'), href: '#problem-solution' },
+    { name: t('nav_features'), href: '#features' },
+    { name: t('nav_demo'), href: '#demo' },
+    { name: t('nav_admin'), href: '#admin-console' },
+    { name: t('nav_comparison'), href: '#comparison' },
+    { name: t('nav_integrations'), href: '#integrations' },
+    { name: t('nav_timeline'), href: '#how-it-works' },
     { name: t('nav_testimonials'), href: '#testimonials' },
-    { name: t('nav_developers'), href: '#developers' },
     { name: t('nav_pricing'), href: '#pricing' },
     { name: t('nav_faq'), href: '#faq' },
   ];
@@ -41,7 +51,6 @@ export const Navbar: React.FC = () => {
     if (element) {
       setMobileMenuOpen(false);
       
-      // Delay scrolling slightly to ensure menu closes cleanly before scroll starts
       setTimeout(() => {
         const headerOffset = 100;
         const elementPosition = element.getBoundingClientRect().top;
@@ -64,14 +73,14 @@ export const Navbar: React.FC = () => {
   };
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-4 px-4 transition-all duration-300 pointer-events-none">
+    <div className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-3 px-3 sm:px-6 transition-all duration-300 pointer-events-none">
       <nav 
         className={`
           flex flex-col relative transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]
-          rounded-2xl border pointer-events-auto
+          rounded-2xl border pointer-events-auto w-full max-w-6xl overflow-hidden
           ${isScrolled 
-            ? 'w-full max-w-[95%] md:max-w-[95%] lg:max-w-7xl bg-[#1A1932]/80 backdrop-blur-xl border-white/10 shadow-2xl shadow-black/50 py-2' 
-            : 'w-full max-w-[95%] bg-[#0F0E17]/60 backdrop-blur-lg border-white/5 py-3'
+            ? 'bg-[#1A1932]/90 backdrop-blur-xl border-white/10 shadow-2xl shadow-black/50 py-2.5 px-3 sm:px-5' 
+            : 'bg-[#0F0E17]/80 backdrop-blur-lg border-white/10 py-3 px-3 sm:px-5'
           }
         `}
       >
@@ -99,49 +108,58 @@ export const Navbar: React.FC = () => {
           />
         </svg>
 
-        <div className="px-4 md:px-6 flex items-center justify-between w-full relative z-10">
+        <div className="flex items-center justify-between w-full relative z-10 gap-3">
           {/* Logo */}
           <a href="#" onClick={scrollToTop} className="flex items-center gap-2 group shrink-0">
-            <div className="w-10 h-10 rounded-xl bg-primary-gradient flex items-center justify-center text-white shadow-lg group-hover:scale-105 transition-transform">
-              <MessageSquare size={20} fill="currentColor" />
+            <div className="w-9 h-9 rounded-xl bg-primary-gradient flex items-center justify-center text-white shadow-lg group-hover:scale-105 transition-transform">
+              <MessageSquare size={18} fill="currentColor" />
             </div>
-            <span className="text-xl font-bold font-display tracking-tight text-white">{t('logo')}</span>
+            <span className="text-lg sm:text-xl font-bold font-display tracking-tight text-white">{t('logo')}</span>
           </a>
 
-          {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-3 lg:gap-5">
-            {navLinks.map((link) => (
+          {/* Desktop Nav Links */}
+          <div className="hidden lg:flex items-center gap-4 xl:gap-6">
+            {desktopLinks.map((link) => (
               <a 
                 key={link.name} 
                 href={link.href} 
                 onClick={(e) => handleNavClick(e, link.href)}
-                className="text-xs lg:text-sm font-medium text-text-muted hover:text-white transition-colors relative group whitespace-nowrap"
+                className="text-xs xl:text-sm font-medium text-text-muted hover:text-white transition-colors relative group whitespace-nowrap py-1"
               >
                 {link.name}
-                <span className="absolute -bottom-1 right-0 w-0 h-0.5 bg-secondary transition-all group-hover:w-full" />
+                <span className="absolute -bottom-0.5 right-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
               </a>
             ))}
           </div>
 
           {/* CTA Buttons */}
-          <div className="hidden md:flex items-center gap-4 shrink-0">
+          <div className="hidden md:flex items-center gap-2.5 shrink-0">
             <button
               onClick={toggleLanguage}
-              className="text-xs font-semibold px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all text-white font-mono cursor-pointer"
+              className="text-xs font-semibold px-2.5 py-1.5 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all text-white font-mono cursor-pointer shrink-0"
             >
               {isEn ? 'FA' : 'EN'}
             </button>
-            <Button variant="primary" size="sm" icon={isEn ? <ArrowRight size={16} /> : <ArrowLeft size={16} />} href="https://www.rtl-theme.com/chatnegar-wordpress-plugin/" target="_blank" rel="noopener noreferrer">
-              {t('learn_more')}
+            <Button 
+              variant="primary" 
+              size="sm" 
+              className="whitespace-nowrap px-4 py-2 text-xs sm:text-sm font-bold shrink-0 shadow-lg shadow-primary/30"
+              icon={isEn ? <ArrowRight size={15} /> : <ArrowLeft size={15} />} 
+              href="https://www.rtl-theme.com/chatnegar-wordpress-plugin/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              {t('nav_buy') || (isEn ? 'Buy Now' : 'خرید چت‌نگار')}
             </Button>
           </div>
 
           {/* Mobile Toggle */}
           <button 
-            className="md:hidden text-white p-2 hover:bg-white/10 rounded-lg transition-colors z-20 cursor-pointer"
+            className="lg:hidden text-white p-2 hover:bg-white/10 rounded-lg transition-colors z-20 cursor-pointer"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle menu"
           >
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
 
@@ -152,15 +170,15 @@ export const Navbar: React.FC = () => {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className="md:hidden overflow-hidden w-full relative z-10"
+              className="lg:hidden overflow-hidden w-full relative z-10"
             >
-              <div className="flex flex-col p-6 gap-3 border-t border-white/10 mt-2 max-h-[80vh] overflow-y-auto">
-                {navLinks.map((link) => (
+              <div className="flex flex-col p-5 gap-2 border-t border-white/10 mt-3 max-h-[80vh] overflow-y-auto">
+                {mobileNavLinks.map((link) => (
                   <a 
                     key={link.name} 
                     href={link.href}
                     onClick={(e) => handleNavClick(e, link.href)}
-                    className="text-lg font-medium text-text-light py-2 px-4 rounded-xl text-center hover:bg-white/5 hover:text-white transition-colors"
+                    className="text-base font-medium text-text-light py-2 px-3 rounded-xl text-start hover:bg-white/5 hover:text-white transition-colors"
                   >
                     {link.name}
                   </a>
@@ -171,13 +189,20 @@ export const Navbar: React.FC = () => {
                     toggleLanguage();
                     setMobileMenuOpen(false);
                   }}
-                  className="text-sm font-semibold py-3 px-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors text-white font-mono text-center cursor-pointer shrink-0"
+                  className="text-xs font-semibold py-2.5 px-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors text-white font-mono text-center cursor-pointer shrink-0"
                 >
                   {isEn ? 'فارسی (FA)' : 'English (EN)'}
                 </button>
                 <div className="h-px bg-white/10 my-1 shrink-0" />
-                <Button variant="primary" className="w-full justify-center shrink-0" icon={isEn ? <ArrowRight size={16} /> : <ArrowLeft size={16} />} href="https://www.rtl-theme.com/chatnegar-wordpress-plugin/" target="_blank" rel="noopener noreferrer">
-                  {t('learn_more')}
+                <Button 
+                  variant="primary" 
+                  className="w-full justify-center shrink-0 py-3 font-bold" 
+                  icon={isEn ? <ArrowRight size={16} /> : <ArrowLeft size={16} />} 
+                  href="https://www.rtl-theme.com/chatnegar-wordpress-plugin/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                >
+                  {t('nav_buy') || (isEn ? 'Buy Now' : 'خرید چت‌نگار')}
                 </Button>
               </div>
             </motion.div>

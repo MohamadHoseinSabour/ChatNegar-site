@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion, useInView } from 'framer-motion';
 import { ArrowLeft, ArrowRight, CheckCircle2, Headset } from 'lucide-react';
@@ -191,7 +191,7 @@ export const Hero: React.FC = () => {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
-          className="text-3xl md:text-5xl lg:text-6xl font-bold font-display tracking-tight text-white mb-6 max-w-5xl leading-[1.45] md:leading-[1.9]"
+          className="text-3xl md:text-5xl lg:text-6xl font-bold font-display tracking-tight text-white mb-6 max-w-5xl leading-[1.6] md:leading-[1.85]"
         >
           <span className="block">{t('hero_title_1')}</span>
           <span className="block mt-3 md:mt-8">
@@ -204,7 +204,7 @@ export const Hero: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-lg md:text-xl text-text-muted max-w-2xl mb-10 leading-relaxed"
+          className="text-lg md:text-xl text-text-muted max-w-2xl mb-10 leading-[1.9]"
         >
           {t('hero_subtitle')}
         </motion.p>

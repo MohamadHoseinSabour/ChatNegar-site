@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Users, 
@@ -95,10 +95,10 @@ export const AdminShowcase: React.FC = () => {
           <Sparkles size={14} />
           <span>{t('admin_badge')}</span>
         </div>
-        <h2 className="text-3xl md:text-5xl font-bold font-display text-white mb-4 leading-tight">
+        <h2 className="text-3xl md:text-5xl font-bold font-display text-white mb-5 leading-[1.4] md:leading-[1.5]">
           {t('admin_title')}
         </h2>
-        <p className="text-base md:text-lg text-text-muted leading-relaxed">
+        <p className="text-base md:text-lg text-text-muted leading-[1.8]">
           {t('admin_subtitle')}
         </p>
       </div>

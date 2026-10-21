@@ -1,62 +1,45 @@
 import React from 'react';
-import { Section } from './ui/Section';
-import { 
-  Check, 
-  X, 
-  DollarSign, 
-  Database, 
-  ShoppingCart, 
-  Bot, 
-  Headset, 
-  Zap,
-  Sparkles
-} from 'lucide-react';
 import { motion } from 'framer-motion';
+import { Check, X, Sparkles, DollarSign, Database, Brain, ShoppingBag, Zap } from 'lucide-react';
+import { Section } from './ui/Section';
 import { useLanguage } from './LanguageContext';
 
 export const Comparison: React.FC = () => {
-  const { t, isEn } = useLanguage();
+  const { isEn, t } = useLanguage();
 
   const comparisonRows = [
     {
-      name: t('comp_row_pricing_name'),
-      chatnegar: t('comp_row_pricing_chatnegar'),
-      others: t('comp_row_pricing_others'),
+      name: t('comp_row_1_name'),
+      chatnegar: t('comp_row_1_cn'),
+      others: t('comp_row_1_oth'),
       icon: DollarSign,
       highlight: true,
     },
     {
-      name: t('comp_row_data_name'),
-      chatnegar: t('comp_row_data_chatnegar'),
-      others: t('comp_row_data_others'),
+      name: t('comp_row_2_name'),
+      chatnegar: t('comp_row_2_cn'),
+      others: t('comp_row_2_oth'),
       icon: Database,
-      highlight: false,
-    },
-    {
-      name: t('comp_row_woo_name'),
-      chatnegar: t('comp_row_woo_chatnegar'),
-      others: t('comp_row_woo_others'),
-      icon: ShoppingCart,
       highlight: true,
     },
     {
-      name: t('comp_row_ai_name'),
-      chatnegar: t('comp_row_ai_chatnegar'),
-      others: t('comp_row_ai_others'),
-      icon: Bot,
-      highlight: false,
-    },
-    {
-      name: t('comp_row_handoff_name'),
-      chatnegar: t('comp_row_handoff_chatnegar'),
-      others: t('comp_row_handoff_others'),
-      icon: Headset,
+      name: t('comp_row_3_name'),
+      chatnegar: t('comp_row_3_cn'),
+      others: t('comp_row_3_oth'),
+      icon: ShoppingBag,
       highlight: true,
     },
     {
-      name: t('comp_row_speed_name'),
-      chatnegar: t('comp_row_speed_chatnegar'),
-      others: t('comp_row_speed_others'),
+      name: t('comp_row_4_name'),
+      chatnegar: t('comp_row_4_cn'),
+      others: t('comp_row_4_oth'),
+      icon: Brain,
+      highlight: false,
+    },
+    {
+      name: t('comp_row_5_name'),
+      chatnegar: t('comp_row_5_cn'),
+      others: t('comp_row_5_oth'),
       icon: Zap,
       highlight: false,
     },
@@ -65,14 +48,14 @@ export const Comparison: React.FC = () => {
   return (
     <Section id="comparison" className="bg-[#0F0E17] py-20">
       <div className="text-center mb-16 max-w-3xl mx-auto">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-xs font-bold text-emerald-400 mb-4">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-500/15 border border-purple-500/30 text-xs font-bold text-purple-300 mb-4">
           <Sparkles size={14} />
           <span>مقایسه شفاف و بدون سانسور</span>
         </div>
-        <h2 className="text-3xl md:text-5xl font-bold font-display text-white mb-4 leading-tight">
+        <h2 className="text-3xl md:text-5xl font-bold font-display text-white mb-5 leading-[1.4] md:leading-[1.5]">
           {t('comp_title')}
         </h2>
-        <p className="text-text-muted text-base md:text-lg leading-relaxed">
+        <p className="text-text-muted text-base md:text-lg leading-[1.8]">
           {t('comp_subtitle')}
         </p>
       </div>
@@ -83,10 +66,10 @@ export const Comparison: React.FC = () => {
           <div className="col-span-4 text-start text-xs md:text-sm font-bold text-slate-400">
             {t('comp_header_feat')}
           </div>
-          <div className="col-span-4 p-2 rounded-2xl bg-primary/20 border border-primary/30 text-white font-extrabold text-xs md:text-base shadow-sm">
+          <div className="col-span-4 p-2.5 rounded-2xl bg-primary/20 border border-primary/30 text-white font-extrabold text-xs md:text-base shadow-sm">
             {t('comp_header_chatnegar')}
           </div>
-          <div className="col-span-4 p-2 rounded-2xl bg-white/5 border border-white/5 text-slate-400 font-semibold text-xs md:text-base">
+          <div className="col-span-4 p-2.5 rounded-2xl bg-white/5 border border-white/5 text-slate-400 font-semibold text-xs md:text-base">
             {t('comp_header_others')}
           </div>
         </div>
@@ -107,19 +90,19 @@ export const Comparison: React.FC = () => {
               }`}
             >
               {/* Feature Title */}
-              <div className="col-span-4 flex items-center gap-3 text-white font-bold text-xs md:text-sm text-start">
+              <div className="col-span-4 flex items-center gap-3 text-white font-bold text-xs md:text-sm text-start leading-[1.6]">
                 <div className="p-2 rounded-xl bg-white/5 text-primary hidden sm:flex shrink-0 border border-white/10">
                   <item.icon size={18} />
                 </div>
                 <span>{item.name}</span>
               </div>
               
-              {/* ChatNegar Value */}
-              <div className="col-span-4 text-center p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex flex-col items-center justify-center gap-1.5">
-                <div className="w-6 h-6 rounded-full bg-emerald-500 text-slate-900 flex items-center justify-center shrink-0">
+              {/* ChatNegar Value - Royal Purple */}
+              <div className="col-span-4 text-center p-3 rounded-xl bg-purple-600/15 border border-purple-500/30 flex flex-col items-center justify-center gap-1.5">
+                <div className="w-6 h-6 rounded-full bg-gradient-to-tr from-purple-600 to-indigo-600 text-white flex items-center justify-center shrink-0 shadow-sm">
                   <Check size={14} strokeWidth={3} />
                 </div>
-                <span className="text-white text-xs md:text-sm font-bold leading-snug">
+                <span className="text-white text-xs md:text-sm font-bold leading-[1.6]">
                   {item.chatnegar}
                 </span>
               </div>
@@ -129,7 +112,7 @@ export const Comparison: React.FC = () => {
                 <div className="w-6 h-6 rounded-full bg-red-500/20 text-red-400 flex items-center justify-center shrink-0">
                   <X size={14} strokeWidth={3} />
                 </div>
-                <span className="text-slate-400 text-xs md:text-sm leading-snug">
+                <span className="text-slate-400 text-xs md:text-sm leading-[1.6]">
                   {item.others}
                 </span>
               </div>
@@ -138,8 +121,8 @@ export const Comparison: React.FC = () => {
         </div>
 
         {/* Bottom Banner */}
-        <div className="mt-8 p-4 rounded-2xl bg-gradient-to-r from-emerald-500/10 via-primary/10 to-transparent border border-emerald-500/20 text-xs md:text-sm text-slate-300 text-center flex flex-wrap items-center justify-center gap-2">
-          <span className="text-emerald-400 font-bold">💡 نتیجه‌گیری اقتصادی:</span>
+        <div className="mt-8 p-4 rounded-2xl bg-gradient-to-r from-purple-600/15 via-primary/15 to-transparent border border-purple-500/30 text-xs md:text-sm text-slate-300 text-center flex flex-wrap items-center justify-center gap-2 leading-[1.8]">
+          <span className="text-purple-300 font-bold">💡 نتیجه‌گیری اقتصادی:</span>
           <span>با خرید یک‌بار چت‌نگار، در مقایسه با سرویس‌های اشتراکی سالانه بیش از ۲۰ میلیون تومان صرفه‌جویی می‌کنید!</span>
         </div>
       </div>
