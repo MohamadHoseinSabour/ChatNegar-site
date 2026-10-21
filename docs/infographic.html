@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>اینفوگرافیک چت‌نگار - افزونه هوش مصنوعی پشتیبانی وردپرس</title>
+  <meta name="description" content="اینفوگرافیک جامع ویژگی‌ها، امکانات و معماری افزونه چت‌نگار؛ هوش مصنوعی قلب تپنده پشتیبانی شما برای وردپرس و ووکامرس." />
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%237C3AED'><path d='M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z'/></svg>" />
+
+  <!-- Fonts: Vazirmatn -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Vazirmatn', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#F5F3FF',
+              100: '#EDE9FE',
+              200: '#DDD6FE',
+              300: '#C4B5FD',
+              400: '#A78BFA',
+              500: '#8B5CF6',
+              600: '#7C3AED',
+              700: '#6D28D9',
+              800: '#5B21B6',
+              900: '#4C1D95',
+            }
+          },
+          boxShadow: {
+            'soft': '0 10px 30px -5px rgba(0, 0, 0, 0.05)',
+            'card': '0 20px 40px -15px rgba(124, 58, 237, 0.07)',
+            'glow': '0 0 50px -10px rgba(124, 58, 237, 0.25)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: 'Vazirmatn', sans-serif;
+      background-color: #FAFAFD;
+      color: #1E293B;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #7C3AED 0%, #C026D3 50%, #4F46E5 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .gradient-badge {
+      background: linear-gradient(135deg, rgba(124, 58, 237, 0.08) 0%, rgba(192, 38, 211, 0.08) 100%);
+      border: 1px solid rgba(124, 58, 237, 0.2);
+    }
+
+    .gradient-btn {
+      background: linear-gradient(135deg, #7C3AED 0%, #A855F7 100%);
+      box-shadow: 0 10px 25px -5px rgba(124, 58, 237, 0.4);
+      transition: all 0.3s ease;
+    }
+    .gradient-btn:hover {
+      box-shadow: 0 15px 30px -5px rgba(124, 58, 237, 0.55);
+      transform: translateY(-2px);
+    }
+
+    .card-clean {
+      background: #FFFFFF;
+      border: 1px solid #F1F5F9;
+      box-shadow: 0 12px 32px -4px rgba(15, 23, 42, 0.04);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .card-clean:hover {
+      border-color: #E2E8F0;
+      box-shadow: 0 20px 40px -8px rgba(124, 58, 237, 0.08);
+      transform: translateY(-3px);
+    }
+
+    /* Subtle grid background pattern */
+    .bg-grid-pattern {
+      background-image: radial-gradient(rgba(124, 58, 237, 0.07) 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+
+    /* Print optimization for saving infographic as PDF or full image */
+    @media print {
+      body {
+        background: #FFFFFF !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body class="selection:bg-brand-500/20 selection:text-brand-900">
+
+  <!-- Top Sticky Bar / Navigation -->
+  <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-100 py-3.5 px-4 transition-all no-print">
+    <div class="max-w-6xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <!-- Logo -->
+        <a href="../" class="flex items-center gap-2.5 group">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-brand-600 to-fuchsia-500 flex items-center justify-center text-white shadow-md shadow-brand-500/20 group-hover:scale-105 transition-transform">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+            </svg>
+          </div>
+          <span class="text-xl font-black text-slate-900 tracking-tight">چت‌نگار</span>
+        </a>
+        <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 border border-brand-200/50">
+          اینفوگرافیک معرفی کامل
+        </span>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <a href="../" class="text-xs sm:text-sm font-medium text-slate-600 hover:text-brand-600 px-3 py-1.5 rounded-lg hover:bg-slate-50 transition-colors">
+          صفحه اصلی
+        </a>
+        <a href="https://www.rtl-theme.com/chatnegar-wordpress-plugin/" target="_blank" rel="noopener noreferrer" class="gradient-btn text-white text-xs sm:text-sm font-semibold px-4 py-2 rounded-xl flex items-center gap-1.5">
+          <span>خرید از راست‌چین</span>
+          <svg class="w-4 h-4 rtl:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Canvas Container: Mimics the exact infographic vertical poster -->
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-12 space-y-20 md:space-y-28 bg-grid-pattern relative">
+
+    <!-- Subtle Ambient Gradient Blobs -->
+    <div class="absolute top-10 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-gradient-to-b from-purple-200/40 via-fuchsia-100/20 to-transparent blur-3xl -z-10 pointer-events-none rounded-full"></div>
+    <div class="absolute top-[1800px] right-0 w-[450px] h-[450px] bg-blue-100/40 blur-3xl -z-10 pointer-events-none rounded-full"></div>
+    <div class="absolute top-[3200px] left-0 w-[450px] h-[450px] bg-purple-100/40 blur-3xl -z-10 pointer-events-none rounded-full"></div>
+
+    <!-- ==========================================
+         SECTION 1: HERO & LIVE CHAT PREVIEW
+         ========================================== -->
+    <section class="relative pt-4 sm:pt-8">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-12 items-center">
+        
+        <!-- Left Column (Mockup in RTL, right in DOM order) -->
+        <div class="md:col-span-6 relative order-2 md:order-1 flex justify-center">
+          
+          <!-- Floating Logo Bubble -->
+          <div class="absolute -top-6 -right-3 z-20 w-14 h-14 rounded-2xl bg-gradient-to-tr from-brand-600 to-fuchsia-500 p-0.5 shadow-xl shadow-brand-500/30 animate-bounce" style="animation-duration: 4s;">
+            <div class="w-full h-full bg-white rounded-2xl flex items-center justify-center">
+              <svg class="w-7 h-7 text-brand-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Phone / Window Frame -->
+          <div class="w-full max-w-[340px] bg-white rounded-3xl p-3 shadow-2xl shadow-purple-500/10 border border-slate-100 relative">
+            
+            <!-- Top Quick Stats Pill Row -->
+            <div class="grid grid-cols-3 gap-1.5 mb-3">
+              <div class="bg-slate-50/80 border border-slate-100 rounded-xl p-2 text-center">
+                <div class="text-[11px] text-slate-400 font-medium">کاربران</div>
+                <div class="text-sm font-black text-slate-800">۳۷۸</div>
+              </div>
+              <div class="bg-slate-50/80 border border-slate-100 rounded-xl p-2 text-center">
+                <div class="text-[11px] text-slate-400 font-medium">رضایت</div>
+                <div class="text-sm font-black text-emerald-600">۹۸٪</div>
+              </div>
+              <div class="bg-slate-50/80 border border-slate-100 rounded-xl p-2 text-center">
+                <div class="text-[11px] text-slate-400 font-medium">مکالمات</div>
+                <div class="text-sm font-black text-brand-600">۳.۲K</div>
+              </div>
+            </div>
+
+            <!-- Chat Window Component -->
+            <div class="rounded-2xl border border-slate-100 overflow-hidden shadow-sm bg-slate-50/30">
+              <!-- Chat Header -->
+              <div class="bg-gradient-to-r from-brand-600 to-indigo-600 p-3 text-white flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <div class="relative">
+                    <div class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-white backdrop-blur-sm">
+                      <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
+                      </svg>
+                    </div>
+                    <span class="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-400 border-2 border-brand-600"></span>
+                  </div>
+                  <div>
+                    <h4 class="text-xs font-bold leading-none">تیم پشتیبانی چت‌نگار</h4>
+                    <span class="text-[10px] text-purple-100/80">پاسخگویی آنلاین و فوری</span>
+                  </div>
+                </div>
+                <div class="flex items-center gap-1 opacity-70">
+                  <span class="w-1.5 h-1.5 rounded-full bg-white"></span>
+                  <span class="w-1.5 h-1.5 rounded-full bg-white"></span>
+                  <span class="w-1.5 h-1.5 rounded-full bg-white"></span>
+                </div>
+              </div>
+
+              <!-- Chat Message Body -->
+              <div class="p-3.5 space-y-3 min-h-[190px] text-xs">
+                <!-- User message -->
+                <div class="flex justify-end">
+                  <div class="bg-slate-200 text-slate-800 rounded-2xl rounded-br-xs px-3 py-2 max-w-[85%] leading-relaxed shadow-2xs">
+                    سلام، سفارش #1234 من در چه وضعیتی قرار داره؟
+                  </div>
+                </div>
+
+                <!-- Bot message -->
+                <div class="flex justify-start">
+                  <div class="bg-brand-50 border border-brand-100 text-brand-950 rounded-2xl rounded-bl-xs px-3 py-2.5 max-w-[90%] leading-relaxed shadow-2xs">
+                    <div class="flex items-center gap-1 text-[10px] font-bold text-brand-600 mb-1">
+                      <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                      استعلام از ووکامرس:
+                    </div>
+                    سلام! سفارش #1234 شما در حال پردازش نهایی است و با پست پیشتاز ارسال خواهد شد.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Chat Input Bar -->
+              <div class="p-2.5 bg-white border-t border-slate-100 flex items-center gap-2">
+                <input type="text" placeholder="پیامی بنویسید..." disabled class="flex-1 bg-slate-50 border border-slate-200/80 rounded-xl px-3 py-1.5 text-xs text-slate-400 focus:outline-none" />
+                <button class="w-7 h-7 rounded-lg bg-brand-600 text-white flex items-center justify-center shadow-xs">
+                  <svg class="w-3.5 h-3.5 rtl:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column (Text in RTL, order 1 in mobile) -->
+        <div class="md:col-span-6 text-center md:text-right order-1 md:order-2 space-y-4">
+          <!-- Tag / Badge -->
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full gradient-badge text-brand-700 text-xs font-semibold">
+            <span class="w-2 h-2 rounded-full bg-brand-500 animate-ping"></span>
+            افزونه وردپرس نسخه ۱.۱.۲
+          </div>
+
+          <!-- Main Title -->
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 leading-[1.25] tracking-tight">
+            چت‌نگار:<br />
+            <span class="gradient-text">هوش مصنوعی،</span><br />
+            قلب تپنده پشتیبانی شما
+          </h1>
+
+          <!-- Subtitle -->
+          <p class="text-sm sm:text-base text-slate-600 leading-relaxed max-w-lg mx-auto md:mx-0">
+            دستیار هوشمند وردپرس که با اتصال به پیشرفته‌ترین مدل‌های هوش مصنوعی، پاسخگوی ۲۴ ساعته کاربران و مشتریان فروشگاه شماست.
+          </p>
+
+          <!-- CTA Button -->
+          <div class="pt-2 flex flex-col sm:flex-row items-center justify-center md:justify-start gap-3">
+            <a href="https://www.rtl-theme.com/chatnegar-wordpress-plugin/" target="_blank" rel="noopener noreferrer" class="gradient-btn text-white text-sm font-bold px-6 py-3 rounded-2xl flex items-center gap-2">
+              <span>خرید و دریافت چت‌نگار</span>
+              <svg class="w-4 h-4 rtl:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ==========================================
+         SECTION 2: AI MODELS
+         ========================================== -->
+    <section class="text-center space-y-8">
+      <div>
+        <span class="text-xs font-bold text-brand-600 tracking-wider uppercase mb-1 block">موتور هوش مصنوعی چندگانه</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">
+          متصل به <span class="gradient-text">هوشمندترین</span> مدل‌های جهان
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-500 max-w-lg mx-auto mt-2">
+          پشتیبانی از برترین ارائه‌دهندگان هوش مصنوعی با قابلیت سوئیچ و اتصال فوق‌العاده آسان
+        </p>
+      </div>
+
+      <!-- 3 AI Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        
+        <!-- Card 1: OpenAI -->
+        <div class="card-clean rounded-3xl p-6 text-right space-y-4">
+          <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center shadow-xs">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2a10 10 0 1 0 10 10H12V2z"/><path d="M12 12 2.1 12a10 10 0 0 0 9.9 10V12z"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold text-slate-800">OpenAI</h3>
+            <p class="text-xs text-slate-400 font-mono mt-0.5">GPT-4o, GPT-4 Turbo, GPT-3.5</p>
+          </div>
+          <div class="space-y-2 pt-2 border-t border-slate-100 text-xs text-slate-600">
+            <div class="flex items-center gap-2">
+              <span class="text-emerald-500 font-bold">✓</span>
+              <span>اتصال با API Key مستقیم</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-emerald-500 font-bold">✓</span>
+              <span>درک عمیق زبان فارسی</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: Google Gemini -->
+        <div class="card-clean rounded-3xl p-6 text-right space-y-4 border-brand-200/60 shadow-card">
+          <div class="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center shadow-xs">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3z"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold text-slate-800">Google Gemini</h3>
+            <p class="text-xs text-slate-400 font-mono mt-0.5">Gemini 1.5 Pro & Flash</p>
+          </div>
+          <div class="space-y-2 pt-2 border-t border-slate-100 text-xs text-slate-600">
+            <div class="flex items-center gap-2">
+              <span class="text-blue-500 font-bold">✓</span>
+              <span>پنجره متنی فوق‌العاده بزرگ</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-blue-500 font-bold">✓</span>
+              <span>سرعت بالا و کم‌هزینه</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: OpenRouter -->
+        <div class="card-clean rounded-3xl p-6 text-right space-y-4">
+          <div class="w-12 h-12 rounded-2xl bg-purple-50 text-brand-600 flex items-center justify-center shadow-xs">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="3"/><circle cx="19" cy="5" r="2"/><circle cx="5" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/><path d="M10.5 10.5 6.5 6.5M13.5 10.5l4-4M10.5 13.5l-4 4M13.5 13.5l4 4"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold text-slate-800">OpenRouter</h3>
+            <p class="text-xs text-slate-400 font-mono mt-0.5">Claude 3.5, Llama 3, Mistral</p>
+          </div>
+          <div class="space-y-2 pt-2 border-t border-slate-100 text-xs text-slate-600">
+            <div class="flex items-center gap-2">
+              <span class="text-brand-500 font-bold">✓</span>
+              <span>دسترسی به بیش از ۱۰۰ مدل</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-brand-500 font-bold">✓</span>
+              <span>بدون نیاز به تحریم‌شکن</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom Pill -->
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-brand-200/80 text-brand-700 text-xs font-semibold shadow-xs">
+        <span class="w-1.5 h-1.5 rounded-full bg-brand-500"></span>
+        + پشتیبانی از Gap GPT، Aval AI و مدل‌های بومی و اختصاصی
+      </div>
+    </section>
+
+
+    <!-- ==========================================
+         SECTION 3: WOOCOMMERCE DIRECT INTEGRATION
+         ========================================== -->
+    <section class="grid grid-cols-1 md:grid-cols-12 gap-10 items-center">
+      
+      <!-- Text Side -->
+      <div class="md:col-span-6 space-y-4 text-right">
+        <span class="text-xs font-bold text-brand-600 uppercase tracking-wider block">همگام‌سازی بی‌درنگ</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 leading-snug">
+          اتصال مستقیم به<br />
+          <span class="gradient-text">فروشگاه ووکامرس</span>
+        </h2>
+        <p class="text-sm text-slate-600 leading-relaxed">
+          چت‌نگار بدون واسطه به سفارشات، محصولات و پایگاه داده ووکامرس متصل می‌شود تا خریداران بتوانند وضعیت سفارشات خود را به طور زنده پیگیری کرده و هوشمندانه خرید کنند.
+        </p>
+
+        <div class="space-y-3 pt-2">
+          <div class="flex items-start gap-3">
+            <div class="w-6 h-6 rounded-lg bg-emerald-100/80 text-emerald-600 flex items-center justify-center shrink-0 mt-0.5">
+              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div>
+              <h4 class="text-xs font-bold text-slate-800">استعلام زنده وضعیت سفارش</h4>
+              <p class="text-[11px] text-slate-500">مشاهده کد رهگیری و وضعیت ارسال تنها با ارائه شماره سفارش</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-3">
+            <div class="w-6 h-6 rounded-lg bg-brand-100/80 text-brand-600 flex items-center justify-center shrink-0 mt-0.5">
+              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div>
+              <h4 class="text-xs font-bold text-slate-800">پاسخگویی به سوالات قبل از خرید</h4>
+              <p class="text-[11px] text-slate-500">ارائه مشخصات کالا، قیمت و پیشنهاد محصولات مکمل مرتبط</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-3">
+            <div class="w-6 h-6 rounded-lg bg-purple-100/80 text-purple-600 flex items-center justify-center shrink-0 mt-0.5">
+              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div>
+              <h4 class="text-xs font-bold text-slate-800">افزایش چشمگیر نرخ تبدیل</h4>
+              <p class="text-[11px] text-slate-500">کاهش سبدهای خرید رها شده با راهنمایی به موقع مشتری</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mockup Side: WooCommerce Order Card -->
+      <div class="md:col-span-6 flex justify-center">
+        <div class="w-full max-w-sm card-clean rounded-3xl p-5 space-y-4 border-slate-200 shadow-xl shadow-brand-500/5">
+          <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+            <div class="flex items-center gap-2">
+              <div class="w-8 h-8 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-center font-bold text-xs">
+                WOO
+              </div>
+              <div>
+                <h4 class="text-xs font-bold text-slate-800">استعلام خودکار سفارش</h4>
+                <span class="text-[10px] text-slate-400">سامانه متصل به دیتابیس</span>
+              </div>
+            </div>
+            <span class="px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 font-semibold text-[10px] border border-emerald-200/50">
+              ارسال شده
+            </span>
+          </div>
+
+          <div class="bg-slate-50/70 rounded-2xl p-3.5 space-y-2 border border-slate-100 text-xs">
+            <div class="flex justify-between items-center text-slate-500">
+              <span>شماره سفارش:</span>
+              <span class="font-bold text-slate-800 font-mono">#1234</span>
+            </div>
+            <div class="flex justify-between items-center text-slate-500">
+              <span>کالای سفارش داده شده:</span>
+              <span class="font-bold text-slate-800">کفش نایک مدل Air Zoom</span>
+            </div>
+            <div class="flex justify-between items-center text-slate-500">
+              <span>مبلغ پرداختی:</span>
+              <span class="font-bold text-slate-800">۲,۴۵۰,۰۰۰ تومان</span>
+            </div>
+          </div>
+
+          <div class="bg-brand-50/60 rounded-2xl p-3 border border-brand-100 flex items-center gap-3">
+            <div class="w-8 h-8 rounded-xl bg-brand-600 text-white flex items-center justify-center shrink-0">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            </div>
+            <div class="text-[11px] leading-tight">
+              <span class="font-bold text-brand-900 block">پست پیشتاز با رهگیری زنده</span>
+              <span class="text-brand-600 font-mono">کد: ۲۴۵۸۹۸۲۳۴۰۹۱۸۲۳</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- ==========================================
+         SECTION 4: SMART MANAGEMENT & CUSTOMIZATION
+         ========================================== -->
+    <section class="space-y-8 text-center">
+      <div>
+        <span class="text-xs font-bold text-brand-600 uppercase tracking-wider block mb-1">شخصی‌سازی همه‌جانبه</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">
+          مدیریت هوشمند و بصری
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-500 max-w-lg mx-auto mt-2">
+          تنظیم دقیق هویت، لحن پاسخگویی، رنگ‌بندی و رفتار دستیار با پیشخوان وردپرس
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-right">
+        
+        <!-- Card 1: Identity & Prompt settings -->
+        <div class="card-clean rounded-3xl p-6 space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl bg-purple-50 text-brand-600 flex items-center justify-center">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+            </div>
+            <h3 class="font-bold text-slate-800 text-sm">هویت و رفتار دستیار هوشمند</h3>
+          </div>
+
+          <div class="space-y-3 text-xs">
+            <div>
+              <label class="text-slate-400 block mb-1 font-medium">نام نمایشی دستیار:</label>
+              <div class="bg-slate-50 border border-slate-200/70 rounded-xl px-3 py-2 text-slate-700 font-semibold">
+                پشتیبان هوشمند چت‌نگار
+              </div>
+            </div>
+
+            <div>
+              <label class="text-slate-400 block mb-1 font-medium">مدل هوش مصنوعی منتخب:</label>
+              <div class="bg-slate-50 border border-slate-200/70 rounded-xl px-3 py-2 text-slate-700 flex justify-between items-center font-mono text-[11px]">
+                <span>Google Gemini 1.5 Flash</span>
+                <span class="text-emerald-500 font-bold">فعال</span>
+              </div>
+            </div>
+
+            <div>
+              <label class="text-slate-400 block mb-1 font-medium">پرامپت اولیه سیستم (دستورالعمل لحن):</label>
+              <div class="bg-slate-50 border border-slate-200/70 rounded-xl p-2.5 text-slate-600 leading-relaxed text-[11px]">
+                شما یک دستیار حرفه‌ای، صبور و مؤدب برای فروشگاه ما هستید. پاسخ‌ها را کوتاه و کاربردی ارائه داده و در صورت نیاز لینک سفارش و پیگیری را ارسال نمایید.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: Appearance & Widget Customization -->
+        <div class="card-clean rounded-3xl p-6 space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.563-2.512 5.563-5.563C21.999 6.5 17.5 2 12 2z"/></svg>
+            </div>
+            <h3 class="font-bold text-slate-800 text-sm">شخصی‌سازی ظاهر ویجت</h3>
+          </div>
+
+          <div class="space-y-3 text-xs">
+            <div>
+              <label class="text-slate-400 block mb-1.5 font-medium">رنگ سازمانی و تم:</label>
+              <div class="flex items-center gap-2">
+                <span class="w-7 h-7 rounded-lg bg-brand-600 ring-2 ring-brand-300 ring-offset-2 cursor-pointer"></span>
+                <span class="w-7 h-7 rounded-lg bg-blue-600 cursor-pointer"></span>
+                <span class="w-7 h-7 rounded-lg bg-emerald-600 cursor-pointer"></span>
+                <span class="w-7 h-7 rounded-lg bg-amber-500 cursor-pointer"></span>
+                <span class="w-7 h-7 rounded-lg bg-slate-800 cursor-pointer"></span>
+              </div>
+            </div>
+
+            <div>
+              <label class="text-slate-400 block mb-1 font-medium">موقعیت قرارگیری ویجت:</label>
+              <div class="grid grid-cols-2 gap-2 text-center text-xs font-semibold">
+                <div class="bg-brand-50 border border-brand-200 text-brand-700 py-1.5 rounded-xl">پایین راست (پیش‌فرض)</div>
+                <div class="bg-slate-50 border border-slate-200 text-slate-500 py-1.5 rounded-xl">پایین چپ</div>
+              </div>
+            </div>
+
+            <div>
+              <label class="text-slate-400 block mb-1 font-medium">دکمه‌های پاسخ سریع (پیش‌فرض):</label>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 text-[11px] font-medium">پیگیری سفارش</span>
+                <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 text-[11px] font-medium">ساعات کاری</span>
+                <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 text-[11px] font-medium">مشاوره قبل از خرید</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ==========================================
+         SECTION 5: ANALYTICS & CONTROL (DARK DASHBOARD)
+         ========================================== -->
+    <section class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+      
+      <!-- Left: Dark Modern Dashboard Preview Card -->
+      <div class="md:col-span-6 flex justify-center order-2 md:order-1">
+        <div class="w-full max-w-sm bg-[#0F172A] rounded-3xl p-5 text-white border border-slate-800 shadow-2xl shadow-purple-900/20 space-y-4">
+          
+          <!-- Header Bar -->
+          <div class="flex items-center justify-between border-b border-slate-800/80 pb-3">
+            <div class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span class="text-xs font-bold text-slate-200">آمار لحظه‌ای مکالمات</span>
+            </div>
+            <span class="text-[10px] text-slate-400 font-mono">۷ روز گذشته</span>
+          </div>
+
+          <!-- Bar Chart -->
+          <div class="space-y-1.5">
+            <div class="h-28 flex items-end justify-between gap-2 px-1 pt-4 pb-1 border-b border-slate-800/60" dir="ltr">
+              <div class="flex-1 bg-gradient-to-t from-brand-900 to-brand-500 rounded-t-sm h-[45%]"></div>
+              <div class="flex-1 bg-gradient-to-t from-brand-900 to-brand-500 rounded-t-sm h-[65%]"></div>
+              <div class="flex-1 bg-gradient-to-t from-brand-900 to-brand-500 rounded-t-sm h-[50%]"></div>
+              <div class="flex-1 bg-gradient-to-t from-brand-900 to-brand-500 rounded-t-sm h-[85%]"></div>
+              <div class="flex-1 bg-gradient-to-t from-brand-900 to-brand-500 rounded-t-sm h-[70%]"></div>
+              <div class="flex-1 bg-gradient-to-t from-brand-900 to-brand-500 rounded-t-sm h-[95%]"></div>
+              <div class="flex-1 bg-gradient-to-t from-brand-900 to-brand-500 rounded-t-sm h-[60%]"></div>
+            </div>
+            <div class="flex justify-between text-[9px] text-slate-500 font-mono px-1" dir="ltr">
+              <span>ش</span><span>ی</span><span>د</span><span>س</span><span>چ</span><span>پ</span><span>ج</span>
+            </div>
+          </div>
+
+          <!-- Stat Row Cards -->
+          <div class="grid grid-cols-2 gap-2 text-xs">
+            <div class="bg-slate-800/60 rounded-xl p-2.5 border border-slate-700/50">
+              <div class="text-[10px] text-slate-400">رضایت مشتریان</div>
+              <div class="text-base font-black text-emerald-400 mt-0.5">۹۸.۴٪</div>
+            </div>
+            <div class="bg-slate-800/60 rounded-xl p-2.5 border border-slate-700/50">
+              <div class="text-[10px] text-slate-400">زمان میانگین پاسخ</div>
+              <div class="text-base font-black text-brand-400 mt-0.5">۱.۲ ثانیه</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Right: Feature Bullets -->
+      <div class="md:col-span-6 space-y-4 text-right order-1 md:order-2">
+        <span class="text-xs font-bold text-brand-600 uppercase tracking-wider block">دید آماری ۳۶۰ درجه</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 leading-snug">
+          کنترل کامل بر<br />
+          <span class="gradient-text">مکالمات و گزارش‌ها</span>
+        </h2>
+        
+        <div class="space-y-3 pt-2">
+          <div class="card-clean rounded-2xl p-4 flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl bg-purple-50 text-brand-600 flex items-center justify-center shrink-0">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            </div>
+            <div>
+              <h4 class="text-xs font-bold text-slate-800">مشاهده و آرشیو تمام تاریخچه مکالمات</h4>
+              <p class="text-[11px] text-slate-500">دسترسی دقیق به ریز پرسش‌ها و پاسخ‌های رد و بدل شده</p>
+            </div>
+          </div>
+
+          <div class="card-clean rounded-2xl p-4 flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+            </div>
+            <div>
+              <h4 class="text-xs font-bold text-slate-800">تحلیل نرخ رضایت کاربران (CSAT)</h4>
+              <p class="text-[11px] text-slate-500">امکان لایک و دیس‌لایک توسط کاربران برای سنجش کیفیت</p>
+            </div>
+          </div>
+
+          <div class="card-clean rounded-2xl p-4 flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center shrink-0">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><line x1="12" y1="18" x2="12" y2="20"/><line x1="12" y1="4" x2="12" y2="6"/></svg>
+            </div>
+            <div>
+              <h4 class="text-xs font-bold text-slate-800">رصد لحظه‌ای مصرف توکن و هزینه‌ها</h4>
+              <p class="text-[11px] text-slate-500">شفافیت کامل در تعداد توکن‌های مصرفی و مدیریت بودجه</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- ==========================================
+         SECTION 6: 3-MINUTE SETUP
+         ========================================== -->
+    <section class="space-y-8 text-center">
+      <div>
+        <span class="text-xs font-bold text-brand-600 uppercase tracking-wider block mb-1">راه‌اندازی فوری</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">
+          راه‌اندازی در <span class="gradient-text">۳ دقیقه</span>
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-500 max-w-lg mx-auto mt-2">
+          بدون نیاز به یک خط کدنویسی؛ در سه گام ساده پشتیبانی مدرن را فعال کنید
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        
+        <!-- Step 1 -->
+        <div class="card-clean rounded-3xl p-6 text-right space-y-3 relative overflow-hidden">
+          <div class="w-10 h-10 rounded-2xl bg-slate-900 text-white flex items-center justify-center font-black text-sm">
+            ۱
+          </div>
+          <h3 class="font-bold text-slate-800 text-base">نصب و فعال‌سازی</h3>
+          <p class="text-xs text-slate-500 leading-relaxed">
+            فایل افزونه را در بخش افزونه‌های وردپرس آپلود کرده و تنها با یک کلیک فعال کنید.
+          </p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="card-clean rounded-3xl p-6 text-right space-y-3 relative overflow-hidden border-brand-200 shadow-card">
+          <div class="w-10 h-10 rounded-2xl bg-brand-600 text-white flex items-center justify-center font-black text-sm">
+            ۲
+          </div>
+          <h3 class="font-bold text-slate-800 text-base">اتصال کلید API</h3>
+          <p class="text-xs text-slate-500 leading-relaxed">
+            کلید API مدل هوش مصنوعی خود (OpenAI, Gemini, OpenRouter) را وارد کنید.
+          </p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="card-clean rounded-3xl p-6 text-right space-y-3 relative overflow-hidden">
+          <div class="w-10 h-10 rounded-2xl bg-gradient-to-r from-brand-600 to-fuchsia-600 text-white flex items-center justify-center font-black text-sm">
+            ۳
+          </div>
+          <h3 class="font-bold text-slate-800 text-base">پایان و شروع پاسخگویی</h3>
+          <p class="text-xs text-slate-500 leading-relaxed">
+            ویجت فوراً در سایت ظاهر شده و به سوالات کاربران و مشتریان شما پاسخ می‌دهد.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ==========================================
+         SECTION 7: SMART KNOWLEDGE BASE
+         ========================================== -->
+    <section class="space-y-8 text-center">
+      <div>
+        <span class="text-xs font-bold text-brand-600 uppercase tracking-wider block mb-1">تغذیه اختصاصی اطلاعات</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">
+          پایگاه دانش <span class="gradient-text">هوشمند</span>
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-500 max-w-lg mx-auto mt-2">
+          آموزش اختصاصی هوش مصنوعی با داده‌ها و مستندات واقعی سایت شما
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- Card 1: Posts & Pages -->
+        <div class="card-clean rounded-3xl p-6 text-right space-y-4">
+          <div class="w-12 h-12 rounded-2xl bg-rose-50 text-rose-500 flex items-center justify-center">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          </div>
+          <div>
+            <h3 class="text-base font-bold text-slate-800">نوشته‌ها و برگه‌ها</h3>
+            <p class="text-xs text-slate-500 leading-relaxed mt-1">
+              همگام‌سازی خودکار مقالات بلاگ، راهنماها، سوالات متداول و قوانین وب‌سایت.
+            </p>
+          </div>
+        </div>
+
+        <!-- Card 2: WooCommerce Products (Highlighted) -->
+        <div class="card-clean rounded-3xl p-6 text-right space-y-4 border-brand-300 shadow-card relative">
+          <div class="absolute -top-3 left-6 px-2.5 py-0.5 rounded-full bg-brand-600 text-white font-bold text-[10px]">
+            ویژه فروشگاه‌ها
+          </div>
+          <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          </div>
+          <div>
+            <h3 class="text-base font-bold text-slate-800">محصولات ووکامرس</h3>
+            <p class="text-xs text-slate-500 leading-relaxed mt-1">
+              یادگیری دقیق مشخصات کالاها، قیمت‌ها، موجودی انبار و ویژگی‌های محصولات.
+            </p>
+          </div>
+          <div class="pt-2">
+            <div class="w-full py-2 px-3 rounded-xl bg-slate-900 text-white text-xs font-semibold text-center">
+              همگام‌سازی خودکار کاتالوگ
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: Text Files & Docs -->
+        <div class="card-clean rounded-3xl p-6 text-right space-y-4">
+          <div class="w-12 h-12 rounded-2xl bg-blue-50 text-blue-500 flex items-center justify-center">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          </div>
+          <div>
+            <h3 class="text-base font-bold text-slate-800">فایل‌های اختصاصی</h3>
+            <p class="text-xs text-slate-500 leading-relaxed mt-1">
+              بارگذاری فایل‌های TXT, MD, CSV و مستندات متنی بدون محدودیت.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ==========================================
+         SECTION 8: SOLUTIONS FOR DIFFERENT INDUSTRIES
+         ========================================== -->
+    <section class="space-y-8 text-center">
+      <div>
+        <span class="text-xs font-bold text-brand-600 uppercase tracking-wider block mb-1">تنوع کاربری</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">
+          یک راهکار برای <span class="gradient-text">نیازهای مختلف</span>
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-500 max-w-lg mx-auto mt-2">
+          چت‌نگار برای انواع سایت‌ها و کسب‌وکارها ارزش خلق می‌کند
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- Industry 1: Services / Corporate -->
+        <div class="rounded-3xl p-6 text-right space-y-3 bg-emerald-50/50 border border-emerald-100 hover:border-emerald-200 transition-all">
+          <div class="w-11 h-11 rounded-2xl bg-emerald-100/70 text-emerald-600 flex items-center justify-center">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3 class="text-base font-bold text-slate-800">خدمات و شرکت‌ها</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            پاسخگویی سریع به سوالات قبل از قرارداد، معرفی خدمات، ثبت لید مخاطبان و هدایت به بخش فروش.
+          </p>
+          <div class="pt-2 flex flex-wrap gap-1.5 text-[10px] font-semibold text-emerald-800">
+            <span class="bg-emerald-100/80 px-2 py-0.5 rounded-md">✓ جذب لید</span>
+            <span class="bg-emerald-100/80 px-2 py-0.5 rounded-md">✓ مشاوره اولیه</span>
+          </div>
+        </div>
+
+        <!-- Industry 2: Academy / Education -->
+        <div class="rounded-3xl p-6 text-right space-y-3 bg-purple-50/50 border border-purple-100 hover:border-purple-200 transition-all">
+          <div class="w-11 h-11 rounded-2xl bg-purple-100/70 text-brand-600 flex items-center justify-center">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          </div>
+          <h3 class="text-base font-bold text-slate-800">سایت‌های آموزشی</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            راهنمایی دانشجویان برای انتخاب دوره‌ها، پاسخ به پیش‌نیازها و حل مشکلات دسترسی به محتوا.
+          </p>
+          <div class="pt-2 flex flex-wrap gap-1.5 text-[10px] font-semibold text-brand-800">
+            <span class="bg-purple-100/80 px-2 py-0.5 rounded-md">✓ راهنمای دوره‌ها</span>
+            <span class="bg-purple-100/80 px-2 py-0.5 rounded-md">✓ پاسخ به پیش‌نیازها</span>
+          </div>
+        </div>
+
+        <!-- Industry 3: E-commerce -->
+        <div class="rounded-3xl p-6 text-right space-y-3 bg-blue-50/50 border border-blue-100 hover:border-blue-200 transition-all">
+          <div class="w-11 h-11 rounded-2xl bg-blue-100/70 text-blue-600 flex items-center justify-center">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+          </div>
+          <h3 class="text-base font-bold text-slate-800">فروشگاه‌های آنلاین</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            پیگیری سفارشات، راهنمای خرید کالا، کاهش سبدهای خرید رها شده و افزایش فروش با چت زنده.
+          </p>
+          <div class="pt-2 flex flex-wrap gap-1.5 text-[10px] font-semibold text-blue-800">
+            <span class="bg-blue-100/80 px-2 py-0.5 rounded-md">✓ پیگیری مرسوله</span>
+            <span class="bg-blue-100/80 px-2 py-0.5 rounded-md">✓ فروش مکمل</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ==========================================
+       SECTION 9: SECURITY & DEVELOPER FRIENDLY (DARK THEME FULL-WIDTH)
+       ========================================== -->
+  <section class="bg-[#0B0D1B] text-white py-16 px-4 sm:px-6 relative overflow-hidden">
+    <!-- Dark glow effect -->
+    <div class="absolute inset-0 bg-radial from-brand-900/20 via-transparent to-transparent pointer-events-none"></div>
+
+    <div class="max-w-4xl mx-auto space-y-10 relative z-10 text-center">
+      <div>
+        <span class="text-xs font-bold text-brand-400 uppercase tracking-wider block mb-1">استاندارد و توسعه‌پذیر</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-white">
+          امنیت بالا و <span class="bg-gradient-to-l from-brand-400 to-fuchsia-400 bg-clip-text text-transparent">دوست‌دار توسعه‌دهنده</span>
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-400 max-w-lg mx-auto mt-2">
+          ساخته شده بر پایه استانداردهای امنیتی وردپرس و معماری کاملاً ماژولار
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-right">
+        
+        <!-- Dark Card 1: Security -->
+        <div class="bg-[#14182B] rounded-3xl p-6 border border-slate-800 space-y-3">
+          <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+          </div>
+          <h3 class="font-bold text-white text-sm">رمزنگاری پیشرفته داده‌ها</h3>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            ذخیره‌سازی رمزنگاری‌شده کلیدهای API با الگوریتم AES-256 و اعتبارسنجی دقیق درخواست‌ها با Nonce.
+          </p>
+        </div>
+
+        <!-- Dark Card 2: Hooks & Filters -->
+        <div class="bg-[#14182B] rounded-3xl p-6 border border-slate-800 space-y-3">
+          <div class="w-10 h-10 rounded-xl bg-brand-500/10 text-brand-400 flex items-center justify-center">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          </div>
+          <h3 class="font-bold text-white text-sm">هوک‌ها و فیلترهای وردپرس</h3>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            بیش از ۲۰ هوک اختصاصی PHP و JS جهت شخصی‌سازی کامل رفتار چت‌بات در قالب‌ها و افزونه‌ها.
+          </p>
+          <div class="bg-slate-950/80 rounded-lg p-2 font-mono text-[10px] text-brand-300 text-left" dir="ltr">
+            add_filter('chatnegar_prompt', ...);
+          </div>
+        </div>
+
+        <!-- Dark Card 3: Lightweight & Clean -->
+        <div class="bg-[#14182B] rounded-3xl p-6 border border-slate-800 space-y-3">
+          <div class="w-10 h-10 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg>
+          </div>
+          <h3 class="font-bold text-white text-sm">معماری تمیز و بدون سربار</h3>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            بارگذاری غیرهمزمان اسکریپت‌ها، حجم ناچیز فایل‌ها و عملکرد بی‌نقص بدون افت سرعت لود سایت.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Back to White Canvas for remaining sections -->
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 py-16 space-y-20 md:space-y-28 bg-grid-pattern relative">
+
+    <!-- ==========================================
+         SECTION 10: EXTRA FEATURES GRID
+         ========================================== -->
+    <section class="space-y-8 text-center">
+      <div>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">
+          ویژگی‌هایی فراتر از انتظار
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-500 max-w-lg mx-auto mt-2">
+          امکانات قدرتمند برای ساخت بهترین تجربه کاربری در سایت‌های مدرن
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-right">
+        
+        <!-- Card 1 -->
+        <div class="card-clean rounded-2xl p-4 space-y-2">
+          <div class="w-9 h-9 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <h4 class="text-xs font-bold text-slate-800">پشتیبانی چندزبانه</h4>
+          <p class="text-[11px] text-slate-500 leading-relaxed">تشخیص خودکار و پاسخ به بیش از ۵۰ زبان زنده دنیا</p>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="card-clean rounded-2xl p-4 space-y-2">
+          <div class="w-9 h-9 rounded-xl bg-purple-50 text-brand-600 flex items-center justify-center">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.563-2.512 5.563-5.563C21.999 6.5 17.5 2 12 2z"/></svg>
+          </div>
+          <h4 class="text-xs font-bold text-slate-800">شخصی‌سازی ظاهر</h4>
+          <p class="text-[11px] text-slate-500 leading-relaxed">هماهنگی کامل با فونت، رنگ و هویت بصری سایت</p>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="card-clean rounded-2xl p-4 space-y-2">
+          <div class="w-9 h-9 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </div>
+          <h4 class="text-xs font-bold text-slate-800">پاسخ‌های آماده</h4>
+          <p class="text-[11px] text-slate-500 leading-relaxed">دکمه‌های تک‌کلیک برای پرسش‌های پرتکرار کاربران</p>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="card-clean rounded-2xl p-4 space-y-2">
+          <div class="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <h4 class="text-xs font-bold text-slate-800">آپتایم ۹۹.۹٪</h4>
+          <p class="text-[11px] text-slate-500 leading-relaxed">سیستم بازیابی خودکار در صورت قطعی موقت شبکه</p>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ==========================================
+         SECTION 11: ROADMAP (TIMELINE)
+         ========================================== -->
+    <section class="space-y-8 text-center">
+      <div>
+        <span class="text-xs font-bold text-brand-600 uppercase tracking-wider block mb-1">تداوم به‌روزرسانی</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">
+          نقشه راه توسعه
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-500 max-w-lg mx-auto mt-2">
+          همواره در حال به‌روزرسانی و افزودن امکانات شگفت‌انگیز جدید
+        </p>
+      </div>
+
+      <div class="max-w-2xl mx-auto relative text-right py-4">
+        <!-- Center Connecting Line -->
+        <div class="absolute top-0 bottom-0 right-[23px] w-0.5 bg-slate-200"></div>
+
+        <div class="space-y-8 relative">
+          
+          <!-- Milestone 1 -->
+          <div class="flex items-start gap-5">
+            <div class="w-12 h-12 rounded-2xl bg-brand-600 text-white flex items-center justify-center shrink-0 z-10 shadow-md shadow-brand-500/20">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="card-clean rounded-2xl p-4 flex-1">
+              <div class="flex justify-between items-center mb-1">
+                <span class="font-bold text-slate-900 text-sm">نسخه ۱.۰ - انتشار نسخه پایه</span>
+                <span class="text-[10px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full font-mono">تکمیل شده</span>
+              </div>
+              <p class="text-xs text-slate-500 leading-relaxed">
+                راه‌اندازی معماری پایه، اتصال به مدل‌های OpenAI و یادگیری از نوشته‌ها و برگه‌های وردپرس.
+              </p>
+            </div>
+          </div>
+
+          <!-- Milestone 2 -->
+          <div class="flex items-start gap-5">
+            <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-brand-600 to-fuchsia-600 text-white flex items-center justify-center shrink-0 z-10 shadow-md shadow-fuchsia-500/20">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 14 14"/></svg>
+            </div>
+            <div class="card-clean rounded-2xl p-4 flex-1 border-brand-200 shadow-card">
+              <div class="flex justify-between items-center mb-1">
+                <span class="font-bold text-slate-900 text-sm">نسخه ۱.۱ - هوش مصنوعی چندگانه و ووکامرس</span>
+                <span class="text-[10px] bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-full font-bold">نسخه فعلی</span>
+              </div>
+              <p class="text-xs text-slate-500 leading-relaxed">
+                افزودن Google Gemini، OpenRouter، استعلام زنده سفارشات ووکامرس، و بهینه‌سازی سرعت.
+              </p>
+            </div>
+          </div>
+
+          <!-- Milestone 3 -->
+          <div class="flex items-start gap-5">
+            <div class="w-12 h-12 rounded-2xl bg-slate-100 text-slate-400 flex items-center justify-center shrink-0 z-10 border border-slate-200">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <div class="card-clean rounded-2xl p-4 flex-1 opacity-85">
+              <div class="flex justify-between items-center mb-1">
+                <span class="font-bold text-slate-900 text-sm">نسخه ۱.۲ - پایگاه برداری پیشرفته (Vector DB)</span>
+                <span class="text-[10px] bg-brand-50 text-brand-700 px-2 py-0.5 rounded-full font-bold">به‌زودی</span>
+              </div>
+              <p class="text-xs text-slate-500 leading-relaxed">
+                جستجوی معنایی هوشمند با پایگاه داده برداری محلی، پشتیبانی صوتی و گزارش‌گیری پیشرفته‌تر.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ==========================================
+         SECTION 12: FAQ ACCORDION
+         ========================================== -->
+    <section class="space-y-6 text-center max-w-2xl mx-auto">
+      <div>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">
+          سوالات متداول
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-500 max-w-lg mx-auto mt-2">
+          پاسخ به رایج‌ترین پرسش‌های خریداران درباره چت‌نگار
+        </p>
+      </div>
+
+      <div class="space-y-3 text-right">
+        
+        <!-- FAQ 1 -->
+        <details class="group card-clean rounded-2xl overflow-hidden cursor-pointer" open>
+          <summary class="flex justify-between items-center p-4 text-xs font-bold text-slate-800 list-none select-none">
+            <span>چت‌نگار از چه سرویس‌های هوش مصنوعی پشتیبانی می‌کند؟</span>
+            <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="px-4 pb-4 pt-1 text-xs text-slate-600 leading-relaxed border-t border-slate-50">
+            چت‌نگار از OpenAI (GPT-4o, GPT-4)، Google Gemini (1.5 Pro & Flash)، OpenRouter (بیش از ۱۰۰ مدل بین‌المللی مانند Claude) و Gap GPT به طور کامل پشتیبانی می‌کند.
+          </div>
+        </details>
+
+        <!-- FAQ 2 -->
+        <details class="group card-clean rounded-2xl overflow-hidden cursor-pointer">
+          <summary class="flex justify-between items-center p-4 text-xs font-bold text-slate-800 list-none select-none">
+            <span>آیا برای راه‌اندازی افزونه نیاز به کدنویسی است؟</span>
+            <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="px-4 pb-4 pt-1 text-xs text-slate-600 leading-relaxed border-t border-slate-50">
+            اصلاً. افزونه را نصب کرده، کلید API خود را وارد کنید و تمام. تمام بخش‌های ظاهر، پرامپت و همگام‌سازی کاملاً ویژوال و از پیشخوان وردپرس قابل تنظیم است.
+          </div>
+        </details>
+
+        <!-- FAQ 3 -->
+        <details class="group card-clean rounded-2xl overflow-hidden cursor-pointer">
+          <summary class="flex justify-between items-center p-4 text-xs font-bold text-slate-800 list-none select-none">
+            <span>چت‌نگار چگونه وضعیت سفارشات ووکامرس را استعلام می‌گیرد؟</span>
+            <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="px-4 pb-4 pt-1 text-xs text-slate-600 leading-relaxed border-t border-slate-50">
+            افزونه به صورت مستقیم و امن با جداول ووکامرس ارتباط برقرار کرده و اطلاعات لازم از جمله وضعیت سفارش، اقلام، مبلغ و کد رهگیری پستی را به کاربر نمایش می‌دهد.
+          </div>
+        </details>
+
+        <!-- FAQ 4 -->
+        <details class="group card-clean rounded-2xl overflow-hidden cursor-pointer">
+          <summary class="flex justify-between items-center p-4 text-xs font-bold text-slate-800 list-none select-none">
+            <span>امنیت کلیدهای API چگونه تامین می‌شود؟</span>
+            <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="px-4 pb-4 pt-1 text-xs text-slate-600 leading-relaxed border-t border-slate-50">
+            تمامی کلیدهای ارتباطی با رمزنگاری استاندارد AES-256-CBC در دیتابیس شما ذخیره می‌شوند و هیچ اطلاعاتی در سرورهای شخص ثالث ذخیره نخواهد شد.
+          </div>
+        </details>
+
+      </div>
+    </section>
+
+
+    <!-- ==========================================
+         SECTION 13: BOTTOM CTA BANNER
+         ========================================== -->
+    <section class="pt-4">
+      <div class="relative rounded-3xl overflow-hidden bg-gradient-to-br from-[#1E1B4B] via-[#0F0E17] to-[#3B0764] text-white p-8 sm:p-12 text-center border border-purple-500/20 shadow-2xl shadow-purple-950/40">
+        
+        <!-- Glowing accents -->
+        <div class="absolute -top-24 -left-24 w-64 h-64 bg-brand-500/20 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-24 -right-24 w-64 h-64 bg-fuchsia-500/20 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="relative z-10 space-y-4 max-w-xl mx-auto">
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-white">
+            آماده‌اید پشتیبانی خود را متحول کنید؟
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+            همین امروز چت‌نگار را به سایت وردپرسی خود اضافه کرده و پشتیبانی ۲۴ ساعته هوشمند را به مشتریانتان هدیه دهید.
+          </p>
+
+          <div class="pt-3">
+            <a href="https://www.rtl-theme.com/chatnegar-wordpress-plugin/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-white text-brand-900 hover:bg-slate-100 font-bold text-xs sm:text-sm px-6 py-3 rounded-2xl shadow-lg transition-transform hover:scale-105">
+              <span>دریافت و خرید چت‌نگار</span>
+              <svg class="w-4 h-4 rtl:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Footer Copyright -->
+    <footer class="text-center text-xs text-slate-400 py-6 border-t border-slate-200/60 no-print">
+      © ۲۰۲۶ چت‌نگار. ساخته شده با ❤️ برای وردپرس و ووکامرس.
+    </footer>
+
+  </main>
+
+</body>
+</html>

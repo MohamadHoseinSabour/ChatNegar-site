@@ -28,5 +28,13 @@ export default defineConfig(({ mode }) => {
         '@': path.resolve(__dirname, '.'),
       },
     },
+    build: {
+      rollupOptions: {
+        input: {
+          main: path.resolve(__dirname, 'index.html'),
+          infographic: path.resolve(__dirname, 'infographic/index.html'),
+        },
+      },
+    },
   };
 });
